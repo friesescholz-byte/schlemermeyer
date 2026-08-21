@@ -919,7 +919,7 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================== */
 .rondell-stage-wrapper {
   position: relative;
-  height: 670px;
+  height: 750px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -939,9 +939,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .rondell-card {
   position: absolute;
-  width: 480px;
+  width: 490px;
   max-width: 90vw;
-  height: 630px;
+  height: 700px;
   border-radius: var(--radius-xl);
   overflow: hidden;
   transition: all 0.65s cubic-bezier(0.22, 1, 0.36, 1);
@@ -1075,12 +1075,12 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
   .rondell-stage-wrapper {
-    height: 660px;
+    height: 720px;
   }
   .rondell-card {
     width: 100%;
     max-width: 92vw;
-    height: 630px;
+    height: 680px;
   }
   .rondell-card.next-right, .rondell-card.prev-left {
     display: none;
@@ -1109,7 +1109,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .atelier-card-image-wrap {
   position: relative;
-  height: 275px;
+  height: 240px;
   background-color: var(--bg-dark);
   overflow: hidden;
   flex-shrink: 0;
@@ -1127,7 +1127,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .atelier-card-body {
-  padding: 24px 28px;
+  padding: 24px 28px 28px 28px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

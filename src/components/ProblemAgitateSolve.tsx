@@ -5,8 +5,10 @@ import {
   Sparkles, 
   Check, 
   ChevronLeft, 
-  ChevronRight 
+  ChevronRight,
+  Phone
 } from 'lucide-react';
+import { COMPANY_INFO } from '../data/content';
 
 interface PasProps {
   onOpenLeadFunnel: (serviceTitle?: string) => void;
@@ -276,22 +278,61 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
           </div>
         </div>
 
-        {/* BOTTOM LUXURY CALLOUT BANNER */}
-        <div className="atelier-bottom-banner" style={{ maxWidth: '1180px' }}>
-          <div style={{ maxWidth: '640px' }}>
-            <h4 style={{ fontSize: '1.18rem', fontWeight: 800, color: '#11141A', marginBottom: '4px' }}>
-              Sie planen einen Neubau oder eine anspruchsvolle Sanierung?
-            </h4>
-            <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: 1.55 }}>
-              Wir beraten Sie gerne direkt vor Ort bei Ihnen oder in unserer Meisterwerkstatt in Balge (05022 / 633).
+        {/* BOTTOM LUXURY CALLOUT BANNER - HOCHWERTIG FORMATIERT */}
+        <div style={{
+          marginTop: '44px',
+          background: '#FFFFFF',
+          border: '1.5px solid #E8E2D5',
+          borderRadius: '20px',
+          padding: '36px 44px',
+          maxWidth: '1080px',
+          margin: '44px auto 0 auto',
+          boxShadow: '0 12px 36px rgba(17, 21, 28, 0.05)',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '24px'
+        }}>
+          <div style={{ maxWidth: '600px' }}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: 'rgba(201, 106, 0, 0.08)',
+              color: '#C96A00',
+              padding: '4px 12px',
+              borderRadius: '9999px',
+              fontSize: '0.8rem',
+              fontWeight: 800,
+              textTransform: 'uppercase',
+              marginBottom: '10px'
+            }}>
+              <Sparkles size={14} />
+              <span>Persönliche Meisterberatung</span>
+            </div>
+            <h3 style={{ fontSize: '1.45rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.25, marginBottom: '8px' }}>
+              Sie planen einen Neubau oder eine Sanierung?
+            </h3>
+            <p style={{ fontSize: '0.98rem', color: '#475569', lineHeight: 1.6 }}>
+              Wir beraten Sie gerne unverbindlich vor Ort bei Ihnen oder in unserer Meisterwerkstatt in Balge-Blenhorst.
             </p>
           </div>
 
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap' }}>
+            <a
+              href={`tel:${COMPANY_INFO.contact.phoneCallable}`}
+              className="btn-secondary"
+              style={{ padding: '14px 22px', fontSize: '0.94rem' }}
+            >
+              <Phone size={16} color="#C96A00" />
+              <span>05022 / 633</span>
+            </a>
+
             <button
               onClick={() => onOpenLeadFunnel()}
               className="btn-primary"
-              style={{ padding: '13px 26px', fontSize: '0.92rem' }}
+              style={{ padding: '14px 28px', fontSize: '0.96rem' }}
             >
               <span>Kostenloses Vor-Ort-Aufmaß anfragen</span>
               <ArrowRight size={16} />
