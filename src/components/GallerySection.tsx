@@ -123,7 +123,7 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
       {selectedItem && (
         <div className="modal-overlay" onClick={() => setSelectedItem(null)}>
           <div className="modal-dialog-box" onClick={(e) => e.stopPropagation()}>
-            <div style={{ position: 'relative', height: '360px', background: '#000' }}>
+            <div style={{ position: 'relative', height: '380px', background: '#000' }}>
               <img
                 src={selectedItem.image}
                 alt={selectedItem.title}
@@ -148,48 +148,21 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
               >
                 <X size={18} />
               </button>
-              <div style={{
-                position: 'absolute',
-                bottom: '12px',
-                left: '12px',
-                background: 'rgba(0,0,0,0.75)',
-                color: '#FCD34D',
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                padding: '4px 10px',
-                borderRadius: '4px'
-              }}>
-                {selectedItem.categoryLabel}
-              </div>
             </div>
 
-            <div style={{ padding: '28px' }}>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '8px' }}>
+            <div style={{ padding: '32px' }}>
+              <h3 style={{ fontSize: '1.45rem', fontWeight: 900, marginBottom: '10px', color: '#0F172A' }}>
                 {selectedItem.title}
               </h3>
-              <p style={{ color: '#4B5563', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '16px' }}>
+              <p style={{ color: '#334155', fontSize: '1.02rem', lineHeight: 1.65, marginBottom: '24px' }}>
                 {selectedItem.description}
               </p>
-
-              <div style={{ 
-                background: '#FFF9F0', 
-                border: '1px solid #F0D9B5', 
-                borderRadius: '8px', 
-                padding: '12px 16px', 
-                display: 'flex', 
-                justifyContent: 'space-between',
-                fontSize: '0.85rem',
-                marginBottom: '24px'
-              }}>
-                <span style={{ fontWeight: 700, color: '#11141A' }}>Holzart / Oberfläche:</span>
-                <span style={{ fontWeight: 800, color: '#C96A00' }}>{selectedItem.woodType}</span>
-              </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <button
                   onClick={() => setSelectedItem(null)}
                   className="btn-secondary"
-                  style={{ padding: '10px 18px', fontSize: '0.88rem' }}
+                  style={{ padding: '12px 20px', fontSize: '0.94rem' }}
                 >
                   Zurück
                 </button>

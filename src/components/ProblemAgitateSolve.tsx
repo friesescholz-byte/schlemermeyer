@@ -214,7 +214,7 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
                       </div>
                     </div>
 
-                    {/* CARD BODY (CLEAN, PROMINENT & HIGH-CONTRAST) */}
+                    {/* CARD BODY */}
                     <div className="atelier-card-body">
                       <div>
                         {/* PROBLEM TITLE */}
@@ -222,11 +222,21 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
                           {pillar.title}
                         </h3>
 
+                        {/* DAS PROBLEM (BLEIBT DA) */}
+                        <div className="atelier-problem-box">
+                          <strong className="atelier-problem-label">
+                            Das Problem:
+                          </strong>
+                          <span className="atelier-problem-text">
+                            {pillar.problemText}
+                          </span>
+                        </div>
+
                         {/* DIE MEISTER-LÖSUNG (ÜBERSCHRIFT) */}
                         <div className="atelier-solution-box">
                           <span className="atelier-solution-star">✦</span>
                           <h4 className="atelier-solution-heading">
-                            {pillar.solutionText}
+                            {pillar.solutionHighlight}
                           </h4>
                         </div>
                       </div>
