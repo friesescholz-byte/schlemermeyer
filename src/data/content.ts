@@ -21,7 +21,7 @@ export interface PasItem {
 export interface GalleryItem {
   id: string;
   title: string;
-  category: 'treppen' | 'boeden' | 'restauration' | 'tueren';
+  category: 'treppen' | 'boeden' | 'restauration' | 'tueren' | 'holzbau';
   categoryLabel: string;
   image: string;
   description: string;
@@ -79,10 +79,136 @@ export const TRUST_METRICS = [
 
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
+    id: "g-kragarm-led",
+    title: "Freitragende Kragarmtreppe mit LED-Beleuchtung",
+    category: "treppen",
+    categoryLabel: "Kragarmtreppe",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/image007_ergebnis.webp",
+    description: "Schwebende Massivholzstufen in Eiche natur mit unsichtbarer Wandverankerung und atmosphärischer Untertritt-LED-Beleuchtung.",
+    woodType: "Eiche massiv geölt"
+  },
+  {
+    id: "g-reling-kragarm",
+    title: "Gewendelte Kragarmtreppe mit Relinggeländer",
+    category: "treppen",
+    categoryLabel: "Kragarmtreppe",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/8_ergebnis.webp",
+    description: "Massive Eichenblockstufen kombiniert mit einem dynamisch geschwungenen Edelstahl-Relinggeländer.",
+    woodType: "Eiche natur & Edelstahl"
+  },
+  {
+    id: "g-zweiholm-stahl",
+    title: "Moderne Zweiholmtreppe in Stahl-Eiche",
+    category: "treppen",
+    categoryLabel: "Stahl-Holz-Treppe",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/5%20(1)_ergebnis.webp",
+    description: "Anthrazitfarbene Wangenkonstruktion mit warm geölten Massivholzstufen und aufrechtem Edelstahlgeländer.",
+    woodType: "Eiche massiv geölt & Stahl"
+  },
+  {
+    id: "g-betonverkleidung",
+    title: "Massivholzverkleidung auf Betontreppe",
+    category: "treppen",
+    categoryLabel: "Treppenverkleidung",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/IMG_0005_ergebnis.webp",
+    description: "Gewendelte Betontreppe veredelt mit maßgefertigten Eichenstufen, weißen Setzstufen und profilierter Pfostenkunst.",
+    woodType: "Eiche massiv & Weißlack"
+  },
+  {
+    id: "g-landhaustreppe",
+    title: "Klassische Landhaustreppe mit Zierstäben",
+    category: "treppen",
+    categoryLabel: "Landhaustreppe",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/IMG_0643_ergebnis.webp",
+    description: "Zweiläufige Eichen-Wangentreppe im Altbau mit weiß lackierten Zierstäben und geschwungenem Handlauf.",
+    woodType: "Eiche massiv & Landhaus-Zierstab"
+  },
+  {
+    id: "g-raeuchereiche-wange",
+    title: "Wangentreppe in edler Räuchereiche-Optik",
+    category: "treppen",
+    categoryLabel: "Wangentreppe",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/IMG_2558_ergebnis.webp",
+    description: "Geradläufige Wangentreppe mit dunkel gebeizten Stufen und filigranen Edelstahl-Geländerstäben.",
+    woodType: "Eiche dunkel gebeizt"
+  },
+  {
+    id: "g-galerie-treppe",
+    title: "Eichen-Wangentreppe mit Galeriegeländer",
+    category: "treppen",
+    categoryLabel: "Wangentreppe",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/14_ergebnis.webp",
+    description: "Massive Eichenstufen und Handläufe harmonisch kombiniert mit durchgehenden Edelstahlstäben bis zur Galerie.",
+    woodType: "Eiche massiv & Edelstahl"
+  },
+  {
+    id: "g-faltwerktreppe",
+    title: "Moderne Faltwerk- & Kragarmtreppe",
+    category: "treppen",
+    categoryLabel: "Treppenbau",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0086_ergebnis.webp",
+    description: "Schwebende Kragarm-Treppenkonstruktion mit massiven Eichenstufen und integrierter Wandbeleuchtung.",
+    woodType: "Massive Eichen-Trittstufen"
+  },
+  {
+    id: "g-holzbau-dachstuhl",
+    title: "Traditioneller Dachstuhl & Zimmerei",
+    category: "holzbau",
+    categoryLabel: "Zimmerei & Dachstuhl",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/12_ergebnis.webp",
+    description: "Präzise abgebundener Dachstuhl mit handwerklichen Holzverbindungen für höchste statische Sicherheit.",
+    woodType: "Fichten- & Tannen-Bauholz"
+  },
+  {
+    id: "g-hrb-wandelemente",
+    title: "Ökologischer Holzrahmenbau & Wandelemente",
+    category: "holzbau",
+    categoryLabel: "Holzrahmenbau",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/HRB%20IV_ergebnis.webp",
+    description: "Präzise Vorfertigung und millimetergenaue Kranmontage von hochgedämmten Holzrahmenbau-Wandelementen.",
+    woodType: "Konstruktionsvollholz (KVH)"
+  },
+  {
+    id: "g-hrb-wohnhaus",
+    title: "Holzrahmenbau-Wohnhaus mit Pultdach",
+    category: "holzbau",
+    categoryLabel: "Holzrahmenbau",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/HRB%20III_ergebnis.webp",
+    description: "Nachhaltiger Holzrahmenbau mit handwerklich aufgerichtetem Dachstuhl und diffusionsoffener Dämmebene.",
+    woodType: "Konstruktionsvollholz & BSH"
+  },
+  {
+    id: "g-hrb-anbau",
+    title: "Holzrahmenbau-Anbau mit Kranmontage",
+    category: "holzbau",
+    categoryLabel: "Anbauten & Aufstockung",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/17_ergebnis.webp",
+    description: "Wohnhaus-Erweiterung durch vorgefertigte Holzrahmen-Elemente mit Fensterausschnitten und optimaler Wärmedämmung.",
+    woodType: "Holzrahmenbau & KVH"
+  },
+  {
+    id: "g4",
+    title: "Massivholz-Landhausdielen verlegt",
+    category: "boeden",
+    categoryLabel: "Parkett & Böden",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0163-1-scaled_ergebnis.webp",
+    description: "Großformatige, edel gebürstete und naturgeölte Massivholzdielen mit sichtbarer Holzmaserung und samtiger Haptik.",
+    woodType: "Wildeiche gebürstet & geölt"
+  },
+  {
+    id: "g6",
+    title: "Mosaik- & Würfelparkett Verlegung",
+    category: "boeden",
+    categoryLabel: "Parkett & Böden",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0048-1_ergebnis.webp",
+    description: "Klassisches Massivholz-Würfelparkett für langlebige, widerstandsfähige Wohnräume mit lebendiger Struktur.",
+    woodType: "Eiche Mosaikparkett"
+  },
+  {
     id: "g1",
     title: "Ausgewählte Eichen-Altholzbalken",
     category: "restauration",
-    categoryLabel: "Altholz & Lager",
+    categoryLabel: "Altholz & Werkstatt",
     image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0018_ergebnis.webp",
     description: "Sorgfältig getrocknete und abgelagerte historische Massivholzbalken für charakterstarke Sonderbauten und Restaurationen.",
     woodType: "Abgelagertes Eichen-Altholz"
@@ -95,51 +221,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0008_ergebnis.webp",
     description: "Ausgewählte historische Balken und Eichensubstanz für denkmalgerechte Restaurationen und rustikale Einzelstücke.",
     woodType: "Historisches Eichenholz"
-  },
-  {
-    id: "g3",
-    title: "Präziser Stufen- & Wangenzuschnitt",
-    category: "treppen",
-    categoryLabel: "Treppenfertigung",
-    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0017_ergebnis.webp",
-    description: "Präzise Vorfertigung und Zuschnitt von gewendelten Treppenstufen und Schablonen in unserer Balger Werkstatt.",
-    woodType: "Stufenzuschnitt nach 3D-Maß"
-  },
-  {
-    id: "g4",
-    title: "Massivholz-Landhausdielen verlegt",
-    category: "boeden",
-    categoryLabel: "Parkett & Böden",
-    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0163-1-scaled_ergebnis.webp",
-    description: "Großformatige, edel gebürstete und naturgeölte Massivholzdielen mit sichtbarer Holzmaserung und samtiger Haptik.",
-    woodType: "Wildeiche gebürstet & geölt"
-  },
-  {
-    id: "g5",
-    title: "Moderne Faltwerk- & Kragarmtreppe",
-    category: "treppen",
-    categoryLabel: "Treppenbau",
-    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0086_ergebnis.webp",
-    description: "Schwebende Kragarm-Treppenkonstruktion mit massiven Eichenstufen und integrierter dezenter Wandbeleuchtung.",
-    woodType: "Massive Eichen-Trittstufen"
-  },
-  {
-    id: "g6",
-    title: "Mosaik- & Würfelparkett Verlegung",
-    category: "boeden",
-    categoryLabel: "Parkett & Böden",
-    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0048-1_ergebnis.webp",
-    description: "Klassisches Massivholz-Würfelparkett für langlebige, widerstandsfähige Wohnräume mit lebendiger Struktur.",
-    woodType: "Eiche Mosaikparkett"
-  },
-  {
-    id: "g7",
-    title: "Formverleimung & Stufenpresse",
-    category: "treppen",
-    categoryLabel: "Werkstattfertigung",
-    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0015_ergebnis.webp",
-    description: "Hochdruck-Verleimung massiver Treppenwangen und Rohlinge für maximale Tragfähigkeit und Formstabilität.",
-    woodType: "Massivholz-Verpressung Balge"
   },
   {
     id: "g8",

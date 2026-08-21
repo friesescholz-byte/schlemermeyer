@@ -17,9 +17,9 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
   const filterTabs = [
     { id: 'all', label: 'Alle Projekte' },
     { id: 'treppen', label: 'Treppenbau' },
+    { id: 'holzbau', label: 'Zimmerei & Holzbau' },
     { id: 'boeden', label: 'Parkett & Böden' },
-    { id: 'restauration', label: 'Restauration' },
-    { id: 'tueren', label: 'Innentüren' }
+    { id: 'restauration', label: 'Restauration & Altholz' }
   ];
 
   return (
@@ -34,7 +34,7 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
           </div>
           <h2>Eindrücke unserer Handwerkskunst.</h2>
           <p>
-            Entdecken Sie eine Auswahl unserer gefertigten Maßtreppen, verlegten Parkettböden und restaurierten Holzobjekte. Jedes Projekt ein echtes Meister-Unikat.
+            Entdecken Sie eine Auswahl unserer gefertigten Maßtreppen, Holzrahmenbauten, Parkettböden und restaurierten Holzobjekte. Jedes Projekt ein echtes Meister-Unikat.
           </p>
         </div>
 
