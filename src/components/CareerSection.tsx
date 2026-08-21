@@ -66,15 +66,15 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ onNavigateToJobs }
           {CAREER_BENEFITS.map((b, i) => {
             const Icon = iconMap[b.icon] || CheckCircle2;
             return (
-              <div key={i} className="career-benefit-card">
+              <div key={i} className="career-benefit-card" style={{ padding: '22px 20px' }}>
                 <div className="benefit-icon-box">
-                  <Icon size={20} />
+                  <Icon size={22} color="#C96A00" />
                 </div>
                 <div>
-                  <h4 style={{ fontSize: '0.98rem', fontWeight: 700, marginBottom: '4px' }}>
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0F172A', marginBottom: '6px' }}>
                     {b.title}
                   </h4>
-                  <p style={{ fontSize: '0.85rem', color: '#64748B', lineHeight: 1.55 }}>
+                  <p style={{ fontSize: '0.94rem', color: '#334155', lineHeight: 1.55 }}>
                     {b.desc}
                   </p>
                 </div>
@@ -112,7 +112,7 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ onNavigateToJobs }
                 color: '#C96A00',
                 padding: '6px 14px',
                 borderRadius: '9999px',
-                fontSize: '0.78rem',
+                fontSize: '0.82rem',
                 fontWeight: 800,
                 textTransform: 'uppercase',
                 marginBottom: '16px'
@@ -121,30 +121,30 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ onNavigateToJobs }
                 <span>4. Generation Meisterwerkstatt</span>
               </div>
 
-              <h3 style={{ fontSize: '1.65rem', fontWeight: 800, color: '#11151C', lineHeight: 1.25, marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '1.75rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.25, marginBottom: '16px' }}>
                 Lust auf echte Holzleidenschaft &amp; ein starkes Team?
               </h3>
 
-              <p style={{ fontSize: '0.95rem', color: '#475569', lineHeight: 1.65, marginBottom: '22px' }}>
-                Egal ob erfahrener Tischlergeselle, Meister oder motivierter Quereinsteiger: Bei uns arbeitest du an anspruchsvollen Massivholztreppen und edlen Böden – mit 100% eigener Fertigung in Balge und modernsten Hebehilfen.
+              <p style={{ fontSize: '1.02rem', color: '#334155', lineHeight: 1.65, marginBottom: '24px' }}>
+                Egal ob erfahrener Tischlergeselle, Meister oder motivierter Quereinsteiger: Bei uns arbeitest du an anspruchsvollen Massivholztreppen und edlen Böden – mit <strong>100% eigener Fertigung in Balge</strong> und modernsten Hebehilfen.
               </p>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '28px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem', color: '#1E2530', fontWeight: 600 }}>
-                  <CheckCircle2 size={16} color="#C96A00" style={{ flexShrink: 0 }} />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '28px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.94rem', color: '#0F172A', fontWeight: 700 }}>
+                  <CheckCircle2 size={18} color="#C96A00" style={{ flexShrink: 0 }} />
                   <span>Kein Anschreiben nötig</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem', color: '#1E2530', fontWeight: 600 }}>
-                  <CheckCircle2 size={16} color="#C96A00" style={{ flexShrink: 0 }} />
-                  <span>Freitags früher Feierabend</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.94rem', color: '#0F172A', fontWeight: 700 }}>
+                  <CheckCircle2 size={18} color="#C96A00" style={{ flexShrink: 0 }} />
+                  <span>4-Tage-Woche (Mo–Do)</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem', color: '#1E2530', fontWeight: 600 }}>
-                  <CheckCircle2 size={16} color="#C96A00" style={{ flexShrink: 0 }} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.94rem', color: '#0F172A', fontWeight: 700 }}>
+                  <CheckCircle2 size={18} color="#C96A00" style={{ flexShrink: 0 }} />
                   <span>Überdurchschnittliches Gehalt</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem', color: '#1E2530', fontWeight: 600 }}>
-                  <CheckCircle2 size={16} color="#C96A00" style={{ flexShrink: 0 }} />
-                  <span>Moderne CNC- &amp; Hebehilfen</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.94rem', color: '#0F172A', fontWeight: 700 }}>
+                  <CheckCircle2 size={18} color="#C96A00" style={{ flexShrink: 0 }} />
+                  <span>Bezahlte Fahrtzeiten</span>
                 </div>
               </div>
             </div>

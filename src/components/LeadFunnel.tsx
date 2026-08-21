@@ -306,13 +306,13 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                 {/* STEP 3 */}
                 {step === 3 && (
                   <div>
-                    <p style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', color: '#64748B', marginBottom: '16px' }}>
+                    <p style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: '#0F172A', marginBottom: '16px' }}>
                       Wohin dürfen wir die Auswertung &amp; Terminvorschlag senden?
                     </p>
 
                     <div className="form-group-grid">
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '6px' }}>
+                        <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 800, color: '#0F172A', marginBottom: '6px' }}>
                           Vollständiger Name *
                         </label>
                         <input
@@ -326,7 +326,7 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '6px' }}>
+                        <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 800, color: '#0F172A', marginBottom: '6px' }}>
                           Telefonnummer für Rückfragen *
                         </label>
                         <input
@@ -340,7 +340,7 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '6px' }}>
+                        <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 800, color: '#0F172A', marginBottom: '6px' }}>
                           E-Mail-Adresse *
                         </label>
                         <input
@@ -354,7 +354,7 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '6px' }}>
+                        <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 800, color: '#0F172A', marginBottom: '6px' }}>
                           Projekt-Standort / PLZ Ort
                         </label>
                         <input
@@ -368,7 +368,7 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                     </div>
 
                     <div style={{ marginBottom: '16px' }}>
-                      <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '6px' }}>
+                      <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 800, color: '#0F172A', marginBottom: '6px' }}>
                         Kurzbeschreibung oder Besonderheiten (optional)
                       </label>
                       <textarea

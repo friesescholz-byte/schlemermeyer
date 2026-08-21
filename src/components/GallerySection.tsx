@@ -63,40 +63,52 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
                 <img src={item.image} alt={item.title} />
                 <div style={{
                   position: 'absolute',
-                  top: '12px',
-                  left: '12px',
-                  background: 'rgba(0,0,0,0.75)',
+                  top: '14px',
+                  left: '14px',
+                  background: 'rgba(17, 21, 28, 0.85)',
+                  backdropFilter: 'blur(6px)',
                   color: '#FCD34D',
-                  fontSize: '0.72rem',
-                  fontWeight: 700,
-                  padding: '3px 8px',
-                  borderRadius: '4px',
-                  border: '1px solid rgba(255,255,255,0.1)'
+                  fontSize: '0.78rem',
+                  fontWeight: 800,
+                  padding: '4px 10px',
+                  borderRadius: '6px',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  letterSpacing: '0.02em'
                 }}>
                   {item.categoryLabel}
                 </div>
               </div>
 
-              <div className="gallery-card-body">
+              <div className="gallery-card-body" style={{ padding: '20px 22px' }}>
                 <div>
-                  <h4 style={{ fontSize: '0.98rem', fontWeight: 700, marginBottom: '6px' }}>
+                  <h4 style={{ fontSize: '1.18rem', fontWeight: 800, color: '#0F172A', marginBottom: '8px', lineHeight: 1.3 }}>
                     {item.title}
                   </h4>
-                  <p style={{ fontSize: '0.82rem', color: '#64748B', lineHeight: 1.5, marginBottom: '12px' }}>
+                  <p style={{ fontSize: '0.94rem', color: '#334155', lineHeight: 1.6, marginBottom: '14px' }}>
                     {item.description}
                   </p>
                 </div>
 
                 <div style={{ 
-                  paddingTop: '10px', 
-                  borderTop: '1px solid #F1F5F9', 
+                  paddingTop: '12px', 
+                  borderTop: '1.5px solid #F1F5F9', 
                   display: 'flex', 
                   justifyContent: 'space-between', 
                   alignItems: 'center',
-                  fontSize: '0.78rem'
+                  fontSize: '0.86rem'
                 }}>
-                  <span style={{ color: '#C96A00', fontWeight: 700 }}>{item.woodType}</span>
-                  <span style={{ color: '#94A3B8' }}>Ansehen &rarr;</span>
+                  <span style={{ 
+                    color: '#C96A00', 
+                    fontWeight: 800,
+                    background: 'rgba(201, 106, 0, 0.08)',
+                    padding: '3px 9px',
+                    borderRadius: '4px'
+                  }}>
+                    {item.woodType}
+                  </span>
+                  <span style={{ color: '#0F172A', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                    Ansehen &rarr;
+                  </span>
                 </div>
               </div>
             </div>

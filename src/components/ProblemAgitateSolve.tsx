@@ -211,18 +211,6 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
                         <span className="atelier-tag">
                           {pillar.tag}
                         </span>
-                        
-                        {offset === 0 && (
-                          <span className="atelier-focus-badge">
-                            Aktueller Fokus
-                          </span>
-                        )}
-                      </div>
-
-                      {/* BOTTOM HIGHLIGHT TAG */}
-                      <div className="atelier-card-highlight">
-                        <ShieldCheck size={15} color="#FCD34D" />
-                        <span>{pillar.detailHighlight}</span>
                       </div>
                     </div>
 

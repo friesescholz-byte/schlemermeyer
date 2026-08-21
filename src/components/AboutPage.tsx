@@ -29,7 +29,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenLeadFunnel, onNaviga
       generation: "1. Generation",
       master: "Dietrich Schlemermeyer",
       title: "Gründung & Wurzeln in Balge",
-      desc: "Grundsteinlegung als traditionelle Bautischlerei in Balge-Blenhorst. Handgefertigte Fenster, Holztüren und Treppen für regionale Höfe und Bürgerhäuser an der Weser.",
+      desc: "Grundsteinlegung als Bautischlerei in Balge-Blenhorst. Handgefertigte Fenster, Türen und Treppen für regionale Höfe an der Weser.",
       image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0008_ergebnis.webp",
       tag: "Handwerkliche Wurzeln"
     },
@@ -38,7 +38,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenLeadFunnel, onNaviga
       generation: "2. Generation",
       master: "Heinrich Schlemermeyer",
       title: "Ausbau & Treppen-Spezialisierung",
-      desc: "Erweiterung der Werkstattflächen und frühe Spezialisierung auf statisch anspruchsvolle Massivholztreppen, gewendelte Wangen und handgehobelte Dielenböden.",
+      desc: "Werkstatterweiterung und frühe Spezialisierung auf statisch anspruchsvolle Massivholztreppen und handgehobelte Dielenböden.",
       image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0050_ergebnis.webp",
       tag: "Tradition & Ausbau"
     },
@@ -47,7 +47,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenLeadFunnel, onNaviga
       generation: "3. Generation",
       master: "Dieter Schlemermeyer",
       title: "Präzision & Meisterwerkstatt",
-      desc: "Einführung computergestützter Vorfertigung und kontinuierliche Perfektionierung von gewendelten Wangen-, Bolzen- und modernen Faltwerktreppen.",
+      desc: "Einführung moderner Vorfertigung und kontinuierliche Perfektionierung von gewendelten Wangen- und Faltwerktreppen.",
       image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0015_ergebnis.webp",
       tag: "Präzisions-Ära"
     },
@@ -56,7 +56,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenLeadFunnel, onNaviga
       generation: "4. Generation",
       master: "Dirk Schlemermeyer",
       title: "Architektur, Design & Unikate",
-      desc: "Tischlermeister Dirk Schlemermeyer führt den Meisterbetrieb mit 3D-Laseraufmaß, nachhaltigen Harthölzern und kompromisslosem Qualitätsversprechen in die Zukunft.",
+      desc: "Tischlermeister Dirk Schlemermeyer führt den Meisterbetrieb mit digitalem 3D-Aufmaß und kompromissloser Holzqualität in die Zukunft.",
       image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0163-1-scaled_ergebnis.webp",
       tag: "Moderne Meisterklasse"
     }
@@ -66,22 +66,22 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenLeadFunnel, onNaviga
     {
       icon: Hammer,
       title: "100% Eigene Fertigung",
-      desc: "Vom massiven Stammzuschnitt über die Formverleimung bis zum finalen Naturölfinish entsteht jedes Bauteil komplett in unserer Werkstatt in Balge."
+      desc: "Vom Massivholzzuschnitt bis zum finalen Naturölfinish entsteht jedes Bauteil komplett in unserer eigenen Meisterwerkstatt in Balge."
     },
     {
       icon: TreePine,
       title: "Ausgewählte Harthölzer",
-      desc: "Wir verarbeiten ausschließlich erstklassige, zertifizierte Eiche, Esche, Nussbaum und Lärche aus nachhaltiger Forstwirtschaft mit schonender Trocknung."
+      desc: "Ausschließlich zertifizierte, langsam gewachsene Eiche, Esche und Nussbaum aus nachhaltiger Forstwirtschaft mit schonender Trocknung."
     },
     {
       icon: BadgeCheck,
       title: "Feste Meistermontage",
-      desc: "Keine anonymen Subunternehmer. Ihr Projekt wird von unseren eigenen, festangestellten Fachgesellen millimetergenau, sauber und staubarm montiert."
+      desc: "Keine Subunternehmer: Ihr Projekt wird ausschließlich von unseren festangestellten Fachgesellen sauber und millimetergenau montiert."
     },
     {
       icon: ShieldCheck,
       title: "100% Festpreisgarantie",
-      desc: "Nach unserem detaillierten Vor-Ort-Aufmaß erhalten Sie ein verbindliches Festpreisangebot ohne versteckte Zusatzkosten oder böse Überraschungen."
+      desc: "Verbindliches Festpreisangebot nach genauem Vor-Ort-Aufmaß – garantiert ohne versteckte Nachforderungen oder Überraschungen."
     }
   ];
 

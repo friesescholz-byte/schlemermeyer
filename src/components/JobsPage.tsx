@@ -77,25 +77,22 @@ export const JobsPage: React.FC<JobsPageProps> = ({ onOpenJobModal, onNavigateHo
       location: "Balge-Blenhorst & regionale Montage",
       teaser: "Fertigung von anspruchsvollen Massivholztreppen, Faltwerkanlagen und maßgefertigten Holzelementen in eigener Meisterwerkstatt.",
       tasks: [
-        "Vorbereitung & handwerkliche Fertigung von Massivholztreppen, Wangen und Faltwerkstufen in unserer Balger Werkstatt",
-        "Bedienung moderner CNC- & Holzbearbeitungsmaschinen sowie Formverleimpressen",
-        "Fachgerechte, millimetergenaue Montage von Treppenanlagen und Innenausbauten bei Privatkunden im Team",
-        "Behutsame Restauration historischer Treppensubstanz und staubfreie Sanierungsarbeiten",
-        "Mitgestaltung neuer Designlösungen in enger Abstimmung mit Tischlermeister Dirk Schlemermeyer"
+        "Handwerkliche Fertigung von Massivholztreppen & Wangen in Balge",
+        "Bedienung moderner CNC- & Holzbearbeitungsmaschinen",
+        "Saubere, millimetergenaue Montage im Team beim Kunden",
+        "Restauration historischer Treppen & Sanierungsarbeiten"
       ],
       requirements: [
-        "Abgeschlossene Berufsausbildung als Tischler/Schreiner (oder fundierte Praxiserfahrung als Helfer/Quereinsteiger mit Holzleidenschaft)",
-        "Freude an echter handwerklicher Maßarbeit ohne industrielle Fließband-Hektik",
-        "Zuverlässigkeit, Teamgeist und sorgfältiger Umgang mit hochwertigen Harthölzern",
-        "Führerschein Klasse B (wünschenswert, Montagefahrten werden komplett als Arbeitszeit bezahlt)"
+        "Ausbildung als Tischler/Schreiner (oder Praxiserfahrung mit Holz)",
+        "Freude an echter Maßarbeit ohne industrielle Fließband-Hektik",
+        "Zuverlässigkeit, Teamgeist und sorgfältiges Arbeiten",
+        "Führerschein Klasse B von Vorteil (Fahrzeit = Arbeitszeit)"
       ],
       perks: [
-        "4-Tage-Woche (Mo–Do): Jeden Freitag, Samstag & Sonntag frei!",
+        "4-Tage-Woche (Mo–Do): Jedes Wochenende 3 Tage frei",
         "100% bezahlte Fahrzeiten von und zur Baustelle",
-        "Betriebliche Krankenversicherung (vom Betrieb voll finanziert)",
-        "Moderne Vakuum-Hebehilfen und ergonomische Werkzeuge",
-        "Kostenlose Engelbert-Strauss-Arbeitskleidung & Qualitätswerkzeug",
-        "Familiäres Miteinander in 4. Generation – keine anonyme Konzernnummer"
+        "Betriebliche Krankenversicherung (voll vom Betrieb finanziert)",
+        "Ergonomische Vakuum-Hebehilfen & Engelbert-Strauss-Montur"
       ]
     },
     {
@@ -108,24 +105,22 @@ export const JobsPage: React.FC<JobsPageProps> = ({ onOpenJobModal, onNavigateHo
       location: "Balge-Blenhorst & Umkreis",
       teaser: "Konstruktiver Holzbau, tragende Treppenunterbauten, Altholzaufbereitung und anspruchsvolle Montagen im Weserbergland.",
       tasks: [
-        "Herstellung und Montage von tragenden Holzkonstruktionen für Treppen- und Galerieaufgänge",
-        "Fachgerechter Abbund und handwerkliche Holzverbindungstechniken für exklusive Wohnbauprojekte",
-        "Aufarbeitung, Trocknung und Einpassung historischer Eichenbalken für denkmalgeschützte Restaurationen",
-        "Eigenverantwortliche Koordination auf der Baustelle im eingespielten Zweier-Team"
+        "Montage von tragenden Holzkonstruktionen für Treppenaufgänge",
+        "Fachgerechter Abbund & traditionelle Holzverbindungen",
+        "Aufbereitung historischer Eichenbalken für Sanierungen",
+        "Eigenverantwortliche Baustellenkoordination im Zweier-Team"
       ],
       requirements: [
-        "Ausbildung als Zimmerer, Holzmechaniker oder vergleichbare Qualifikation im Holzbau",
-        "Gutes räumliches Vorstellungsvermögen und Verständnis für Statik & Holzverbindungen",
-        "Sicherer Umgang mit Kettensäge, Abbundwerkzeugen und modernen Montagegeräten",
-        "Führerschein Klasse B / BE von Vorteil"
+        "Ausbildung als Zimmerer oder vergleichbare Qualifikation",
+        "Verständnis für Statik, Abbund & solide Holzverbindungen",
+        "Sicherer Umgang mit Kettensäge und modernen Montagegeräten",
+        "Führerschein Klasse B / BE wünschenswert"
       ],
       perks: [
-        "4-Tage-Woche (Mo–Do) – Maximale Erholung am 3-Tage-Wochenende",
-        "Voll vergütete Fahrtzeiten ab Werkstatt Balge",
+        "4-Tage-Woche (Mo–Do): Freitags immer frei",
+        "Voll bezahlte Fahrzeiten ab Werkstatt Balge",
         "Betriebliche Kranken-Zusatzversicherung inklusive",
-        "Hochwertige Schutzausrüstung & professionelle Hebegeräte",
-        "Sicherer, ganzjähriger Arbeitsplatz ohne saisonale Entlassungen",
-        "Wertschätzende Chefs, die selbst aus dem Handwerk kommen"
+        "Ganzjähriger krisensicherer Arbeitsplatz ohne Winterpause"
       ]
     },
     {
@@ -138,23 +133,22 @@ export const JobsPage: React.FC<JobsPageProps> = ({ onOpenJobModal, onNavigateHo
       location: "Balge-Blenhorst & Region",
       teaser: "Verlegung von edlen Landhausdielen, Schlossdielen und staubarmes Schleifen und Veredeln hochwertiger Holzböden.",
       tasks: [
-        "Fachgerechte Verlegung von Massivholzdielen, Fischgrätparkett und Schlossdielen",
-        "Staubarmes Schleifen und Versiegeln von Altböden mit modernsten HEPA-Absauganlagen",
-        "Oberflächenveredelung mit natürlichen Ölen und Hartwachsbeschichtungen",
-        "Perfekte Abstimmung von Fußbodenbelägen und Treppenstufen beim Kunden"
+        "Verlegung von Massivholzdielen, Fischgrät & Schlossdielen",
+        "Staubarmes Schleifen & Versiegeln mit HEPA-Absaugung",
+        "Oberflächenveredelung mit natürlichen Ölen & Hartwachs",
+        "Perfekte Abstimmung von Böden und Treppenstufen"
       ],
       requirements: [
-        "Erfahrung in der Bodenverlegung, Parkettbearbeitung oder verwandten Gewerken",
-        "Sinn für sauberes, kundenorientiertes Arbeiten in bewohnten Räumen",
-        "Lust auf moderne Maschinen und schadstofffreie Naturprodukte",
-        "Zuverlässigkeit und Freude an sichtbaren Vorher-Nachher-Erfolgen"
+        "Erfahrung im Verlegen oder Schleifen von Parkettböden",
+        "Sorgfältiges, sauberes Arbeiten in Kundenwohnräumen",
+        "Lust auf moderne Maschinen und ökologische Naturöle",
+        "Zuverlässigkeit und Freude an sichtbaren Erfolgen"
       ],
       perks: [
-        "4-Tage-Woche (Freitags immer frei)",
-        "Bezahlte Fahrzeiten & modernste Staubschutz-Technik",
-        "Betriebliche Krankenversicherung für die ganze Familie",
-        "Ruhiges, strukturiertes Arbeiten ohne Akkorddruck",
-        "Umfassende Einarbeitung und kollegiale Unterstützung"
+        "4-Tage-Woche (Jedes Wochenende 3 Tage frei)",
+        "100% bezahlte Fahrzeiten & moderne Staubschutz-Technik",
+        "Betriebliche Krankenversicherung inklusive",
+        "Ruhiges Arbeiten ohne Akkorddruck im Meisterbetrieb"
       ]
     }
   ];

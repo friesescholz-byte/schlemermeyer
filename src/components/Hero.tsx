@@ -97,10 +97,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel }) => {
               </span>
             </h1>
 
-            {/* SUBLINE */}
+            {/* SUBLINE - PUNCHY & SCHNELL ERFASSBAR */}
             <p className="hero-split-subline">
-              Wo industrielle Katalogware knarrt und dünne Standardhölzer enttäuschen, 
-              fertigen wir langlebige Unikate für Generationen. Individuell nach Maß mit{' '}
+              Individuelle Maßtreppen und edle Böden aus echtem Meisterholz – 
+              dauerhaft knarrfrei, maßgefertigt in Balge und mit{' '}
               <strong>100% Festpreis- &amp; Termingarantie</strong>.
             </p>
 
@@ -135,7 +135,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel }) => {
               </a>
             </div>
 
-            {/* METRICS ROW */}
+            {/* METRICS ROW - GROSS & SOFORT SICHTBAR */}
             <div className="hero-metrics-grid">
               <div className="hero-metric-box">
                 <div className="metric-number">1883</div>
@@ -143,7 +143,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel }) => {
               </div>
               <div className="hero-metric-box">
                 <div className="metric-number">100%</div>
-                <div className="metric-label">Eigene Werkstatt</div>
+                <div className="metric-label">Eigene Fertigung</div>
               </div>
               <div className="hero-metric-box">
                 <div className="metric-number">60 mm</div>
@@ -151,7 +151,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel }) => {
               </div>
               <div className="hero-metric-box">
                 <div className="metric-number">4. Gen.</div>
-                <div className="metric-label">Innungsbetrieb</div>
+                <div className="metric-label">Innungs-Meister</div>
               </div>
             </div>
 
