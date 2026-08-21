@@ -9,10 +9,14 @@ interface GalleryProps {
 export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
+  const [visibleCount, setVisibleCount] = useState<number>(6);
 
   const filteredItems = activeFilter === 'all'
     ? GALLERY_ITEMS
     : GALLERY_ITEMS.filter(item => item.category === activeFilter);
+
+  const displayedItems = filteredItems.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredItems.length;
 
   const filterTabs = [
     { id: 'all', label: 'Alle Projekte' },
@@ -21,6 +25,15 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
     { id: 'boeden', label: 'Parkett & Böden' },
     { id: 'restauration', label: 'Restauration & Altholz' }
   ];
+
+  const handleFilterChange = (filterId: string) => {
+    setActiveFilter(filterId);
+    setVisibleCount(6);
+  };
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + 3);
+  };
 
   return (
     <section className="section-wrapper" id="galerie">
@@ -43,7 +56,7 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
           {filterTabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveFilter(tab.id)}
+              onClick={() => handleFilterChange(tab.id)}
               className={`gallery-filter-btn ${activeFilter === tab.id ? 'active' : ''}`}
             >
               {tab.label}
@@ -51,9 +64,9 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
           ))}
         </div>
 
-        {/* GALLERY GRID */}
+        {/* GALLERY GRID (3 SPALTEN) */}
         <div className="gallery-grid">
-          {filteredItems.map((item) => (
+          {displayedItems.map((item) => (
             <div
               key={item.id}
               onClick={() => setSelectedItem(item)}
@@ -63,9 +76,9 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
                 <img src={item.image} alt={item.title} />
               </div>
 
-              <div className="gallery-card-body" style={{ padding: '22px 24px' }}>
+              <div className="gallery-card-body" style={{ padding: '24px 26px' }}>
                 <div>
-                  <h4 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0F172A', marginBottom: '8px', lineHeight: 1.3 }}>
+                  <h4 style={{ fontSize: '1.24rem', fontWeight: 900, color: '#0F172A', marginBottom: '10px', lineHeight: 1.3 }}>
                     {item.title}
                   </h4>
                   <p style={{ fontSize: '0.96rem', color: '#334155', lineHeight: 1.6, marginBottom: '16px' }}>
@@ -74,12 +87,12 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
                 </div>
 
                 <div style={{ 
-                  paddingTop: '12px', 
+                  paddingTop: '14px', 
                   borderTop: '1.5px solid #F1F5F9', 
                   display: 'flex', 
                   justifyContent: 'flex-end', 
                   alignItems: 'center',
-                  fontSize: '0.92rem'
+                  fontSize: '0.94rem'
                 }}>
                   <span style={{ color: '#C96A00', fontWeight: 800, display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                     Projekt ansehen &rarr;
@@ -89,6 +102,28 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
             </div>
           ))}
         </div>
+
+        {/* LOAD MORE BUTTON (+3 PROJEKTE) */}
+        {hasMore && (
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
+            <button
+              onClick={handleLoadMore}
+              className="btn-secondary"
+              style={{ 
+                padding: '14px 36px', 
+                fontSize: '1rem', 
+                fontWeight: 800,
+                background: '#FFFFFF',
+                borderColor: '#C96A00',
+                color: '#C96A00',
+                boxShadow: '0 6px 20px rgba(201, 106, 0, 0.12)'
+              }}
+            >
+              <span>Weitere 3 Projekte laden</span>
+              <ArrowRight size={18} />
+            </button>
+          </div>
+        )}
 
         {/* BOTTOM CALLOUT */}
         <div style={{ 
