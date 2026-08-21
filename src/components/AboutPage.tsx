@@ -211,14 +211,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenLeadFunnel, onNaviga
                     src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0015_ergebnis.webp" 
                     alt="Stufenpresse und Formverleimung" 
                   />
-                  <span>Formverleimung &amp; Presse</span>
                 </div>
                 <div className="sub-photo-box">
                   <img 
                     src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0017_ergebnis.webp" 
                     alt="Präziser Stufenzuschnitt" 
                   />
-                  <span>Präziser Zuschnitt</span>
                 </div>
               </div>
 
@@ -263,7 +261,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenLeadFunnel, onNaviga
                     <div className="timeline-node-card">
                       <div className="node-card-image-wrap">
                         <img src={item.image} alt={item.title} />
-                        <div className="node-gen-badge">{item.generation}</div>
                       </div>
 
                       <div className="node-card-body">
