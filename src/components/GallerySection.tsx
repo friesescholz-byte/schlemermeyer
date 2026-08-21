@@ -154,52 +154,81 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
 
       </div>
 
-      {/* LIGHTBOX MODAL */}
+      {/* LIGHTBOX MODAL (VOLLSTÄNDIGE, NICHT ABGESCHNITTENE BILDER) */}
       {selectedItem && (
         <div className="modal-overlay" onClick={() => setSelectedItem(null)}>
-          <div className="modal-dialog-box" onClick={(e) => e.stopPropagation()}>
-            <div style={{ position: 'relative', height: '380px', background: '#000' }}>
+          <div className="modal-dialog-box" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '860px', width: '92vw', maxHeight: '92vh', overflowY: 'auto' }}>
+            <div style={{ 
+              position: 'relative', 
+              background: '#0B1017', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              minHeight: '360px',
+              maxHeight: '62vh'
+            }}>
               <img
                 src={selectedItem.image}
                 alt={selectedItem.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  maxHeight: '62vh', 
+                  objectFit: 'contain',
+                  display: 'block'
+                }}
               />
               <button
                 onClick={() => setSelectedItem(null)}
                 style={{
                   position: 'absolute',
-                  top: '14px',
-                  right: '14px',
-                  width: '36px',
-                  height: '36px',
+                  top: '16px',
+                  right: '16px',
+                  width: '40px',
+                  height: '40px',
                   borderRadius: '50%',
-                  background: 'rgba(0,0,0,0.7)',
+                  background: 'rgba(11, 16, 23, 0.85)',
+                  border: '1.5px solid rgba(255, 255, 255, 0.25)',
                   color: '#FFFFFF',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  zIndex: 10,
+                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.4)',
+                  transition: 'all 0.2s ease'
                 }}
+                aria-label="Schließen"
               >
-                <X size={18} />
+                <X size={20} />
               </button>
             </div>
 
-            <div style={{ padding: '32px' }}>
-              <h3 style={{ fontSize: '1.45rem', fontWeight: 900, marginBottom: '10px', color: '#0F172A' }}>
-                {selectedItem.title}
-              </h3>
-              <p style={{ color: '#334155', fontSize: '1.02rem', lineHeight: 1.65, marginBottom: '24px' }}>
-                {selectedItem.description}
-              </p>
+            <div style={{ padding: '32px 36px', background: '#FFFFFF' }}>
+              <div style={{ marginBottom: '24px' }}>
+                <h3 style={{ fontSize: '1.55rem', fontWeight: 900, marginBottom: '10px', color: '#0F172A', lineHeight: 1.25 }}>
+                  {selectedItem.title}
+                </h3>
+                <p style={{ color: '#334155', fontSize: '1.02rem', lineHeight: 1.65 }}>
+                  {selectedItem.description}
+                </p>
+              </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center',
+                paddingTop: '20px',
+                borderTop: '1.5px solid #F1F5F9',
+                flexWrap: 'wrap',
+                gap: '14px'
+              }}>
                 <button
                   onClick={() => setSelectedItem(null)}
                   className="btn-secondary"
-                  style={{ padding: '12px 20px', fontSize: '0.94rem' }}
+                  style={{ padding: '12px 24px', fontSize: '0.94rem' }}
                 >
-                  Zurück
+                  Zurück zur Übersicht
                 </button>
                 <button
                   onClick={() => {
@@ -208,7 +237,7 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
                     onOpenLeadFunnel(title);
                   }}
                   className="btn-primary"
-                  style={{ padding: '10px 22px', fontSize: '0.88rem' }}
+                  style={{ padding: '14px 28px', fontSize: '0.96rem' }}
                 >
                   <span>Ähnliches Projekt anfragen</span>
                   <ArrowRight size={16} />
