@@ -196,22 +196,13 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
                 >
                   <div className="atelier-card-inner">
                     
-                    {/* LARGE IMAGE WRAPPER (TOP) */}
+                    {/* LARGE IMAGE WRAPPER (TOP - CLEAN, NO OVERLAY TEXT) */}
                     <div className="atelier-card-image-wrap">
                       <img 
                         src={pillar.image} 
                         alt={pillar.imageAlt}
                         className="atelier-card-img"
                       />
-                      
-                      <div className="atelier-card-gradient" />
-
-                      {/* TOP CATEGORY TAG */}
-                      <div className="atelier-card-top-bar">
-                        <span className="atelier-tag">
-                          {pillar.tag}
-                        </span>
-                      </div>
                     </div>
 
                     {/* CARD BODY */}
@@ -222,7 +213,7 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
                           {pillar.title}
                         </h3>
 
-                        {/* DAS PROBLEM (BLEIBT DA) */}
+                        {/* DAS PROBLEM */}
                         <div className="atelier-problem-box">
                           <strong className="atelier-problem-label">
                             Das Problem:
@@ -231,17 +222,9 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
                             {pillar.problemText}
                           </span>
                         </div>
-
-                        {/* DIE MEISTER-LÖSUNG (ÜBERSCHRIFT) */}
-                        <div className="atelier-solution-box">
-                          <span className="atelier-solution-star">✦</span>
-                          <h4 className="atelier-solution-heading">
-                            {pillar.solutionHighlight}
-                          </h4>
-                        </div>
                       </div>
 
-                      {/* SPECS & ACTION */}
+                      {/* MEISTER SPECS & ACTION */}
                       <div className="atelier-specs-wrapper">
                         <div className="atelier-specs-list">
                           {pillar.specs.map((spec, i) => (
