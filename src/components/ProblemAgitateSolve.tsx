@@ -45,8 +45,8 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
         'Statisch geprüfte Knarrfreiheit',
         'Elegante Glas- & LED-Details'
       ],
-      image: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0186_ergebnis.webp',
-      imageAlt: 'Freitragende Faltwerktreppe in Eiche natur',
+      image: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/Standarttreppe_ergebnis.webp',
+      imageAlt: 'Minderwertige Standardtreppe mit Mängeln',
       detailHighlight: 'Eigene CAD-Planung & Fertigung'
     },
     {
@@ -61,8 +61,8 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
         'Staubarm direkt im Wohnbereich',
         'Beseitigung von Knarrgeräuschen'
       ],
-      image: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0008_ergebnis.webp',
-      imageAlt: 'Historische Eichentreppe fachgerecht restauriert',
+      image: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/Bauschutt-und-staub_ergebnis.webp',
+      imageAlt: 'Staub und Bauschutt bei unprofessioneller Sanierung',
       detailHighlight: 'Werterhalt alter Bausubstanz'
     },
     {
@@ -77,8 +77,8 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
         'Nahtlose Meister-Fugen',
         '1 Ansprechpartner für alles'
       ],
-      image: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0048-1_ergebnis.webp',
-      imageAlt: 'Harmonisch abgestimmtes Parkett- und Treppenkonzept',
+      image: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/Unpassende%20Holzarten_ergebnis.webp',
+      imageAlt: 'Nicht zusammenpassende Holzarten und Farbtöne',
       detailHighlight: 'Ganzheitliche Maßanfertigung'
     },
     {
@@ -93,8 +93,8 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
         'Feste Einbautermine mit Garantie',
         'Eigene Gesellen aus Balge'
       ],
-      image: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0163-1-scaled_ergebnis.webp',
-      imageAlt: 'Traditionelle Meisterwerkstatt in Balge-Blenhorst',
+      image: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/Bauverzug-Treppe_ergebnis.webp',
+      imageAlt: 'Baustelle mit Bauverzug und unfertiger Treppe',
       detailHighlight: 'Innungsbetrieb seit 1883'
     }
   ];
