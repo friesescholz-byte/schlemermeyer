@@ -86,7 +86,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel }) => {
             {/* EYEBROW BADGE */}
             <div className="hero-eyebrow-pill">
               <Sparkles size={14} color="#C96A00" />
-              <span>Meisterwerkstatt in Balge seit 1883 • 4. Generation</span>
+              <span>Meisterwerkstatt in Balge seit 1883</span>
             </div>
 
             {/* HEADLINE */}
@@ -148,10 +148,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel }) => {
               <div className="hero-metric-box">
                 <div className="metric-number">60 mm</div>
                 <div className="metric-label">Massive Stufen</div>
-              </div>
-              <div className="hero-metric-box">
-                <div className="metric-number">4. Gen.</div>
-                <div className="metric-label">Innungs-Meister</div>
               </div>
             </div>
 

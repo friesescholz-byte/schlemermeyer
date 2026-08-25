@@ -34,39 +34,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      {/* TOPBAR */}
-      <div className="site-topbar">
-        <div className="container-custom">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <span className="topbar-badge">
-              <Award size={13} color="#F59E0B" />
-              Familientradition seit 1883 • Meisterbetrieb Balge
-            </span>
-            <span className="topbar-location">
-              <MapPin size={13} color="#94A3B8" />
-              Blenhorster Str. 7, 31609 Balge
-            </span>
-          </div>
-
-          <div className="topbar-contact-links">
-            <a 
-              href={`tel:${COMPANY_INFO.contact.phoneCallable}`} 
-              className="topbar-link"
-            >
-              <Phone size={13} color="#F59E0B" />
-              <span>{COMPANY_INFO.contact.phone}</span>
-            </a>
-            <a 
-              href={`mailto:${COMPANY_INFO.contact.email}`}
-              className="topbar-link"
-            >
-              <Mail size={13} color="#94A3B8" />
-              <span>{COMPANY_INFO.contact.email}</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* MAIN HEADER */}
       <header className={`site-header ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container-custom">
