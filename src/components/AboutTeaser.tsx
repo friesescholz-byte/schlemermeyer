@@ -1,5 +1,6 @@
-﻿import React from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, Sparkles, Star } from 'lucide-react';
+import { COMPANY_INFO } from '../data/content';
 
 interface AboutTeaserProps {
   onNavigateToAbout: () => void;
@@ -46,12 +47,12 @@ export const AboutTeaser: React.FC<AboutTeaserProps> = ({ onNavigateToAbout }) =
                 <span className="teaser-stat-label">Eigene Werkstatt</span>
               </div>
               <div className="teaser-stat-item">
-                <span className="teaser-stat-val">Innungs-</span>
-                <span className="teaser-stat-label">Meisterbetrieb</span>
+                <span className="teaser-stat-val">60 mm</span>
+                <span className="teaser-stat-label">Massive Stufen</span>
               </div>
             </div>
 
-            {/* CTA BUTTON */}
+            {/* CTA BUTTON & GOOGLE REVIEWS GROUP */}
             <div className="about-teaser-cta-wrap">
               <button 
                 onClick={onNavigateToAbout}
@@ -60,6 +61,23 @@ export const AboutTeaser: React.FC<AboutTeaserProps> = ({ onNavigateToAbout }) =
                 <span>Lernen Sie unsere Tischlerei kennen</span>
                 <ArrowRight size={18} />
               </button>
+
+              <a
+                href={COMPANY_INFO.contact.googleReviewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="about-teaser-google-badge"
+                title="Google-Bewertungen aufrufen"
+              >
+                <div className="hero-google-stars">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={14} fill="#C96A00" color="#C96A00" />
+                  ))}
+                </div>
+                <span className="hero-google-text">
+                  <strong>5.0 / 5</strong> Google-Bewertungen
+                </span>
+              </a>
             </div>
           </div>
 

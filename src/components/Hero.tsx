@@ -1,16 +1,19 @@
 import React from 'react';
 import { 
   ArrowRight, 
-  Star, 
-  Sparkles
+  Sparkles,
+  Briefcase,
+  Phone,
+  Mail
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 
 interface HeroProps {
   onOpenLeadFunnel: (serviceTitle?: string) => void;
+  onNavigateToJobs: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel, onNavigateToJobs }) => {
   const heroImage = 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Hero_Schlemermeyer_ergebnis.webp';
 
   return (
@@ -110,44 +113,42 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel }) => {
                 onClick={() => onOpenLeadFunnel()}
                 className="btn-primary hero-main-cta"
               >
-                <span>Kostenloses Vor-Ort-Aufmaß anfragen</span>
+                <span>Projekt unverbindlich anfragen</span>
                 <ArrowRight size={18} />
               </button>
             </div>
 
-            {/* GOOGLE REVIEWS PILL */}
-            <div className="hero-google-row">
-              <a
-                href={COMPANY_INFO.contact.googleReviewUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero-google-badge"
-                title="Google-Bewertungen aufrufen"
-              >
-                <div className="hero-google-stars">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={15} fill="#C96A00" color="#C96A00" />
-                  ))}
-                </div>
-                <span className="hero-google-text">
-                  <strong>5.0 / 5</strong> Google-Bewertungen
-                </span>
-              </a>
-            </div>
+            {/* QUIET & AIRY SECONDARY LINKS (UNOBTRUSIVE JOB LINK & DIRECT CONTACT) */}
+            <div className="hero-secondary-meta">
+              <div className="hero-job-inline">
+                <button
+                  onClick={onNavigateToJobs}
+                  className="hero-job-text-link"
+                >
+                  <Briefcase size={14} className="hero-job-icon" />
+                  <span>Wir suchen Verstärkung:</span>
+                  <span className="hero-job-highlight">Offene Stellen entdecken &rarr;</span>
+                </button>
+              </div>
 
-            {/* METRICS ROW - GROSS & SOFORT SICHTBAR */}
-            <div className="hero-metrics-grid">
-              <div className="hero-metric-box">
-                <div className="metric-number">1883</div>
-                <div className="metric-label">Gegründet in Balge</div>
-              </div>
-              <div className="hero-metric-box">
-                <div className="metric-number">100%</div>
-                <div className="metric-label">Eigene Fertigung</div>
-              </div>
-              <div className="hero-metric-box">
-                <div className="metric-number">60 mm</div>
-                <div className="metric-label">Massive Stufen</div>
+              <div className="hero-contact-inline-bar">
+                <a 
+                  href={`tel:${COMPANY_INFO.contact.phoneCallable}`} 
+                  className="hero-contact-link"
+                  title="Jetzt anrufen"
+                >
+                  <Phone size={13} color="#C96A00" />
+                  <span>{COMPANY_INFO.contact.phone}</span>
+                </a>
+                <span className="hero-meta-dot">•</span>
+                <a 
+                  href={`mailto:${COMPANY_INFO.contact.email}`} 
+                  className="hero-contact-link"
+                  title="E-Mail senden"
+                >
+                  <Mail size={13} color="#C96A00" />
+                  <span>{COMPANY_INFO.contact.email}</span>
+                </a>
               </div>
             </div>
 

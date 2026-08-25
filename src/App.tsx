@@ -67,7 +67,10 @@ export function App() {
       {currentPage === 'home' && (
         <>
           {/* 2. DESIGNER HERO */}
-          <Hero onOpenLeadFunnel={() => handleOpenLeadFunnel()} />
+          <Hero 
+            onOpenLeadFunnel={() => handleOpenLeadFunnel()} 
+            onNavigateToJobs={() => handleNavigate('jobs')}
+          />
 
           {/* 2.5 UNTERNEHMENSVORSTELLUNG / ÜBER UNS TEASER */}
           <AboutTeaser onNavigateToAbout={() => handleNavigate('about')} />
