@@ -3223,3 +3223,162 @@ h1, h2, h3, h4, h5, h6 {
   0% { opacity: 0; transform: scale(0.95); }
   100% { opacity: 1; transform: scale(1); }
 }
+
+/* ==========================================================================
+   ABOUT TEASER SECTION (UNTERNEHMENSVORSTELLUNG UNTER DEM HERO)
+   ========================================================================== */
+.about-teaser-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.about-teaser-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-teaser-heading {
+  font-size: 2.35rem;
+  font-weight: 900;
+  color: #0F172A;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.about-teaser-brand {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--brand-wood);
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.about-teaser-desc {
+  font-size: 1.06rem;
+  color: #1E293B;
+  line-height: 1.7;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.about-teaser-subdesc {
+  font-size: 0.98rem;
+  color: #475569;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+.about-teaser-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 24px 0;
+  border-top: 1.5px solid #F1F5F9;
+  border-bottom: 1.5px solid #F1F5F9;
+  margin-bottom: 28px;
+}
+
+.teaser-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.teaser-stat-val {
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--brand-wood);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.teaser-stat-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.about-teaser-btn {
+  padding: 14px 28px;
+  font-size: 0.96rem;
+  font-weight: 800;
+}
+
+.about-teaser-media-wrap {
+  position: relative;
+}
+
+.about-teaser-image-frame {
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  border: 4px solid #FFFFFF;
+  box-shadow: 0 20px 50px rgba(17, 21, 28, 0.12);
+  background: var(--bg-dark);
+}
+
+.about-teaser-img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-teaser-image-frame:hover .about-teaser-img {
+  transform: scale(1.04);
+}
+
+.about-teaser-floating-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(201, 106, 0, 0.35);
+  padding: 14px 20px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+.floating-badge-number {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--brand-wood);
+  line-height: 1;
+}
+
+.floating-badge-text strong {
+  display: block;
+  font-size: 0.92rem;
+  color: #0F172A;
+  font-weight: 800;
+}
+
+.floating-badge-text span {
+  font-size: 0.78rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+@media (max-width: 992px) {
+  .about-teaser-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-teaser-heading {
+    font-size: 2rem;
+  }
+  .about-teaser-img {
+    height: 340px;
+  }
+}

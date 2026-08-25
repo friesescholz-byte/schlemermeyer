@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { AboutTeaser } from './components/AboutTeaser';
 import { ProblemAgitateSolve } from './components/ProblemAgitateSolve';
 import { GallerySection } from './components/GallerySection';
 import { CareerSection } from './components/CareerSection';
@@ -67,6 +68,9 @@ export function App() {
         <>
           {/* 2. DESIGNER HERO */}
           <Hero onOpenLeadFunnel={() => handleOpenLeadFunnel()} />
+
+          {/* 2.5 UNTERNEHMENSVORSTELLUNG / ÜBER UNS TEASER */}
+          <AboutTeaser onNavigateToAbout={() => handleNavigate('about')} />
 
           {/* 3. PROBLEM - AGITATE - SOLVE */}
           <ProblemAgitateSolve onOpenLeadFunnel={() => handleOpenLeadFunnel()} />
