@@ -41,7 +41,7 @@ export const HistoryStory: React.FC = () => {
 
             <h2>
               Holz verzeiht keine halben Sachen. <br />
-              <span className="wood-gradient-text font-serif-accent">
+              <span className="wood-highlight-text">
                 4 Generationen Familienbetrieb.
               </span>
             </h2>

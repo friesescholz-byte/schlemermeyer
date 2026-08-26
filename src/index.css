@@ -42,7 +42,7 @@
   --radius-full: 9999px;
 
   --font-sans: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Gambetta', 'Playfair Display', Georgia, serif;
+  --font-serif: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Base Reset */
@@ -109,25 +109,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .font-serif-accent {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 600;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
 }
 
 .wood-gradient-text {
-  background: linear-gradient(135deg, #F59E0B 0%, #E8851E 50%, #FBBF24 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--brand-wood);
+  display: inline;
 }
 
-/* EDLE SERIFEN-SCHRIFT: SATTES, DUNKLES HOLZ-ORANGE FÜR PERFEKTE LESBARKEIT */
+/* CLEAN, MODERN HEADLINE ACCENT (CLEAN UNIFORM TEXT) */
 .wood-highlight-text {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 800;
-  color: #8B3E00;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+  color: inherit;
   display: inline;
-  letter-spacing: -0.01em;
+}
+
+.section-wrapper.dark .wood-highlight-text {
+  color: #FFFFFF;
 }
 
 .container-custom {
@@ -2046,8 +2048,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .quote-text {
-  font-family: var(--font-serif);
-  font-style: italic;
+  font-family: inherit;
+  font-style: normal;
   font-size: 1.15rem;
   color: #0F172A;
   font-weight: 700;
@@ -2474,12 +2476,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .career-title-accent {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 800;
-  color: #8B3E00;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 900;
+  color: #0B1017;
   display: inline-block;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .career-light-hero-sub {

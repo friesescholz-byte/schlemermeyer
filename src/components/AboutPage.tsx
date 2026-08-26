@@ -95,15 +95,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenLeadFunnel, onNaviga
 
         <div className="container-custom" style={{ position: 'relative', zIndex: 3 }}>
           
-          {/* BREADCRUMB */}
-          <div className="about-breadcrumb light">
-            <button onClick={onNavigateHome} className="breadcrumb-link">
-              Startseite
-            </button>
-            <span className="breadcrumb-sep">/</span>
-            <span className="breadcrumb-current">Über uns</span>
-          </div>
-
           <div className="about-light-hero-content">
             <div className="badge-pill amber" style={{ background: '#FFFFFF', boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}>
               <Award size={14} color="#C96A00" />
@@ -111,8 +102,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenLeadFunnel, onNaviga
             </div>
 
             <h1 className="about-light-hero-headline">
-              Gelebte Handwerkskultur.{' '}
-              <span className="wood-highlight-text font-serif-accent">
+              Gelebte Handwerkskultur. <br />
+              <span className="wood-highlight-text">
                 Aus Balge für Generationen.
               </span>
             </h1>

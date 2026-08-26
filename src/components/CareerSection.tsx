@@ -52,7 +52,7 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ onNavigateToJobs }
           </div>
           <h2>
             Handwerk mit Zukunft. <br />
-            <span className="wood-highlight-text font-serif-accent">
+            <span className="wood-highlight-text">
               Werde Teil unseres Meisterteams.
             </span>
           </h2>

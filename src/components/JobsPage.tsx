@@ -202,15 +202,6 @@ export const JobsPage: React.FC<JobsPageProps> = ({ onOpenJobModal, onNavigateHo
 
         <div className="container-custom" style={{ position: 'relative', zIndex: 3 }}>
           
-          {/* BREADCRUMB */}
-          <div className="about-breadcrumb light" style={{ marginBottom: '20px' }}>
-            <button onClick={onNavigateHome} className="breadcrumb-link">
-              Startseite
-            </button>
-            <span className="breadcrumb-sep">/</span>
-            <span className="breadcrumb-current">Karriere &amp; Jobangebote</span>
-          </div>
-
           {/* HEADLINE & HOOK */}
           <div className="career-light-hero-header">
             <div className="badge-pill amber" style={{ background: '#FFFFFF', boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}>

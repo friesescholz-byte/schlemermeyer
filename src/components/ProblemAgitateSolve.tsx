@@ -73,7 +73,7 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
           </div>
           <h2>
             Typische Probleme vermeiden. <br />
-            <span className="wood-highlight-text font-serif-accent">
+            <span className="wood-highlight-text">
               Meisterhaft gelöst.
             </span>
           </h2>
