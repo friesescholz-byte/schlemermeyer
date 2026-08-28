@@ -5,7 +5,7 @@ import { COMPANY_INFO } from '../data/content';
 interface FooterProps {
   onOpenLegal: (type: 'impressum' | 'datenschutz' | 'barrierefreiheit') => void;
   onOpenLeadFunnel: () => void;
-  onNavigate: (page: 'home' | 'about' | 'jobs', sectionId?: string) => void;
+  onNavigate: (page: any, sectionId?: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenLeadFunnel, onNavigate }) => {
@@ -182,6 +182,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenLeadFunnel, o
             <span className="footer-legal-sep">&bull;</span>
             <button onClick={() => onOpenLegal('barrierefreiheit')} className="footer-legal-link">
               Barrierefreiheitserklärung
+            </button>
+            <span className="footer-legal-sep">&bull;</span>
+            <button onClick={() => onNavigate('admin')} className="footer-legal-link" style={{ color: '#D97706' }}>
+              Galerie verwalten (/admin)
             </button>
           </div>
 

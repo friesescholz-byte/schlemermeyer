@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Sparkles, CheckCircle2, ArrowRight, ArrowLeft, Phone, Send, Upload, ShieldCheck } from 'lucide-react';
+﻿import React, { useState, useEffect } from 'react';
+import { Sparkles, CheckCircle2, ArrowRight, ArrowLeft, Phone, Send, Upload, ShieldCheck, X } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 
 interface LeadFunnelProps {
@@ -12,8 +12,54 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
 
+  const services = [
+    { 
+      id: 'innenausbau', 
+      label: 'Innenausbau & Tischlerei', 
+      icon: '🪵', 
+      desc: 'Treppen, Böden, Türen, Fenster & Sonnenschutz' 
+    },
+    { 
+      id: 'zimmerei', 
+      label: 'Zimmerei & Holzbau', 
+      icon: '🏗️', 
+      desc: 'Dachstühle, Holzrahmenbau, Carports & Gauben' 
+    },
+    { 
+      id: 'dachdeckerei', 
+      label: 'Dachdeckerei & Dachsanierung', 
+      icon: '🏠', 
+      desc: 'Steildach, Flachdach, Dämmung & Dachfenster' 
+    }
+  ];
+
+  // MULTI-SELECT STATE: DEFAULT EMPTY (KEINS VORAUSGEWÄHLT)
+  const getInitialGewerke = (): string[] => {
+    if (!initialService) return [];
+    if (initialService === 'Komplett-Projekt' || initialService === 'Gesamtprojekt') {
+      return ['Innenausbau & Tischlerei', 'Zimmerei & Holzbau', 'Dachdeckerei & Dachsanierung'];
+    }
+    const matched = services.find(s => s.label.toLowerCase().includes(initialService.toLowerCase()) || s.id === initialService);
+    return matched ? [matched.label] : [];
+  };
+
+  const [selectedGewerke, setSelectedGewerke] = useState<string[]>(getInitialGewerke);
+
+  useEffect(() => {
+    if (initialService) {
+      setSelectedGewerke(getInitialGewerke());
+    }
+  }, [initialService]);
+
+  const toggleGewerk = (label: string) => {
+    if (selectedGewerke.includes(label)) {
+      setSelectedGewerke(selectedGewerke.filter(g => g !== label));
+    } else {
+      setSelectedGewerke([...selectedGewerke, label]);
+    }
+  };
+
   const [formData, setFormData] = useState({
-    gewerk: initialService || 'Neuer Treppenbau',
     objektTyp: 'Neubau (Planung / Rohbau)',
     zeitrahmen: 'In 1-3 Monaten',
     name: '',
@@ -22,14 +68,6 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
     ort: '',
     nachricht: ''
   });
-
-  const services = [
-    { id: 'treppe-neu', label: 'Neuer Treppenbau', icon: '🪜', desc: 'Faltwerk, Kragarm, Wangentreppe' },
-    { id: 'treppe-sanierung', label: 'Treppen-Restauration', icon: '✨', desc: 'Aufbereitung & Knarrschutz' },
-    { id: 'parkett', label: 'Parkett & Holzböden', icon: '🪵', desc: 'Verlegung & staubfreies Schleifen' },
-    { id: 'tueren', label: 'Maßgefertigte Innentüren', icon: '🚪', desc: 'Design- & Altbautüren' },
-    { id: 'fenster', label: 'Fenster & Sonnenschutz', icon: '🪟', desc: 'Wärmeschutz & Raffstores' }
-  ];
 
   const objektTypes = [
     'Neubau (Planung / Rohbau)',
@@ -51,7 +89,7 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
   };
 
   return (
-    <section className={isModal ? '' : 'section-wrapper white'} id="projekt-anfragen">
+    <section className={isModal ? '' : 'section-wrapper white'} id={isModal ? undefined : 'projekt-anfragen'}>
       <div className={isModal ? '' : 'container-custom'}>
         
         {!isModal && (
@@ -67,20 +105,20 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
           </div>
         )}
 
-        <div className="funnel-container">
+        <div className={`funnel-container ${isModal ? 'is-modal-funnel' : ''}`}>
           
           {/* TOP BAR */}
           <div className="funnel-top-bar">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-              <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', gap: '16px' }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
                 <span style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', color: '#FCD34D', letterSpacing: '0.05em' }}>
                   {submitted ? 'Anfrage erfolgreich' : `Schritt ${step} von 3`}
                 </span>
-                <h3 style={{ color: '#FFFFFF', fontSize: '1.25rem', fontWeight: 800, marginTop: '2px' }}>
+                <h3 style={{ color: '#FFFFFF', fontSize: '1.25rem', fontWeight: 800, marginTop: '2px', lineHeight: 1.25 }}>
                   {submitted 
                     ? 'Vielen Dank für Ihr Vertrauen!' 
                     : step === 1 
-                      ? 'Welches Projekt möchten Sie umsetzen?' 
+                      ? 'Welche Gewerke interessieren Sie? (optional)' 
                       : step === 2 
                         ? 'Details zu Ihrem Gebäude & Zeitplan' 
                         : 'Ihre Kontaktdaten für die Ersteinschätzung'
@@ -88,48 +126,61 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                 </h3>
               </div>
 
-              {!submitted && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{
-                    width: '28px',
-                    height: '28px',
-                    borderRadius: '50%',
-                    background: step >= 1 ? '#C96A00' : '#232A35',
-                    color: '#FFFFFF',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '0.8rem',
-                    fontWeight: 700
-                  }}>1</span>
-                  <span style={{ width: '12px', height: '2px', background: '#374151' }} />
-                  <span style={{
-                    width: '28px',
-                    height: '28px',
-                    borderRadius: '50%',
-                    background: step >= 2 ? '#C96A00' : '#232A35',
-                    color: '#FFFFFF',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '0.8rem',
-                    fontWeight: 700
-                  }}>2</span>
-                  <span style={{ width: '12px', height: '2px', background: '#374151' }} />
-                  <span style={{
-                    width: '28px',
-                    height: '28px',
-                    borderRadius: '50%',
-                    background: step >= 3 ? '#C96A00' : '#232A35',
-                    color: '#FFFFFF',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '0.8rem',
-                    fontWeight: 700
-                  }}>3</span>
-                </div>
-              )}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexShrink: 0 }}>
+                {!submitted && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span style={{
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '50%',
+                      background: step >= 1 ? '#C96A00' : '#232A35',
+                      color: '#FFFFFF',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '0.8rem',
+                      fontWeight: 700
+                    }}>1</span>
+                    <span style={{ width: '10px', height: '2px', background: '#374151' }} />
+                    <span style={{
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '50%',
+                      background: step >= 2 ? '#C96A00' : '#232A35',
+                      color: '#FFFFFF',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '0.8rem',
+                      fontWeight: 700
+                    }}>2</span>
+                    <span style={{ width: '10px', height: '2px', background: '#374151' }} />
+                    <span style={{
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '50%',
+                      background: step >= 3 ? '#C96A00' : '#232A35',
+                      color: '#FFFFFF',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '0.8rem',
+                      fontWeight: 700
+                    }}>3</span>
+                  </div>
+                )}
+
+                {isModal && onClose && (
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="funnel-modal-close-btn"
+                    aria-label="Schließen"
+                  >
+                    <X size={18} />
+                  </button>
+                )}
+              </div>
             </div>
 
             {!submitted && (
@@ -166,23 +217,24 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                 <h4 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '8px' }}>
                   Projektanfrage erfolgreich übermittelt!
                 </h4>
-                <p style={{ color: '#64748B', maxWidth: '460px', margin: '0 auto 24px auto', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                  Vielen Dank, Herr/Frau <strong style={{ color: '#11141A' }}>{formData.name || 'Bauherr'}</strong>. Tischlermeister Dirk Schlemermeyer oder unser Meisterteam wird Ihre Angaben prüfen und sich schnellstmöglich bei Ihnen melden.
+                <p style={{ color: '#64748B', maxWidth: '480px', margin: '0 auto 24px auto', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                  Vielen Dank, Herr/Frau <strong style={{ color: '#11141A' }}>{formData.name || 'Bauherr'}</strong>. Tischlermeister Dirk Schlemermeyer oder unser Meisterteam wird Ihre Angaben{selectedGewerke.length > 0 ? ` für ${selectedGewerke.join(' & ')}` : ''} prüfen und sich schnellstmöglich bei Ihnen melden.
                 </p>
 
                 <div style={{
                   background: '#FFFFFF',
                   border: '1px solid #E8E2D5',
                   borderRadius: '12px',
-                  padding: '16px 20px',
-                  maxWidth: '440px',
+                  padding: '18px 22px',
+                  maxWidth: '460px',
                   margin: '0 auto 24px auto',
                   textAlign: 'left',
-                  fontSize: '0.85rem'
+                  fontSize: '0.88rem'
                 }}>
-                  <p><strong>Gewerk:</strong> {formData.gewerk}</p>
-                  <p style={{ marginTop: '4px' }}><strong>Gebäudetyp:</strong> {formData.objektTyp}</p>
-                  <p style={{ marginTop: '4px' }}><strong>Telefon:</strong> {formData.telefon || 'Wird geprüft'}</p>
+                  <p><strong>Gewerke:</strong> {selectedGewerke.length > 0 ? selectedGewerke.join(' • ') : 'Allgemeine Beratung / Noch offen'}</p>
+                  <p style={{ marginTop: '6px' }}><strong>Gebäudetyp:</strong> {formData.objektTyp}</p>
+                  <p style={{ marginTop: '6px' }}><strong>Zeitrahmen:</strong> {formData.zeitrahmen}</p>
+                  <p style={{ marginTop: '6px' }}><strong>Telefon:</strong> {formData.telefon || 'Wird geprüft'}</p>
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
@@ -194,8 +246,9 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                     <span>Direkt anrufen: 05022 / 633</span>
                   </a>
 
-                  {isModal && (
+                  {isModal && onClose && (
                     <button
+                      type="button"
                       onClick={onClose}
                       className="btn-secondary"
                     >
@@ -207,29 +260,80 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
             ) : (
               <form onSubmit={handleSubmit}>
                 
-                {/* STEP 1 */}
+                {/* STEP 1: EXAKT 3 CARDS IN EINER REIHE NEBENEINANDER (OPTIONAL & MEHRFACHAUSWAHL) */}
                 {step === 1 && (
                   <div>
-                    <p style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', color: '#64748B', marginBottom: '14px' }}>
-                      Wählen Sie Ihr Hauptanliegen:
-                    </p>
-                    <div className="funnel-options-grid">
-                      {services.map((srv) => (
-                        <div
-                          key={srv.id}
-                          onClick={() => setFormData({ ...formData, gewerk: srv.label })}
-                          className={`funnel-option-box ${formData.gewerk === srv.label ? 'active' : ''}`}
-                        >
-                          <span style={{ fontSize: '1.6rem' }}>{srv.icon}</span>
-                          <div>
-                            <p style={{ fontWeight: 800, fontSize: '0.92rem', color: '#11141A' }}>{srv.label}</p>
-                            <p style={{ fontSize: '0.78rem', color: '#64748B' }}>{srv.desc}</p>
-                          </div>
-                        </div>
-                      ))}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
+                      <p style={{ fontSize: '0.84rem', fontWeight: 800, textTransform: 'uppercase', color: '#64748B', margin: 0 }}>
+                        Wählen Sie Ihre gewünschten Bereiche (optional):
+                      </p>
+                      <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#C96A00', background: 'rgba(201, 106, 0, 0.08)', padding: '3px 10px', borderRadius: '9999px' }}>
+                        Mehrfachauswahl möglich
+                      </span>
                     </div>
 
-                    <div style={{ paddingTop: '20px', borderTop: '1px solid #E8E2D5', display: 'flex', justifyContent: 'flex-end' }}>
+                    <div className="funnel-3pillars-grid">
+                      {services.map((srv) => {
+                        const isSelected = selectedGewerke.includes(srv.label);
+                        return (
+                          <div
+                            key={srv.id}
+                            onClick={() => toggleGewerk(srv.label)}
+                            className={`funnel-option-box ${isSelected ? 'active' : ''}`}
+                            style={{ 
+                              cursor: 'pointer', 
+                              position: 'relative',
+                              padding: '20px 18px',
+                              borderColor: isSelected ? '#C96A00' : '#E8E2D5',
+                              background: isSelected ? '#FFF9F0' : '#FFFFFF',
+                              transition: 'all 0.2s ease',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'space-between',
+                              minHeight: '140px',
+                              borderRadius: '14px'
+                            }}
+                          >
+                            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '12px' }}>
+                              <span style={{ fontSize: '1.9rem', lineHeight: 1 }}>{srv.icon}</span>
+                              <div style={{
+                                width: '22px',
+                                height: '22px',
+                                borderRadius: '6px',
+                                border: isSelected ? '2px solid #C96A00' : '2px solid #CBD5E1',
+                                background: isSelected ? '#C96A00' : '#FFFFFF',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                transition: 'all 0.2s ease'
+                              }}>
+                                {isSelected && (
+                                  <CheckCircle2 size={15} color="#FFFFFF" />
+                                )}
+                              </div>
+                            </div>
+
+                            <div>
+                              <p style={{ fontWeight: 800, fontSize: '0.96rem', color: isSelected ? '#9A4800' : '#0F172A', marginBottom: '4px', lineHeight: 1.25 }}>
+                                {srv.label}
+                              </p>
+                              <p style={{ fontSize: '0.78rem', color: '#64748B', lineHeight: 1.4 }}>
+                                {srv.desc}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    <div style={{ paddingTop: '20px', marginTop: '18px', borderTop: '1px solid #E8E2D5', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+                      <span style={{ fontSize: '0.84rem', color: '#475569', fontWeight: 600 }}>
+                        {selectedGewerke.length === 0 
+                          ? 'Keine Auswahl getroffen (auch ohne Auswahl fortfahrbar)' 
+                          : <>Ausgewählt: <strong style={{ color: '#C96A00' }}>{selectedGewerke.length} Bereich{selectedGewerke.length > 1 ? 'e' : ''}</strong></>
+                        }
+                      </span>
+
                       <button
                         type="button"
                         onClick={() => setStep(2)}
@@ -249,15 +353,15 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                       <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', color: '#64748B', marginBottom: '10px' }}>
                         Art des Gebäudes:
                       </label>
-                      <div className="funnel-options-grid" style={{ margin: 0 }}>
+                      <div className="funnel-options-grid" style={{ margin: 0, gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
                         {objektTypes.map((typ) => (
                           <div
                             key={typ}
                             onClick={() => setFormData({ ...formData, objektTyp: typ })}
                             className={`funnel-option-box ${formData.objektTyp === typ ? 'active' : ''}`}
-                            style={{ padding: '14px' }}
+                            style={{ padding: '16px' }}
                           >
-                            <p style={{ fontWeight: 700, fontSize: '0.88rem' }}>{typ}</p>
+                            <p style={{ fontWeight: 700, fontSize: '0.9rem' }}>{typ}</p>
                           </div>
                         ))}
                       </div>
@@ -267,21 +371,21 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                       <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', color: '#64748B', marginBottom: '10px' }}>
                         Gewünschter Ausführungszeitraum:
                       </label>
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '8px' }}>
+                      <div className="funnel-options-grid" style={{ margin: 0, gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))' }}>
                         {timeframes.map((tf) => (
                           <div
                             key={tf}
                             onClick={() => setFormData({ ...formData, zeitrahmen: tf })}
                             className={`funnel-option-box ${formData.zeitrahmen === tf ? 'active' : ''}`}
-                            style={{ padding: '12px', justifyContent: 'center', textAlign: 'center' }}
+                            style={{ padding: '16px' }}
                           >
-                            <p style={{ fontWeight: 700, fontSize: '0.82rem' }}>{tf}</p>
+                            <p style={{ fontWeight: 700, fontSize: '0.9rem' }}>{tf}</p>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    <div style={{ paddingTop: '20px', borderTop: '1px solid #E8E2D5', display: 'flex', justifyContent: 'space-between' }}>
+                    <div style={{ paddingTop: '20px', borderTop: '1px solid #E8E2D5', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <button
                         type="button"
                         onClick={() => setStep(1)}
@@ -373,7 +477,7 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                       </label>
                       <textarea
                         rows={3}
-                        placeholder="z. B. Raumhöhe ca. 2,80m, Wunschholz Eiche natur geölt..."
+                        placeholder="z. B. Wunschholz Eiche, Dachsanierung oder Treppen-Aufmaß..."
                         value={formData.nachricht}
                         onChange={(e) => setFormData({ ...formData, nachricht: e.target.value })}
                         className="form-input-control"

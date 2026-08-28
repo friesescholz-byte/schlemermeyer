@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
-import { GALLERY_ITEMS, GalleryItem } from '../data/content';
-import { Image as ImageIcon, Eye, X, ArrowRight } from 'lucide-react';
+﻿import React, { useState, useEffect } from 'react';
+import { GalleryItem, getStoredGalleryItems } from '../data/galleryStore';
+import { Image as ImageIcon, Eye, X, ArrowRight, Layers, Hammer, ShieldCheck } from 'lucide-react';
 
 interface GalleryProps {
   onOpenLeadFunnel: (projectTitle?: string) => void;
 }
 
 export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => {
+  const [items, setItems] = useState<GalleryItem[]>(getStoredGalleryItems);
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
   const [visibleCount, setVisibleCount] = useState<number>(6);
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setItems(getStoredGalleryItems());
+    };
+    window.addEventListener('schlemermeyer_gallery_updated', handleUpdate);
+    return () => window.removeEventListener('schlemermeyer_gallery_updated', handleUpdate);
+  }, []);
 
   const filteredItems = activeFilter === 'all'
-    ? GALLERY_ITEMS
-    : GALLERY_ITEMS.filter(item => item.category === activeFilter);
+    ? items
+    : items.filter(item => item.category === activeFilter);
 
   const displayedItems = filteredItems.slice(0, visibleCount);
   const hasMore = visibleCount < filteredItems.length;
 
   const filterTabs = [
     { id: 'all', label: 'Alle Projekte' },
-    { id: 'treppen', label: 'Treppenbau' },
-    { id: 'holzbau', label: 'Zimmerei & Holzbau' },
-    { id: 'boeden', label: 'Parkett & Böden' },
-    { id: 'restauration', label: 'Restauration & Altholz' }
+    { id: 'innenausbau', label: 'Innenausbau & Tischlerei' },
+    { id: 'zimmerei', label: 'Zimmerei & Holzbau' },
+    { id: 'dachdeckerei', label: 'Dachdeckerei & Dachsanierung' }
   ];
 
   const handleFilterChange = (filterId: string) => {
@@ -33,6 +42,10 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
 
   const handleLoadMore = () => {
     setVisibleCount(prev => prev + 3);
+  };
+
+  const handleImageLoaded = (id: string) => {
+    setLoadedImages(prev => ({ ...prev, [id]: true }));
   };
 
   return (
@@ -47,11 +60,11 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
           </div>
           <h2>Eindrücke unserer Handwerkskunst.</h2>
           <p>
-            Entdecken Sie eine Auswahl unserer gefertigten Maßtreppen, Holzrahmenbauten, Parkettböden und restaurierten Holzobjekte. Jedes Projekt ein echtes Meister-Unikat.
+            Entdecken Sie eine Auswahl unserer gefertigten Maßtreppen, Dachstühle, Holzrahmenbauten, Parkettböden und Dacheindeckungen. Jedes Projekt ein echtes Meister-Unikat.
           </p>
         </div>
 
-        {/* FILTER BAR */}
+        {/* FILTER BAR (EXAKT 3 KATEGORIEN + ALLE PROJEKTE) */}
         <div className="gallery-filter-bar">
           {filterTabs.map((tab) => (
             <button
@@ -64,43 +77,74 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
           ))}
         </div>
 
-        {/* GALLERY GRID (3 SPALTEN) */}
+        {/* GALLERY GRID (3 SPALTEN MIT SCHNELLER BILD-OPTIMIERUNG) */}
         <div className="gallery-grid">
-          {displayedItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => setSelectedItem(item)}
-              className="gallery-card"
-            >
-              <div className="gallery-img-wrap">
-                <img src={item.image} alt={item.title} />
-              </div>
-
-              <div className="gallery-card-body" style={{ padding: '24px 26px' }}>
-                <div>
-                  <h4 style={{ fontSize: '1.24rem', fontWeight: 900, color: '#0F172A', marginBottom: '10px', lineHeight: 1.3 }}>
-                    {item.title}
-                  </h4>
-                  <p style={{ fontSize: '0.96rem', color: '#334155', lineHeight: 1.6, marginBottom: '16px' }}>
-                    {item.description}
-                  </p>
+          {displayedItems.map((item) => {
+            const isLoaded = loadedImages[item.id];
+            return (
+              <div
+                key={item.id}
+                onClick={() => setSelectedItem(item)}
+                className="gallery-card"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') setSelectedItem(item);
+                }}
+              >
+                <div className="gallery-img-wrap">
+                  {/* SHIMMER PLACEHOLDER BACKGROUND */}
+                  <div className={`gallery-img-placeholder ${isLoaded ? 'loaded' : ''}`} />
+                  
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    loading="lazy"
+                    decoding="async"
+                    onLoad={() => handleImageLoaded(item.id)}
+                    style={{
+                      opacity: isLoaded ? 1 : 0,
+                      transition: 'opacity 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+                    }}
+                  />
+                  
+                  <div className="gallery-badge-top">
+                    <span>{item.categoryLabel || (
+                      item.category === 'innenausbau' ? 'Innenausbau' :
+                      item.category === 'zimmerei' ? 'Zimmerei' : 'Dachdeckerei'
+                    )}</span>
+                  </div>
                 </div>
 
-                <div style={{ 
-                  paddingTop: '14px', 
-                  borderTop: '1.5px solid #F1F5F9', 
-                  display: 'flex', 
-                  justifyContent: 'flex-end', 
-                  alignItems: 'center',
-                  fontSize: '0.94rem'
-                }}>
-                  <span style={{ color: '#C96A00', fontWeight: 800, display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                    Projekt ansehen &rarr;
-                  </span>
+                <div className="gallery-card-body" style={{ padding: '24px 26px' }}>
+                  <div>
+                    <h4 style={{ fontSize: '1.22rem', fontWeight: 900, color: '#0F172A', marginBottom: '8px', lineHeight: 1.3 }}>
+                      {item.title}
+                    </h4>
+                    <p style={{ fontSize: '0.94rem', color: '#334155', lineHeight: 1.6, marginBottom: '16px' }}>
+                      {item.description}
+                    </p>
+                  </div>
+
+                  <div style={{ 
+                    paddingTop: '14px', 
+                    borderTop: '1.5px solid #F1ECE1', 
+                    display: 'flex', 
+                    justifyContent: 'space-between', 
+                    alignItems: 'center',
+                    fontSize: '0.88rem'
+                  }}>
+                    <span style={{ color: '#64748B', fontWeight: 600 }}>
+                      {item.woodType || 'Meisterqualität'}
+                    </span>
+                    <span style={{ color: '#C96A00', fontWeight: 800, display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                      Details ansehen &rarr;
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* LOAD MORE BUTTON (+3 PROJEKTE) */}
@@ -119,7 +163,7 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
                 boxShadow: '0 6px 20px rgba(201, 106, 0, 0.12)'
               }}
             >
-              <span>Weitere 3 Projekte laden</span>
+              <span>Weitere 3 Projekte laden ({filteredItems.length - visibleCount} übrig)</span>
               <ArrowRight size={18} />
             </button>
           </div>
@@ -138,98 +182,53 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
           marginRight: 'auto'
         }}>
           <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '8px' }}>
-            Haben Sie ein konkretes Treppen- oder Bodenprojekt vor Augen?
+            Haben Sie ein konkretes Projekt im Kopf?
           </h3>
-          <p style={{ fontSize: '0.92rem', color: '#64748B', marginBottom: '20px' }}>
-            Gerne planen wir mit Ihnen die millimetergenaue Umsetzung nach architektonischen Plänen oder eigenen Skizzen.
+          <p style={{ color: '#64748B', fontSize: '0.95rem', marginBottom: '20px', maxWidth: '580px', marginLeft: 'auto', marginRight: 'auto' }}>
+            Wir fertigen individuelle Treppen, Zimmereikonstruktionen, Parkettböden und Dächer exakt nach Ihren Vorstellungen.
           </p>
           <button
-            onClick={() => onOpenLeadFunnel()}
+            onClick={() => onOpenLeadFunnel('Individuelles Projekt')}
             className="btn-primary"
+            style={{ padding: '12px 28px' }}
           >
-            <span>Eigenes Wunschprojekt anfragen</span>
+            <span>Projekt unverbindlich anfragen</span>
             <ArrowRight size={16} />
           </button>
         </div>
 
       </div>
 
-      {/* LIGHTBOX MODAL (VOLLSTÄNDIGE, NICHT ABGESCHNITTENE BILDER) */}
+      {/* FULLSCREEN LIGHTBOX MODAL */}
       {selectedItem && (
-        <div className="modal-overlay" onClick={() => setSelectedItem(null)}>
-          <div className="modal-dialog-box" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '860px', width: '92vw', maxHeight: '92vh', overflowY: 'auto' }}>
-            <div style={{ 
-              position: 'relative', 
-              background: '#0B1017', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center',
-              minHeight: '360px',
-              maxHeight: '62vh'
-            }}>
-              <img
-                src={selectedItem.image}
-                alt={selectedItem.title}
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  maxHeight: '62vh', 
-                  objectFit: 'contain',
-                  display: 'block'
-                }}
-              />
-              <button
-                onClick={() => setSelectedItem(null)}
-                style={{
-                  position: 'absolute',
-                  top: '16px',
-                  right: '16px',
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  background: 'rgba(11, 16, 23, 0.85)',
-                  border: '1.5px solid rgba(255, 255, 255, 0.25)',
-                  color: '#FFFFFF',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  zIndex: 10,
-                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.4)',
-                  transition: 'all 0.2s ease'
-                }}
-                aria-label="Schließen"
-              >
-                <X size={20} />
-              </button>
+        <div className="gallery-modal-backdrop" onClick={() => setSelectedItem(null)}>
+          <div className="gallery-modal-box" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="gallery-modal-close"
+              onClick={() => setSelectedItem(null)}
+              aria-label="Schließen"
+            >
+              <X size={22} />
+            </button>
+
+            <div className="gallery-modal-img-container">
+              <img src={selectedItem.image} alt={selectedItem.title} />
             </div>
 
-            <div style={{ padding: '32px 36px', background: '#FFFFFF' }}>
-              <div style={{ marginBottom: '24px' }}>
-                <h3 style={{ fontSize: '1.55rem', fontWeight: 900, marginBottom: '10px', color: '#0F172A', lineHeight: 1.25 }}>
-                  {selectedItem.title}
-                </h3>
-                <p style={{ color: '#334155', fontSize: '1.02rem', lineHeight: 1.65 }}>
-                  {selectedItem.description}
-                </p>
-              </div>
+            <div className="gallery-modal-info">
+              <span className="gallery-modal-badge">
+                {selectedItem.categoryLabel || selectedItem.category}
+              </span>
+              <h3 className="gallery-modal-title">{selectedItem.title}</h3>
+              <p className="gallery-modal-desc">{selectedItem.description}</p>
+              
+              {selectedItem.woodType && (
+                <div style={{ marginTop: '12px', fontSize: '0.92rem', color: '#475569' }}>
+                  <strong>Material / Ausführung:</strong> {selectedItem.woodType}
+                </div>
+              )}
 
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'center',
-                paddingTop: '20px',
-                borderTop: '1.5px solid #F1F5F9',
-                flexWrap: 'wrap',
-                gap: '14px'
-              }}>
-                <button
-                  onClick={() => setSelectedItem(null)}
-                  className="btn-secondary"
-                  style={{ padding: '12px 24px', fontSize: '0.94rem' }}
-                >
-                  Zurück zur Übersicht
-                </button>
+              <div style={{ marginTop: '24px', display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
                 <button
                   onClick={() => {
                     const title = selectedItem.title;
@@ -237,10 +236,17 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
                     onOpenLeadFunnel(title);
                   }}
                   className="btn-primary"
-                  style={{ padding: '14px 28px', fontSize: '0.96rem' }}
+                  style={{ padding: '12px 24px' }}
                 >
                   <span>Ähnliches Projekt anfragen</span>
                   <ArrowRight size={16} />
+                </button>
+                <button
+                  onClick={() => setSelectedItem(null)}
+                  className="btn-secondary"
+                  style={{ padding: '12px 20px' }}
+                >
+                  <span>Schließen</span>
                 </button>
               </div>
             </div>

@@ -1,10 +1,10 @@
-import React from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, 
-  Sparkles,
-  Briefcase,
-  Phone,
-  Mail
+  Sparkles, 
+  Briefcase, 
+  Phone, 
+  Mail 
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 
@@ -14,14 +14,36 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel, onNavigateToJobs }) => {
-  const heroImage = 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Hero_Schlemermeyer_ergebnis.webp';
+  const heroImages = [
+    'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Hero_Schlemermeyer_ergebnis.webp',
+    'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/Abgestimmte-Holz-T%C3%B6ne_ergebnis.webp',
+    'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/HRB%20IV_ergebnis.webp',
+    'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/schlemermeyer-Dachdecker_ergebnis.webp'
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5500);
+    return () => clearInterval(timer);
+  }, [heroImages.length]);
 
   return (
-    <section 
-      className="stepped-split-hero-section fixed-bg"
-      style={{ backgroundImage: `url(${heroImage})` }}
-    >
+    <section className="stepped-split-hero-section">
       
+      {/* 1. SEAMLESS AUTOMATIC BACKGROUND SLIDESHOW LAYER (CLEAN & MINIMAL) */}
+      <div className="hero-slideshow-wrap" aria-hidden="true">
+        {heroImages.map((img, idx) => (
+          <div
+            key={idx}
+            className={`hero-slide-bg ${idx === currentIndex ? 'active' : ''}`}
+            style={{ backgroundImage: `url(${img})` }}
+          />
+        ))}
+      </div>
+
       {/* 2. LEFT SIDE FROSTED GLASS OVERLAY WITH STEPPED STAIR CUT */}
       <div className="stepped-frosted-overlay">
         
@@ -89,12 +111,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel, onNavigateToJobs }
             {/* EYEBROW BADGE */}
             <div className="hero-eyebrow-pill">
               <Sparkles size={14} color="#C96A00" />
-              <span>Meisterwerkstatt in Balge seit 1883</span>
+              <span>Tischlerei • Zimmerei • Dachdeckerei seit 1883</span>
             </div>
 
             {/* HEADLINE */}
             <h1 className="hero-split-headline">
-              Treppen, Böden &amp; Innenausbau{' '}
+              Holzbau, Dach &amp; Innenausbau{' '}
               <span className="wood-highlight-text">
                 mit meisterhafter Präzision.
               </span>
@@ -102,8 +124,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel, onNavigateToJobs }
 
             {/* SUBLINE - PUNCHY & SCHNELL ERFASSBAR */}
             <p className="hero-split-subline">
-              Von individuellen Maßtreppen und edlen Holzböden bis hin zu Innentüren, Fenstern und Sonnenschutz – 
-              meisterhaft gefertigt in Balge mit <strong>100% Festpreis- &amp; Termingarantie</strong>.
+              Vom Dachstuhl, Dacheindeckung und Holzbau bis zu maßgefertigten Treppen, edlen Böden und dem kompletten Innenausbau – 
+              alles verlässlich aus einer Meisterhand mit <strong>100% Festpreis- &amp; Termingarantie</strong>.
             </p>
 
             {/* ACTION BUTTON */}

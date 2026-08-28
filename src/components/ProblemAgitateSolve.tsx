@@ -40,14 +40,14 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
       solutionImageAlt: 'Perfekt aufeinander abgestimmte Holztöne und Parkett'
     },
     {
-      id: 'altbau',
-      title: 'Knarrende Stufen & Staub-Angst',
-      problemText: 'Alte Stufen sind ausgetreten und laut – doch Sie scheuen den Schmutz und die Kosten eines Abrisses.',
-      solutionText: '99,9% staubarmes Schleifen mit HEPA-Absaugung und Nachkeilung gegen störende Knarrgeräusche.',
-      problemImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/Bauschutt-und-staub_ergebnis.webp',
-      problemImageAlt: 'Staub und Bauschutt bei unprofessioneller Sanierung',
-      solutionImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/Aufger%C3%A4umte_Baustelle_ergebnis.webp',
-      solutionImageAlt: 'Saubere, aufgeräumte Meister-Restauration'
+      id: 'zimmerei-dach',
+      title: 'Undichte Dächer & minderwertige Zimmerei',
+      problemText: 'Undichte Anschlüsse, fehlerhafte Dämmung und billiges Bauholz – Feuchtigkeitsschäden und explodierende Heizkosten sind vorprogrammiert.',
+      solutionText: 'Fachgerechte Zimmerei- & Dachdeckerarbeiten aus Meisterhand – mit luftdichter Dämmung, langlebiger Eindeckung und sturmsicherer Statik.',
+      problemImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/schlechte-Dachdecker_ergebnis.webp',
+      problemImageAlt: 'Minderwertige Dacharbeiten und undichte Dächer',
+      solutionImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/schlemermeyer-Dachdecker_ergebnis.webp',
+      solutionImageAlt: 'Meisterhafte Schlemermeyer Dachdecker- und Dachsanierungsarbeiten'
     },
     {
       id: 'neubau',
@@ -78,7 +78,7 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
             </span>
           </h2>
           <p>
-            Ob Neubau, anspruchsvolle Altbau-Restauration oder nahtlose Gewerke-Harmonie: 
+            Ob Neubau, Dachstuhl &amp; Dacheindeckung oder nahtloser Innenausbau: 
             Erfahren Sie auf einen Blick, warum anspruchsvolle Bauherren auf unsere Meisterwerkstatt vertrauen.
           </p>
         </div>

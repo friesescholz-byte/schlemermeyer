@@ -12,13 +12,26 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { AboutPage } from './components/AboutPage';
 import { JobsPage } from './components/JobsPage';
+import { ServiceInnenausbauPage } from './components/ServiceInnenausbauPage';
+import { ServiceZimmereiPage } from './components/ServiceZimmereiPage';
+import { ServiceDachdeckereiPage } from './components/ServiceDachdeckereiPage';
+import { AdminDashboard } from './components/AdminDashboard';
 import { JobModal } from './components/JobModal';
 import { LegalModal } from './components/LegalModal';
 import { Phone, ArrowRight, X } from 'lucide-react';
 import { COMPANY_INFO } from './data/content';
 
-export function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'jobs'>('home');
+export type AppCurrentPage = 
+  | 'home' 
+  | 'about' 
+  | 'jobs' 
+  | 'service-innenausbau' 
+  | 'service-zimmerei' 
+  | 'service-dachdeckerei'
+  | 'admin';
+
+export default function App() {
+  const [currentPage, setCurrentPage] = useState<AppCurrentPage>('home');
   
   // Modals
   const [funnelModalOpen, setFunnelModalOpen] = useState(false);
@@ -29,9 +42,35 @@ export function App() {
   
   const [legalModalType, setLegalModalType] = useState<'impressum' | 'datenschutz' | 'barrierefreiheit' | null>(null);
 
-  const handleNavigate = (page: 'home' | 'about' | 'jobs', sectionId?: string) => {
+  // ROUTE DETECTION (/admin or #/admin)
+  useEffect(() => {
+    const checkRoute = () => {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      const search = window.location.search;
+      if (path.includes('/admin') || hash.includes('/admin') || search.includes('admin')) {
+        setCurrentPage('admin');
+      }
+    };
+
+    checkRoute();
+    window.addEventListener('popstate', checkRoute);
+    window.addEventListener('hashchange', checkRoute);
+    return () => {
+      window.removeEventListener('popstate', checkRoute);
+      window.removeEventListener('hashchange', checkRoute);
+    };
+  }, []);
+
+  const handleNavigate = (page: AppCurrentPage, sectionId?: string) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (page === 'admin') {
+      window.history.pushState(null, '', '/admin');
+    } else if (page === 'home' && window.location.pathname.includes('/admin')) {
+      window.history.pushState(null, '', '/');
+    }
 
     if (sectionId) {
       setTimeout(() => {
@@ -56,13 +95,15 @@ export function App() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#FAF8F5' }}>
       
-      {/* 1. TOPBAR & ELEGANT NAVBAR */}
-      <Navbar 
-        currentPage={currentPage}
-        onNavigate={handleNavigate}
-        onOpenLeadFunnel={() => handleOpenLeadFunnel()}
-        onOpenJobModal={() => handleOpenJobModal()}
-      />
+      {/* 1. TOPBAR & ELEGANT NAVBAR (HIDDEN ON ADMIN FOR MAXIMUM FOCUS) */}
+      {currentPage !== 'admin' && (
+        <Navbar 
+          currentPage={currentPage}
+          onNavigate={handleNavigate}
+          onOpenLeadFunnel={() => handleOpenLeadFunnel()}
+          onOpenJobModal={() => handleOpenJobModal()}
+        />
+      )}
 
       {/* RENDER VIEW BASED ON CURRENT PAGE */}
       {currentPage === 'home' && (
@@ -79,8 +120,11 @@ export function App() {
           {/* 3. PROBLEM - AGITATE - SOLVE */}
           <ProblemAgitateSolve onOpenLeadFunnel={() => handleOpenLeadFunnel()} />
 
-          {/* 3.5 UNSERE LEISTUNGEN */}
-          <ServicesSection onOpenLeadFunnel={(service) => handleOpenLeadFunnel(service)} />
+          {/* 3.5 UNSERE 3 HAUPT-LEISTUNGEN */}
+          <ServicesSection 
+            onNavigateToService={(servicePage) => handleNavigate(servicePage)}
+            onOpenLeadFunnel={(service) => handleOpenLeadFunnel(service)} 
+          />
 
           {/* 4. GALLERY & REFERENCES */}
           <GallerySection onOpenLeadFunnel={(proj) => handleOpenLeadFunnel(proj)} />
@@ -113,74 +157,48 @@ export function App() {
         />
       )}
 
-      {/* FOOTER */}
-      <Footer 
-        onOpenLegal={(type) => setLegalModalType(type)}
-        onOpenLeadFunnel={() => handleOpenLeadFunnel()}
-        onNavigate={handleNavigate}
-      />
+      {/* 3 DEDICATED SERVICE SUBPAGES */}
+      {currentPage === 'service-innenausbau' && (
+        <ServiceInnenausbauPage 
+          onNavigate={handleNavigate}
+          onOpenLeadFunnel={(srv) => handleOpenLeadFunnel(srv)}
+        />
+      )}
 
-      {/* FLOATING MOBILE BAR */}
-      <div 
-        style={{
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: 90,
-          background: 'rgba(255, 255, 255, 0.98)',
-          backdropFilter: 'blur(10px)',
-          borderTop: '1px solid #E2E8F0',
-          padding: '10px 16px',
-          display: 'none',
-          justifyContent: 'space-between',
-          gap: '10px',
-          boxShadow: '0 -4px 20px rgba(0,0,0,0.1)'
-        }}
-        className="mobile-sticky-cta"
-      >
-        <a
-          href={`tel:${COMPANY_INFO.contact.phoneCallable}`}
-          className="btn-secondary"
-          style={{ flex: 1, padding: '10px', fontSize: '0.82rem', justifyContent: 'center' }}
-        >
-          <Phone size={14} color="#C96A00" />
-          <span>05022 / 633</span>
-        </a>
-        <button
-          onClick={() => handleOpenLeadFunnel()}
-          className="btn-primary"
-          style={{ flex: 1, padding: '10px', fontSize: '0.82rem', justifyContent: 'center' }}
-        >
-          <span>Angebot anfragen</span>
-          <ArrowRight size={14} />
-        </button>
-      </div>
+      {currentPage === 'service-zimmerei' && (
+        <ServiceZimmereiPage 
+          onNavigate={handleNavigate}
+          onOpenLeadFunnel={(srv) => handleOpenLeadFunnel(srv)}
+        />
+      )}
 
-      {/* MODAL: LEAD FUNNEL OVERLAY */}
+      {currentPage === 'service-dachdeckerei' && (
+        <ServiceDachdeckereiPage 
+          onNavigate={handleNavigate}
+          onOpenLeadFunnel={(srv) => handleOpenLeadFunnel(srv)}
+        />
+      )}
+
+      {/* ADMIN DASHBOARD (/admin) */}
+      {currentPage === 'admin' && (
+        <AdminDashboard 
+          onNavigateHome={() => handleNavigate('home')}
+        />
+      )}
+
+      {/* FOOTER (HIDDEN ON ADMIN) */}
+      {currentPage !== 'admin' && (
+        <Footer 
+          onOpenLegal={(type) => setLegalModalType(type)}
+          onOpenLeadFunnel={() => handleOpenLeadFunnel()}
+          onNavigate={handleNavigate}
+        />
+      )}
+
+      {/* LEAD FUNNEL MODAL */}
       {funnelModalOpen && (
-        <div className="modal-overlay" onClick={() => setFunnelModalOpen(false)}>
-          <div className="modal-dialog-box" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '820px' }}>
-            <button
-              onClick={() => setFunnelModalOpen(false)}
-              style={{
-                position: 'absolute',
-                top: '16px',
-                right: '16px',
-                zIndex: 30,
-                width: '32px',
-                height: '32px',
-                borderRadius: '50%',
-                background: '#232A35',
-                color: '#FFFFFF',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer'
-              }}
-            >
-              <X size={18} />
-            </button>
+        <div className="lead-modal-backdrop" onClick={() => setFunnelModalOpen(false)}>
+          <div className="lead-modal-box" onClick={(e) => e.stopPropagation()}>
             <LeadFunnel 
               initialService={preselectedService} 
               isModal={true}
@@ -190,17 +208,17 @@ export function App() {
         </div>
       )}
 
-      {/* MODAL: JOB / CAREER */}
+      {/* JOB APPLICATION MODAL */}
       {jobModalOpen && (
-        <JobModal
+        <JobModal 
           initialJobId={selectedJobId}
           onClose={() => setJobModalOpen(false)}
         />
       )}
 
-      {/* MODAL: LEGAL PAGES */}
+      {/* LEGAL MODALS */}
       {legalModalType && (
-        <LegalModal
+        <LegalModal 
           type={legalModalType}
           onClose={() => setLegalModalType(null)}
         />
@@ -209,4 +227,3 @@ export function App() {
     </div>
   );
 }
-export default App;
