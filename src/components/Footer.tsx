@@ -6,9 +6,10 @@ interface FooterProps {
   onOpenLegal: (type: 'impressum' | 'datenschutz' | 'barrierefreiheit') => void;
   onOpenLeadFunnel: () => void;
   onNavigate: (page: any, sectionId?: string) => void;
+  hideCallout?: boolean;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenLeadFunnel, onNavigate }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenLeadFunnel, onNavigate, hideCallout = false }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -17,44 +18,46 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenLeadFunnel, o
     <footer className="site-footer">
       
       {/* 1. ELEGANT CALLOUT BANNER */}
-      <div className="footer-callout">
-        <div className="container-custom">
-          <div>
-            <h3 style={{ color: '#FFFFFF', fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.01em' }}>
-              Bereit für Ihren starken Auftritt mit echtem Meisterholz?
-            </h3>
-            <p style={{ color: '#CBD5E1', fontSize: '0.92rem', marginTop: '4px' }}>
-              Kostenloses Vor-Ort-Aufmaß &amp; 3D-Visualisierung für Nienburg, Hannover, Bremen &amp; Region.
-            </p>
-          </div>
+      {!hideCallout && (
+        <div className="footer-callout">
+          <div className="container-custom">
+            <div>
+              <h3 style={{ color: '#FFFFFF', fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.01em' }}>
+                Bereit für Ihren starken Auftritt mit echtem Meisterholz?
+              </h3>
+              <p style={{ color: '#CBD5E1', fontSize: '0.92rem', marginTop: '4px' }}>
+                Kostenloses Vor-Ort-Aufmaß &amp; 3D-Visualisierung für Nienburg, Hannover, Bremen &amp; Region.
+              </p>
+            </div>
 
-          <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <a
-              href={`tel:${COMPANY_INFO.contact.phoneCallable}`}
-              className="btn-secondary"
-              style={{ 
-                padding: '12px 22px', 
-                fontSize: '0.9rem', 
-                background: 'rgba(255, 255, 255, 0.08)', 
-                color: '#FFFFFF', 
-                borderColor: 'rgba(255, 255, 255, 0.2)' 
-              }}
-            >
-              <Phone size={15} color="#FBBF24" />
-              <span>05022 / 633</span>
-            </a>
-            
-            <button
-              onClick={onOpenLeadFunnel}
-              className="btn-primary"
-              style={{ padding: '12px 24px', fontSize: '0.9rem' }}
-            >
-              <span>Projekt jetzt anfragen</span>
-              <ArrowRight size={16} />
-            </button>
+            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
+              <a
+                href={`tel:${COMPANY_INFO.contact.phoneCallable}`}
+                className="btn-secondary"
+                style={{ 
+                  padding: '12px 22px', 
+                  fontSize: '0.9rem', 
+                  background: 'rgba(255, 255, 255, 0.08)', 
+                  color: '#FFFFFF', 
+                  borderColor: 'rgba(255, 255, 255, 0.2)' 
+                }}
+              >
+                <Phone size={15} color="#FBBF24" />
+                <span>05022 / 633</span>
+              </a>
+              
+              <button
+                onClick={onOpenLeadFunnel}
+                className="btn-primary"
+                style={{ padding: '12px 24px', fontSize: '0.9rem' }}
+              >
+                <span>Projekt anfragen</span>
+                <ArrowRight size={16} />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* 2. MAIN FOOTER (AUFGERÄUMT & KONTRASTSTARK) */}
       <div className="container-custom">

@@ -186,12 +186,13 @@ export default function App() {
         />
       )}
 
-      {/* FOOTER (HIDDEN ON ADMIN) */}
+      {/* FOOTER (HIDDEN ON ADMIN, CALLOUT SUPPRESSED ON SUBPAGES TO AVOID DUPLICATES) */}
       {currentPage !== 'admin' && (
         <Footer 
           onOpenLegal={(type) => setLegalModalType(type)}
           onOpenLeadFunnel={() => handleOpenLeadFunnel()}
           onNavigate={handleNavigate}
+          hideCallout={currentPage !== 'home'}
         />
       )}
 

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GalleryItem, getStoredGalleryItems } from '../data/galleryStore';
 import { Image as ImageIcon, Eye, X, ArrowRight, Layers, Hammer, ShieldCheck } from 'lucide-react';
 
@@ -107,13 +107,6 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
                       transition: 'opacity 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
                   />
-                  
-                  <div className="gallery-badge-top">
-                    <span>{item.categoryLabel || (
-                      item.category === 'innenausbau' ? 'Innenausbau' :
-                      item.category === 'zimmerei' ? 'Zimmerei' : 'Dachdeckerei'
-                    )}</span>
-                  </div>
                 </div>
 
                 <div className="gallery-card-body" style={{ padding: '24px 26px' }}>

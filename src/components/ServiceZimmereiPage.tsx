@@ -1,17 +1,12 @@
-import React from 'react';
+﻿import React from 'react';
 import { 
-  ArrowLeft, 
   ArrowRight, 
   Sparkles, 
   Phone, 
-  CheckCircle2, 
-  Hammer, 
-  Home, 
-  Building, 
-  TreePine, 
-  ShieldCheck 
+  CheckCircle2 
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
+import { SubpageGallerySlider } from './SubpageGallerySlider';
 
 interface SubpageProps {
   onNavigate: (page: 'home' | 'about' | 'jobs' | 'service-innenausbau' | 'service-zimmerei' | 'service-dachdeckerei', sectionId?: string) => void;
@@ -22,48 +17,45 @@ export const ServiceZimmereiPage: React.FC<SubpageProps> = ({ onNavigate, onOpen
   const disciplines = [
     {
       title: 'Dachstühle & Dachabbund',
-      tag: 'Präziser Holzabbund',
-      desc: 'Herstellung und Montage traditioneller und moderner Dachstühle aller Art – ob Satteldach, Pultdach, Walmdach oder Mansarddach. Nach CAD-Planung millimetergenau abgebunden und gerichtet.',
-      highlights: ['Höchste statische Sicherheit & Stabilität', 'Hochwertiges Konstruktionsvollholz (KVH)', 'Schnelles, termingerechtes Aufschlagen vor Ort']
+      desc: 'Präziser CAD-Abbund und termingerechtes Aufrichten solider Dachstühle aller Bauformen für Neubau und Sanierung.',
+      highlights: ['Höchste statische Sicherheit', 'Konstruktionsvollholz (KVH)', 'Schnelle Kranmontage']
     },
     {
-      title: 'Holzrahmenbau & Aufstockungen',
-      tag: 'Ökologischer Holzbau',
-      desc: 'Wohnraumerweiterungen, Anbauten und schlüsselfertige Aufstockungen in ökologischer Holzrahmenbauweise. Hervorragende Dämmwerte und kurze Bauzeiten.',
-      highlights: ['Schlanker Wandaufbau mit maximaler Dämmwirkung', 'Angenehmes, gesundes Raumklima', 'Ideal für Aufstockungen dank geringem Eigengewicht']
+      title: 'Holzrahmenbau & Anbauten',
+      desc: 'Ökologische Wohnraumerweiterungen, Aufstockungen und schlüsselfertige Wandelemente mit optimaler Dämmwirkung.',
+      highlights: ['Schlanker, hochgedämmter Wandaufbau', 'Geringes Eigengewicht für Aufstockungen', 'Gesundes Wohnklima']
     },
     {
-      title: 'Carports & Terrassenüberdachungen',
-      tag: 'Individuelle Maßanfertigung',
-      desc: 'Wetterfeste Carports für ein oder mehrere Fahrzeuge sowie maßgeschneiderte Terrassenüberdachungen aus Massivholz – passgenau an Ihr Wohnhaus angepasst.',
-      highlights: ['Solide zimmermannsmäßige Holzverbindungen', 'Kombinierbar mit Glas-, Ziegel- oder Blecheindeckung', 'Integrierte Geräteräume & Sichtschutzelemente']
+      title: 'Carports & Überdachungen',
+      desc: 'Maßgeschneiderte Holz-Carports und wetterfeste Terrassenüberdachungen – harmonisch an Ihr Gebäude angepasst.',
+      highlights: ['Zimmermannsmäßige Holzverbindungen', 'Integrierte Geräteräume', 'Ziegel-, Blech- oder Glasdach']
     },
     {
-      title: 'Dachgauben & Dachausbau',
-      tag: 'Mehr Raum & Licht',
-      desc: 'Schleppgauben, Spitzgauben oder moderne Flachdachgauben. Wir schaffen spürbar mehr Stehhöhe, Tageslicht und wertvollen Wohnraum in Ihrem Dachgeschoss.',
-      highlights: ['Kompletter Gaubenbau aus einer Hand', 'Wärmebrückenfreie Dämmung nach GEG', 'Außenverkleidung mit Holz, Zink oder Schiefer']
+      title: 'Dachgauben & Ausbau',
+      desc: 'Schlepp-, Spitz- und Flachdachgauben für spürbar mehr Stehhöhe, natürliches Tageslicht und wertvollen Wohnraum.',
+      highlights: ['Mehr Wohnraum & Stehhöhe', 'Wärmebrückenfreie Dämmung', 'Zink-, Schiefer- oder Holzfassade']
     },
     {
-      title: 'Fachwerksanierung & Denkmalpflege',
-      tag: 'Historische Handwerkskunst',
-      desc: 'Fachgerechte Sanierung und Restaurierung historischer Fachwerkkonstruktionen mit traditionellen Holzverbindungen und abgelagertem Eichenholz.',
-      highlights: ['Erhalt wertvoller denkmalgeschützter Substanz', 'Traditionelle Zapfen- & Holznagelverbindungen', 'Schadensanalyse und statische Instandsetzung']
+      title: 'Fachwerksanierung',
+      desc: 'Fachgerechter Erhalt und denkmalgerechte Restaurierung historischer Fachwerkkonstruktionen mit abgelagertem Eichenholz.',
+      highlights: ['Historische Zapfenverbindungen', 'Statische Instandsetzung', 'Erhalt denkmalgeschützter Substanz']
     },
     {
-      title: 'Balkone, Vordächer & Holzfassaden',
-      tag: 'Witterungsschutz & Ästhetik',
-      desc: 'Massive Holzbalkone, schützende Hauseingangsvordächer und hinterlüftete Holzfassaden für modernen architektonischen Ausdruck und dauerhaften Witterungsschutz.',
-      highlights: ['Langlebige Hölzer wie Douglasie, Lärche und Eiche', 'Konstruktiver Holzschutz für maximale Haltbarkeit', 'Harmonische Abstimmung zur Gesamtarchitektur']
+      title: 'Balkone & Holzfassaden',
+      desc: 'Massive Holzbalkone, schützende Hauseingangsvordächer und hinterlüftete Holzfassaden aus langlebigen Naturhölzern.',
+      highlights: ['Douglasie, Lärche & Eiche', 'Konstruktiver Witterungsschutz', 'Moderne Holzarchitektur']
     }
   ];
 
   return (
     <div className="subpage-wrapper">
       
-      {/* 1. HERO HEADER */}
+      {/* 1. HERO HEADER WITH FIXED BACKGROUND */}
       <section className="subpage-hero-stage">
-        <div className="container-custom">
+        <div className="subpage-hero-fixed-bg zimmerei" />
+        <div className="subpage-hero-overlay" />
+
+        <div className="container-custom" style={{ position: 'relative', zIndex: 2 }}>
           
           <h1 className="subpage-hero-title" style={{ marginTop: 0 }}>
             Traditionelle Zimmermannskunst. <br />
@@ -90,7 +82,7 @@ export const ServiceZimmereiPage: React.FC<SubpageProps> = ({ onNavigate, onOpen
             <a 
               href={`tel:${COMPANY_INFO.contact.phoneCallable}`}
               className="btn-secondary"
-              style={{ padding: '16px 26px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              style={{ padding: '16px 26px', display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#FFFFFF' }}
             >
               <Phone size={16} color="#C96A00" />
               <span>{COMPANY_INFO.contact.phone}</span>
@@ -100,16 +92,25 @@ export const ServiceZimmereiPage: React.FC<SubpageProps> = ({ onNavigate, onOpen
         </div>
       </section>
 
-      {/* 2. DISCIPLINES LIST */}
+      {/* 1.5 REFERENZEN & INSPIRATION SLIDER */}
+      <SubpageGallerySlider 
+        category="zimmerei"
+        badgeTitle="Zimmerei-Referenzen"
+        heading="Ausgewählte Holzbau- &amp; Zimmereiprojekte."
+        description="Eindrücke traditioneller Dachstühle, ökologischer Holzrahmenbauten, Aufstockungen und meisterhafter Holzkonstruktionen."
+        onOpenLeadFunnel={onOpenLeadFunnel}
+      />
+
+      {/* 2. DISCIPLINES LIST (CLEAN & ULTRA SCANNABLE) */}
       <section className="section-wrapper white">
         <div className="container-custom">
           
           <div className="section-header">
             <div className="badge-pill amber">
               <Sparkles size={14} />
-              <span>Zimmerei &amp; Holzbau-Leistungen</span>
+              <span>Leistungen im Überblick</span>
             </div>
-            <h2>Solide Konstruktionen für Neubau, Umbau &amp; Sanierung.</h2>
+            <h2>Zimmerei &amp; Holzbau auf einen Blick.</h2>
             <p>
               Präzise berechnet, handwerklich perfekt abgebunden und mit jahrzehntelanger Erfahrung montiert.
             </p>
@@ -118,15 +119,12 @@ export const ServiceZimmereiPage: React.FC<SubpageProps> = ({ onNavigate, onOpen
           <div className="subpage-disciplines-grid">
             {disciplines.map((item, idx) => (
               <div key={idx} className="subpage-discipline-card">
-                <div className="discipline-card-header">
-                  <span className="discipline-tag">{item.tag}</span>
-                  <h3 className="discipline-title">{item.title}</h3>
-                </div>
+                <h3 className="discipline-title">{item.title}</h3>
                 <p className="discipline-desc">{item.desc}</p>
                 <div className="discipline-highlights-list">
                   {item.highlights.map((h, i) => (
                     <div key={i} className="discipline-highlight-row">
-                      <CheckCircle2 size={16} color="#C96A00" style={{ flexShrink: 0, marginTop: '2px' }} />
+                      <CheckCircle2 size={15} color="#C96A00" style={{ flexShrink: 0, marginTop: '2px' }} />
                       <span>{h}</span>
                     </div>
                   ))}
@@ -149,15 +147,24 @@ export const ServiceZimmereiPage: React.FC<SubpageProps> = ({ onNavigate, onOpen
                 Von der ersten Statik- und Bauplanung bis zum fertigen Richtfest: Wir beraten Sie verlässlich vor Ort.
               </p>
             </div>
-            <div className="subpage-cta-btn-wrap">
+            <div className="subpage-cta-btn-wrap" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
               <button 
                 onClick={() => onOpenLeadFunnel('Zimmerei & Holzbau')}
                 className="btn-primary"
-                style={{ padding: '16px 30px' }}
+                style={{ padding: '16px 28px' }}
               >
                 <span>Jetzt Zimmerer-Angebot anfragen</span>
                 <ArrowRight size={18} />
               </button>
+
+              <a 
+                href={`tel:${COMPANY_INFO.contact.phoneCallable}`}
+                className="btn-secondary"
+                style={{ padding: '16px 24px', display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#FFFFFF' }}
+              >
+                <Phone size={16} color="#C96A00" />
+                <span>{COMPANY_INFO.contact.phone}</span>
+              </a>
             </div>
           </div>
         </div>

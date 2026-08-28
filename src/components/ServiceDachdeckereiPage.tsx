@@ -1,17 +1,12 @@
-import React from 'react';
+﻿import React from 'react';
 import { 
-  ArrowLeft, 
   ArrowRight, 
   Sparkles, 
   Phone, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Home, 
-  CloudRain, 
-  Sun, 
-  Flame 
+  CheckCircle2 
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
+import { SubpageGallerySlider } from './SubpageGallerySlider';
 
 interface SubpageProps {
   onNavigate: (page: 'home' | 'about' | 'jobs' | 'service-innenausbau' | 'service-zimmerei' | 'service-dachdeckerei', sectionId?: string) => void;
@@ -22,48 +17,45 @@ export const ServiceDachdeckereiPage: React.FC<SubpageProps> = ({ onNavigate, on
   const disciplines = [
     {
       title: 'Steildacheindeckung',
-      tag: 'Tondachziegel & Betondachsteine',
-      desc: 'Fachgerechte Neueindeckung und Umdeckung von Steildächern mit langlebigen Tondachziegeln oder Betondachsteinen führender Qualitätshersteller.',
-      highlights: ['Sturmsichere Verklammerung & Firstsysteme', 'Große Auswahl an Farben, Glasuren & Formen', 'Wirtschaftlich, langlebig & wertsteigernd']
+      desc: 'Fachgerechte Neueindeckung und Umdeckung mit sturmsicheren Tondachziegeln oder Betondachsteinen führender Qualitätshersteller.',
+      highlights: ['Sturmsichere Verklammerung', 'Große Farb- & Formauswahl', 'Langlebiger Firstaufbau']
     },
     {
       title: 'Flachdachabdichtung',
-      tag: 'Bitumen & Folie',
-      desc: 'Dauerhaft dichte Abdichtung von Flachdächern für Wohngebäude, Garagen, Gewerbeobjekte und Balkone mit hochwertigen Bitumenschweißbahnen oder Kunststoff-Folien.',
-      highlights: ['Mehrlagige nahtlose Abdichtungssysteme', 'Gefälledämmung gegen stehendes Wasser', 'Begrünbare Flachdach-Konzepte möglich']
+      desc: 'Dauerhaft dichte, mehrlagige Abdichtungssysteme mit hochwertigen Bitumenbahnen oder Folien inklusive Gefälledämmung.',
+      highlights: ['Nahtlose Bitumen- & Folienabdichtung', 'Gefälledämmung gegen Staunässe', 'Ideal für Garagen & Balkone']
     },
     {
-      title: 'Energetische Dachsanierung & Dämmung',
-      tag: 'KfW & GEG Konform',
-      desc: 'Aufsparrendämmung, Zwischensparrendämmung und Untersparrendämmung für maximale Energieeinsparung, geringere Heizkosten und staatliche Fördermöglichkeiten.',
-      highlights: ['Signifikante Senkung der Heizenergiekosten', 'Effektiver Hitzeschutz im Sommer', 'Schimmel- & Zugluftvermeidung durch luftdichte Ebene']
+      title: 'Energetische Dachsanierung',
+      desc: 'KfW- und GEG-konforme Aufsparren- und Zwischensparrendämmung für spürbar geringere Heizkosten und optimalen Hitzeschutz.',
+      highlights: ['Signifikante Heizkostensenkung', 'Sommerlicher Hitzeschutz', 'Fördermittelfähige Dämmung']
     },
     {
-      title: 'Dachflächenfenster & Lichtsysteme',
-      tag: 'Velux & Roto Partner',
-      desc: 'Einbau, Austausch und Erweiterung von Dachflächenfenstern inklusive passgenauer Eindeckrahmen, Sonnenschutzrollos und elektrischer Fernbedienung.',
-      highlights: ['Helle, lichtdurchflutete Dachwohnräume', 'Hervorragende Wärmedämmwerte & Schallschutz', 'Schneller, sauberer Austausch bestehender Fenster']
+      title: 'Dachfenster (Velux / Roto)',
+      desc: 'Fachgerechter Einbau und Austausch von Dachflächenfenstern mit passgenauen Eindeckrahmen und Sonnenschutzrollos.',
+      highlights: ['Lichtdurchflutete Räume', 'Schneller 1:1 Austausch', 'Hervorragender Schall- & Wärmeschutz']
     },
     {
-      title: 'Dachentwässerung & Klempnerarbeiten',
-      tag: 'Zink, Kupfer & Aluminium',
-      desc: 'Maßgefertigte Dachrinnen, Fallrohre, Kaminbekleidungen, Mauerabdeckungen und Stehfalz-Verkleidungen aus langlebigem Titanzink oder Kupfer.',
-      highlights: ['Zuverlässiger Schutz des Mauerwerks vor Regenwasser', 'Individuelle Kantprofile & Kaminhauben', 'Korrosionsbeständig & wartungsarm']
+      title: 'Dachentwässerung & Klempnerei',
+      desc: 'Maßgefertigte Dachrinnen, Fallrohre, Kaminbekleidungen und Stehfalz-Verkleidungen aus langlebigem Titanzink oder Kupfer.',
+      highlights: ['Korrosionsbeständiges Titanzink', 'Schutz vor Fassadenfeuchte', 'Individuelle Kantprofile']
     },
     {
-      title: 'Dachwartung & Sturmschaden-Notdienst',
-      tag: 'Schnelle Hilfe & Werterhalt',
-      desc: 'Regelmäßige Dachinspektion, Beseitigung von Sturmschäden, Austausch einzelner Ziegel und Reinigung verstopfter Dachrinnen zur Vermeidung von Folgeschäden.',
-      highlights: ['Schnelle Reaktionszeiten bei Sturmschäden', 'Präventiver Werterhalt der gesamten Dachsubstanz', 'Versicherungsfähige Schadensdokumentation']
+      title: 'Dachwartung & Sturmservice',
+      desc: 'Regelmäßige Inspektion, schnelle Sturmschaden-Beseitigung und Rinnenreinigung zur präventiven Werterhaltung.',
+      highlights: ['Schnelle Notfallhilfe bei Sturm', 'Versicherungsgerechte Dokumentation', 'Präventiver Werterhalt']
     }
   ];
 
   return (
     <div className="subpage-wrapper">
       
-      {/* 1. HERO HEADER */}
+      {/* 1. HERO HEADER WITH FIXED BACKGROUND */}
       <section className="subpage-hero-stage">
-        <div className="container-custom">
+        <div className="subpage-hero-fixed-bg dachdeckerei" />
+        <div className="subpage-hero-overlay" />
+
+        <div className="container-custom" style={{ position: 'relative', zIndex: 2 }}>
           
           <h1 className="subpage-hero-title" style={{ marginTop: 0 }}>
             Dachdeckerarbeiten aus Meisterhand. <br />
@@ -90,7 +82,7 @@ export const ServiceDachdeckereiPage: React.FC<SubpageProps> = ({ onNavigate, on
             <a 
               href={`tel:${COMPANY_INFO.contact.phoneCallable}`}
               className="btn-secondary"
-              style={{ padding: '16px 26px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              style={{ padding: '16px 26px', display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#FFFFFF' }}
             >
               <Phone size={16} color="#C96A00" />
               <span>{COMPANY_INFO.contact.phone}</span>
@@ -100,16 +92,25 @@ export const ServiceDachdeckereiPage: React.FC<SubpageProps> = ({ onNavigate, on
         </div>
       </section>
 
-      {/* 2. DISCIPLINES LIST */}
+      {/* 1.5 REFERENZEN & INSPIRATION SLIDER */}
+      <SubpageGallerySlider 
+        category="dachdeckerei"
+        badgeTitle="Dachdecker-Referenzen"
+        heading="Ausgewählte Steildach- &amp; Flachdachprojekte."
+        description="Eindrücke unserer meisterhaften Dacheindeckungen, energetischen Dachsanierungen, Gauben und Flachdachabdichtungen."
+        onOpenLeadFunnel={onOpenLeadFunnel}
+      />
+
+      {/* 2. DISCIPLINES LIST (CLEAN & ULTRA SCANNABLE) */}
       <section className="section-wrapper white">
         <div className="container-custom">
           
           <div className="section-header">
             <div className="badge-pill amber">
               <Sparkles size={14} />
-              <span>Dachdecker- &amp; Sanierungsleistungen</span>
+              <span>Leistungen im Überblick</span>
             </div>
-            <h2>Sicherheit, Dämmung &amp; Werterhalt für Ihr Dach.</h2>
+            <h2>Dachdeckerei &amp; Dachsanierung auf einen Blick.</h2>
             <p>
               Fachgerechte Ausführung nach den aktuellen Fachregeln des Deutschen Dachdeckerhandwerks (ZVDH).
             </p>
@@ -118,15 +119,12 @@ export const ServiceDachdeckereiPage: React.FC<SubpageProps> = ({ onNavigate, on
           <div className="subpage-disciplines-grid">
             {disciplines.map((item, idx) => (
               <div key={idx} className="subpage-discipline-card">
-                <div className="discipline-card-header">
-                  <span className="discipline-tag">{item.tag}</span>
-                  <h3 className="discipline-title">{item.title}</h3>
-                </div>
+                <h3 className="discipline-title">{item.title}</h3>
                 <p className="discipline-desc">{item.desc}</p>
                 <div className="discipline-highlights-list">
                   {item.highlights.map((h, i) => (
                     <div key={i} className="discipline-highlight-row">
-                      <CheckCircle2 size={16} color="#C96A00" style={{ flexShrink: 0, marginTop: '2px' }} />
+                      <CheckCircle2 size={15} color="#C96A00" style={{ flexShrink: 0, marginTop: '2px' }} />
                       <span>{h}</span>
                     </div>
                   ))}
@@ -149,15 +147,24 @@ export const ServiceDachdeckereiPage: React.FC<SubpageProps> = ({ onNavigate, on
                 Kostenlose Vor-Ort-Besichtigung, transparente Schadensanalyse und Festpreisangebot.
               </p>
             </div>
-            <div className="subpage-cta-btn-wrap">
+            <div className="subpage-cta-btn-wrap" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
               <button 
                 onClick={() => onOpenLeadFunnel('Dachdeckerei & Dachsanierung')}
                 className="btn-primary"
-                style={{ padding: '16px 30px' }}
+                style={{ padding: '16px 28px' }}
               >
                 <span>Jetzt Dach-Angebot anfragen</span>
                 <ArrowRight size={18} />
               </button>
+
+              <a 
+                href={`tel:${COMPANY_INFO.contact.phoneCallable}`}
+                className="btn-secondary"
+                style={{ padding: '16px 24px', display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#FFFFFF' }}
+              >
+                <Phone size={16} color="#C96A00" />
+                <span>{COMPANY_INFO.contact.phone}</span>
+              </a>
             </div>
           </div>
         </div>
