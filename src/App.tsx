@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AboutTeaser } from './components/AboutTeaser';
 import { ProblemAgitateSolve } from './components/ProblemAgitateSolve';
+import { ServicesSection } from './components/ServicesSection';
 import { GallerySection } from './components/GallerySection';
 import { CareerSection } from './components/CareerSection';
 import { LeadFunnel } from './components/LeadFunnel';
@@ -77,6 +78,9 @@ export function App() {
 
           {/* 3. PROBLEM - AGITATE - SOLVE */}
           <ProblemAgitateSolve onOpenLeadFunnel={() => handleOpenLeadFunnel()} />
+
+          {/* 3.5 UNSERE LEISTUNGEN */}
+          <ServicesSection onOpenLeadFunnel={(service) => handleOpenLeadFunnel(service)} />
 
           {/* 4. GALLERY & REFERENCES */}
           <GallerySection onOpenLeadFunnel={(proj) => handleOpenLeadFunnel(proj)} />

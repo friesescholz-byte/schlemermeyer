@@ -1199,6 +1199,154 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
+   UNSERE LEISTUNGEN (MODERN ICON CARDS + FEATURED CUSTOM BANNER)
+   ========================================================================== */
+.services-icon-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 36px;
+}
+
+.service-icon-card {
+  background: #FFFFFF;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 34px 28px;
+  box-shadow: 0 4px 18px rgba(17, 21, 28, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  will-change: transform, box-shadow;
+}
+
+.service-icon-card:hover {
+  transform: translate3d(0, -6px, 0);
+  border-color: rgba(201, 106, 0, 0.5);
+  box-shadow: 0 16px 36px rgba(201, 106, 0, 0.12);
+}
+
+.service-icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: rgba(201, 106, 0, 0.08);
+  border: 1.5px solid rgba(201, 106, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-wood);
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  margin-bottom: 20px;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.service-icon-svg {
+  display: block;
+}
+
+.service-icon-card:hover .service-icon-box {
+  background: linear-gradient(135deg, #C96A00 0%, #EA580C 100%);
+  border-color: #FEF08A;
+  color: #FFFFFF;
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 8px 22px rgba(201, 106, 0, 0.35);
+}
+
+.service-icon-card-title {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #0F172A;
+  margin-bottom: 10px;
+  line-height: 1.25;
+  transition: color 0.2s ease;
+}
+
+.service-icon-card:hover .service-icon-card-title {
+  color: var(--brand-wood);
+}
+
+.service-icon-card-desc {
+  font-size: 0.98rem;
+  color: #475569;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* 7TH SERVICE: CUSTOM LUXURY CARD */
+.service-custom-luxury-card {
+  background: linear-gradient(135deg, #FFF9F0 0%, #FFFFFF 100%);
+  border: 1.5px solid rgba(201, 106, 0, 0.35);
+  border-radius: var(--radius-xl);
+  padding: 34px 40px;
+  box-shadow: 0 10px 30px rgba(201, 106, 0, 0.08);
+}
+
+.service-custom-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+
+.service-custom-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #0F172A;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.service-custom-desc {
+  font-size: 1.0rem;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 680px;
+}
+
+.service-custom-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .services-icon-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .service-custom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .services-icon-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .service-custom-luxury-card {
+    padding: 26px 20px;
+  }
+  .service-custom-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .service-custom-actions button,
+  .service-custom-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
    SERENE LUXURY GALLERY & REFERENZEN (SMOOTH TRANSITIONS)
    ========================================================================== */
 .gallery-filter-bar {

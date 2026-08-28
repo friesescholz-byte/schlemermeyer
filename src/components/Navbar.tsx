@@ -65,6 +65,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               </li>
               <li>
                 <a
+                  href="#leistungen"
+                  onClick={(e) => handleNavClick(e, 'home', 'leistungen')}
+                  className="header-nav-link"
+                >
+                  Leistungen
+                </a>
+              </li>
+              <li>
+                <a
                   href="#galerie"
                   onClick={(e) => handleNavClick(e, 'home', 'galerie')}
                   className="header-nav-link"
@@ -152,6 +161,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="mobile-nav-item"
             >
               <span>Startseite</span>
+              <ChevronRight size={18} color="#94A3B8" />
+            </a>
+            <a
+              href="#leistungen"
+              onClick={(e) => handleNavClick(e, 'home', 'leistungen')}
+              className="mobile-nav-item"
+            >
+              <span>Leistungen</span>
               <ChevronRight size={18} color="#94A3B8" />
             </a>
             <a

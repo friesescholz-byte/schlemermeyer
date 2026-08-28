@@ -94,7 +94,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel, onNavigateToJobs }
 
             {/* HEADLINE */}
             <h1 className="hero-split-headline">
-              Massivholz-Treppen &amp; Böden{' '}
+              Treppen, Böden &amp; Innenausbau{' '}
               <span className="wood-highlight-text">
                 mit meisterhafter Präzision.
               </span>
@@ -102,9 +102,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel, onNavigateToJobs }
 
             {/* SUBLINE - PUNCHY & SCHNELL ERFASSBAR */}
             <p className="hero-split-subline">
-              Individuelle Maßtreppen und edle Böden aus echtem Meisterholz – 
-              dauerhaft knarrfrei, maßgefertigt in Balge und mit{' '}
-              <strong>100% Festpreis- &amp; Termingarantie</strong>.
+              Von individuellen Maßtreppen und edlen Holzböden bis hin zu Innentüren, Fenstern und Sonnenschutz – 
+              meisterhaft gefertigt in Balge mit <strong>100% Festpreis- &amp; Termingarantie</strong>.
             </p>
 
             {/* ACTION BUTTON */}
