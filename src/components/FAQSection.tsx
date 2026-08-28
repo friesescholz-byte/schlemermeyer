@@ -8,7 +8,7 @@ interface FaqProps {
 }
 
 export const FAQSection: React.FC<FaqProps> = ({ onOpenLeadFunnel }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
