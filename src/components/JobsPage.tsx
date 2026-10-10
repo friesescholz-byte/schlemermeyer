@@ -26,6 +26,7 @@ import {
   GraduationCap,
   Paperclip,
   UploadCloud,
+  ShieldCheck,
   X
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
@@ -325,8 +326,13 @@ export const JobsPage: React.FC<JobsPageProps> = ({ onOpenJobModal, onNavigateHo
       </section>
 
       {/* 3. PROFESSIONELLE STELLENANZEIGEN MIT AUSKLAPP-FUNKTION */}
-      <section className="section-wrapper alt">
-        <div className="container-custom">
+      <section className="section-wrapper section-artisan-pattern" id="stellenangebote">
+        {/* BESPOKE ARTISAN TIMBER & PARQUET PATTERN */}
+        <div className="services-pattern-backdrop" aria-hidden="true" />
+        <div className="services-pattern-glow" aria-hidden="true" />
+        <div className="artisan-transition-bottom" aria-hidden="true" />
+
+        <div className="container-custom relative z-10">
           
           <div className="section-header">
             <div className="badge-pill amber">
@@ -696,8 +702,9 @@ export const JobsPage: React.FC<JobsPageProps> = ({ onOpenJobModal, onNavigateHo
                     <span>Bewerbung jetzt absenden</span>
                   </button>
 
-                  <span className="form-privacy-note">
-                    🔒 Deine Daten werden vertraulich behandelt und ausschließlich für deine Kontaktaufnahme genutzt.
+                  <span className="form-privacy-note" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+                    <ShieldCheck size={14} color="#16A34A" style={{ flexShrink: 0 }} />
+                    <span>Deine Daten werden vertraulich behandelt und ausschließlich für deine Kontaktaufnahme genutzt.</span>
                   </span>
                 </form>
               )}

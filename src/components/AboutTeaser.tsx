@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Sparkles, Star } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 
 interface AboutTeaserProps {
@@ -14,11 +14,6 @@ export const AboutTeaser: React.FC<AboutTeaserProps> = ({ onNavigateToAbout }) =
           
           {/* LEFT COLUMN: TEXT & INTRO */}
           <div className="about-teaser-text">
-            <div className="badge-pill amber">
-              <Sparkles size={14} />
-              <span>Unternehmensvorstellung</span>
-            </div>
-
             <h2 className="about-teaser-heading">
               Willkommen bei der <br />
               <span className="about-teaser-brand">Tischlerei Dirk Schlemermeyer</span>

@@ -1,10 +1,9 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GalleryItem, getStoredGalleryItems } from '../data/galleryStore';
-import { ChevronLeft, ChevronRight, ArrowRight, Sparkles, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight, X } from 'lucide-react';
 
 interface SubpageGallerySliderProps {
   category: 'innenausbau' | 'zimmerei' | 'dachdeckerei';
-  badgeTitle: string;
   heading: string;
   description: string;
   onOpenLeadFunnel: (projectTitle?: string) => void;
@@ -12,7 +11,6 @@ interface SubpageGallerySliderProps {
 
 export const SubpageGallerySlider: React.FC<SubpageGallerySliderProps> = ({
   category,
-  badgeTitle,
   heading,
   description,
   onOpenLeadFunnel
@@ -66,16 +64,17 @@ export const SubpageGallerySlider: React.FC<SubpageGallerySliderProps> = ({
   }
 
   return (
-    <section className="section-wrapper" style={{ backgroundColor: '#FAF8F5', borderBottom: '1px solid #E8E2D5', padding: '75px 0' }}>
-      <div className="container-custom">
+    <section className="section-wrapper section-artisan-pattern" id="projekte-slider">
+      {/* BESPOKE ARTISAN TIMBER & PARQUET PATTERN */}
+      <div className="services-pattern-backdrop" aria-hidden="true" />
+      <div className="services-pattern-glow" aria-hidden="true" />
+      <div className="artisan-transition-bottom" aria-hidden="true" />
+
+      <div className="container-custom relative z-10">
         
         {/* HEADER */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '36px', flexWrap: 'wrap', gap: '20px' }}>
           <div style={{ maxWidth: '680px' }}>
-            <div className="badge-pill amber" style={{ marginBottom: '10px' }}>
-              <Sparkles size={14} />
-              <span>{badgeTitle}</span>
-            </div>
             <h2 style={{ fontSize: '2.3rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.2, letterSpacing: '-0.02em', margin: '0 0 10px 0' }}>
               {heading}
             </h2>

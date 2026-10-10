@@ -1,7 +1,6 @@
-﻿import React from 'react';
+import React from 'react';
 import { 
   ArrowRight, 
-  Sparkles, 
   Phone, 
   CheckCircle2 
 } from 'lucide-react';
@@ -95,7 +94,6 @@ export const ServiceInnenausbauPage: React.FC<SubpageProps> = ({ onNavigate, onO
       {/* 1.5 REFERENZEN & INSPIRATION SLIDER */}
       <SubpageGallerySlider 
         category="innenausbau"
-        badgeTitle="Referenzen & Maßarbeiten"
         heading="Ausgewählte Projekte im Innenausbau."
         description="Entdecken Sie unsere gefertigten Faltwerktreppen, Landhausdielen, Wangentreppen und maßgefertigten Innenausbauten."
         onOpenLeadFunnel={onOpenLeadFunnel}
@@ -106,10 +104,6 @@ export const ServiceInnenausbauPage: React.FC<SubpageProps> = ({ onNavigate, onO
         <div className="container-custom">
           
           <div className="section-header">
-            <div className="badge-pill amber">
-              <Sparkles size={14} />
-              <span>Leistungen im Überblick</span>
-            </div>
             <h2>Alle Gewerke im Innenausbau auf einen Blick.</h2>
             <p>
               Präzise handwerkliche Lösungen für Ihr Vorhaben – schnell, transparent und aus einer Meisterhand.

@@ -186,10 +186,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenLeadFunnel, o
             <button onClick={() => onOpenLegal('barrierefreiheit')} className="footer-legal-link">
               Barrierefreiheitserklärung
             </button>
-            <span className="footer-legal-sep">&bull;</span>
-            <button onClick={() => onNavigate('admin')} className="footer-legal-link" style={{ color: '#D97706' }}>
-              Galerie verwalten (/admin)
-            </button>
           </div>
 
           <button

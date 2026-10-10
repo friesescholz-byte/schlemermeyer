@@ -1,7 +1,6 @@
 import React from 'react';
 import { 
   ArrowRight, 
-  Sparkles, 
   ShieldCheck, 
   Phone
 } from 'lucide-react';
@@ -88,15 +87,15 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   ];
 
   return (
-    <section className="section-wrapper white" id="leistungen">
-      <div className="container-custom">
+    <section className="section-wrapper services-section-pattern" id="leistungen">
+      {/* BESPOKE ARTISAN TIMBER & PARQUET PATTERN */}
+      <div className="services-pattern-backdrop" aria-hidden="true" />
+      <div className="services-pattern-glow" aria-hidden="true" />
+
+      <div className="container-custom relative z-10">
         
-        {/* SECTION HEADER */}
+        {/* SECTION HEADER (TAG ENTFERNT) */}
         <div className="section-header">
-          <div className="badge-pill amber">
-            <Sparkles size={14} />
-            <span>Unsere 3 Kernbereiche • Meisterbetrieb seit 1883</span>
-          </div>
           <h2>
             Handwerkliche Vielfalt. <br />
             <span className="wood-highlight-text">

@@ -1,9 +1,7 @@
 import React from 'react';
 import { 
   ArrowRight, 
-  ShieldCheck, 
   Sparkles, 
-  CheckCircle2, 
   AlertTriangle,
   Phone
 } from 'lucide-react';
@@ -15,62 +13,105 @@ interface PasProps {
 
 interface LuxuryPillar {
   id: string;
+  number: string;
+  category: string;
   title: string;
+  
+  // Problem
+  problemLabel: string;
+  problemHeadline: string;
   problemText: string;
-  solutionText: string;
+  problemTakeaway: string;
   problemImage: string;
   problemImageAlt: string;
+  
+  // Solution
+  solutionLabel: string;
+  solutionHeadline: string;
+  solutionText: string;
+  solutionTakeaway: string;
   solutionImage: string;
   solutionImageAlt: string;
 }
 
 export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) => {
-  // 1. Das Farb- & Holzchaos (Ganz oben)
-  // 2. Knarrende Stufen & Staub-Angst (Mitte)
-  // 3. Die klapprige Katalogtreppe (Unten)
   const pillars: LuxuryPillar[] = [
     {
       id: 'harmonie',
+      number: '01',
+      category: 'Innenausbau & Parkett',
       title: 'Das Farb- & Holzchaos',
-      problemText: 'Treppe, Parkett und Türen von drei verschiedenen Händlern – am Ende beißt sich jeder Holzfarbton.',
-      solutionText: 'Stufen, Schlossdielen und Innentüren aus identischen Holzchargen perfekt aufeinander abgestimmt.',
+      problemLabel: 'Typische Realität am Markt',
+      problemHeadline: 'Zusammengewürfelte Holzarten & Farbtöne',
+      problemText: 'Treppe, Parkett und Innentüren stammen häufig von drei unterschiedlichen Händlern. Am Ende beißt sich jeder Holzfarbton, Maserungen harmonieren nicht und das Gesamtbild des Wohnbereichs wirkt unruhig.',
+      problemTakeaway: '✕ Kein durchgängiges Farb- & Raumkonzept',
       problemImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/Unpassende%20Holzarten_ergebnis.webp',
       problemImageAlt: 'Nicht zusammenpassende Holzarten und Farbtöne',
+      solutionLabel: 'Der Schlemermeyer-Standard',
+      solutionHeadline: '100% Farb- & Materialharmonie aus einem Guss',
+      solutionText: 'Stufen, Schlossdielen und Innentüren werden aus identischen Holzchargen in unserer Meisterwerkstatt gefertigt und exakt aufeinander gebeizt und geölt – für ein ruhiges, luxuriöses Wohnambiente ohne Stilbrüche.',
+      solutionTakeaway: '✓ Eigene Fertigung & chargengleiche Veredelung',
       solutionImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/Abgestimmte-Holz-T%C3%B6ne_ergebnis.webp',
       solutionImageAlt: 'Perfekt aufeinander abgestimmte Holztöne und Parkett'
     },
     {
       id: 'zimmerei-dach',
+      number: '02',
+      category: 'Zimmerei & Dachdeckerei',
       title: 'Undichte Dächer & minderwertige Zimmerei',
-      problemText: 'Undichte Anschlüsse, fehlerhafte Dämmung und billiges Bauholz – Feuchtigkeitsschäden und explodierende Heizkosten sind vorprogrammiert.',
-      solutionText: 'Fachgerechte Zimmerei- & Dachdeckerarbeiten aus Meisterhand – mit luftdichter Dämmung, langlebiger Eindeckung und sturmsicherer Statik.',
+      problemLabel: 'Risiko bei Schnittstellen-Problemen',
+      problemHeadline: 'Mangelhafte Anschlüsse & feuchte Dämmschichten',
+      problemText: 'Wenn Zimmerei und Dachdeckerei nicht Hand in Hand arbeiten, drohen unsauber verklebte Dampfbremsen, fehlerhafte Anschlüsse und billiges Bauholz. Feuchtigkeitsschäden und hohe Wärmeverluste sind die Folge.',
+      problemTakeaway: '✕ Versteckte Bauschäden & steigende Heizkosten',
       problemImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/schlechte-Dachdecker_ergebnis.webp',
       problemImageAlt: 'Minderwertige Dacharbeiten und undichte Dächer',
+      solutionLabel: 'Der Schlemermeyer-Standard',
+      solutionHeadline: 'Zimmerei & Dacheindeckung aus einer Meisterhand',
+      solutionText: 'Vom zimmermannsmäßigen Dachabbund bis zur sturmsicheren Dacheindeckung und lückenlosen GEG-Wärmedämmung: Alle Schritte greifen nahtlos ineinander – ohne Schnittstellenverlust, mit voller Meistergarantie.',
+      solutionTakeaway: '✓ Geprüfte Statik & lückenlose Luftdichtheit',
       solutionImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/schlemermeyer-Dachdecker_ergebnis.webp',
       solutionImageAlt: 'Meisterhafte Schlemermeyer Dachdecker- und Dachsanierungsarbeiten'
     },
     {
       id: 'neubau',
+      number: '03',
+      category: 'Massivholz-Treppenbau',
       title: 'Die klapprige Katalogtreppe',
-      problemText: 'Dünne Standardtreppe vom Bauträger knarrt bei jedem Schritt und entwertet das gesamte Traumhaus.',
-      solutionText: 'Bis zu 60 mm massive Eiche nach CAD-Planung – dauerhaft verzugsfrei und garantiert knarrfrei gefertigt.',
+      problemLabel: 'Industrielle Standard-Massenware',
+      problemHeadline: 'Dünne Standardstufen knarren bei jedem Schritt',
+      problemText: 'Dünne 30–40 mm Standardtreppen vom Bauträger sparen an Substanz und Verankerung. Schon nach kurzer Zeit lockern sich die Fugen im Holz – störendes Knarren und Nachfedern entwerten das gesamte Traumhaus.',
+      problemTakeaway: '✕ Dünne Standardstufen & störende Trittgeräusche',
       problemImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/Standarttreppe_ergebnis.webp',
       problemImageAlt: 'Minderwertige Standardtreppe mit Mängeln',
+      solutionLabel: 'Der Schlemermeyer-Standard',
+      solutionHeadline: 'Bis zu 60 mm massive Eiche – dauerhaft knarrfrei',
+      solutionText: 'Individuelle CAD-Planung mit bis zu 60 mm massiver Eiche, formstabiler Verleimung und spezieller akustischer Entkopplung. In unserer Balger Werkstatt gefertigt für dauerhafte Ruhe und Generationenwert.',
+      solutionTakeaway: '✓ Bis zu 60 mm Massivholz & Flüstermontage',
       solutionImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/Designer_Treppe_ergebnis.webp',
       solutionImageAlt: 'Exklusive Schlemermeyer Design-Massivholztreppe'
     }
   ];
 
   return (
-    <section className="section-wrapper alt" id="vorteile">
-      <div className="container-custom">
+    <section className="section-wrapper pas-section-fixed-bg" id="vorteile">
+      {/* 1. FESTSTEHENDES ATELIER-HINTERGRUNDBILD (PARALLAX / FIXED) */}
+      <div className="pas-fixed-backdrop" aria-hidden="true" />
+      <div className="pas-backdrop-wash" aria-hidden="true" />
+
+      {/* 2. EDLE ÜBERGÄNGE NACH OBEN (ZU DEN VORHERIGEN ABSCHNITTEN) */}
+      <div className="pas-transition-top" aria-hidden="true">
+        <div className="pas-transition-hairline top" />
+      </div>
+
+      {/* 3. EDLE ÜBERGÄNGE NACH UNTEN (ZU DEN NACHFOLGENDEN ABSCHNITTEN) */}
+      <div className="pas-transition-bottom" aria-hidden="true">
+        <div className="pas-transition-hairline bottom" />
+      </div>
+
+      <div className="container-custom pas-content-relative">
         
-        {/* SECTION HEADER */}
+        {/* SECTION HEADER (EYEBROW ENTFERNT) */}
         <div className="section-header">
-          <div className="badge-pill amber">
-            <ShieldCheck size={14} />
-            <span>Warum Schlemermeyer • Meistervorteile</span>
-          </div>
           <h2>
             Typische Probleme vermeiden. <br />
             <span className="wood-highlight-text">
@@ -92,52 +133,64 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
                 className="pas-compare-story-block"
               >
                 {/* THEMEN-ÜBERSCHRIFT */}
-                <h3 className="pas-compare-main-title">
-                  {pillar.title}
-                </h3>
+                <div className="pas-story-header">
+                  <h3 className="pas-compare-main-title">{pillar.title}</h3>
+                </div>
 
-                {/* 2-SPALTEN GRID: PROBLEM LINKS VS. LÖSUNG RECHTS */}
+                {/* 2-SPALTEN GRID: EDITORIAL CARDS */}
                 <div className="pas-compare-columns-grid">
                   
-                  {/* LINKE SPALTE: DAS PROBLEM (TEXT OBEN + BILD UNTEN) */}
-                  <div className="pas-side-col problem-side">
-                    <div className="pas-problem-box">
-                      <div className="pas-box-header problem">
-                        <AlertTriangle size={15} color="#DC2626" />
-                        <span>Das typische Problem:</span>
+                  {/* LINKE SPALTE: DAS PROBLEM */}
+                  <div className="pas-editorial-card problem-card">
+                    <div className="pas-card-content">
+                      <div className="pas-card-eyebrow problem">
+                        <span className="pas-indicator-dot problem" />
+                        <span>{pillar.problemLabel}</span>
                       </div>
-                      <p className="pas-box-text">
+                      <h4 className="pas-card-headline problem">
+                        {pillar.problemHeadline}
+                      </h4>
+                      <p className="pas-card-desc">
                         {pillar.problemText}
                       </p>
+                      <div className="pas-takeaway-badge problem">
+                        <span>{pillar.problemTakeaway}</span>
+                      </div>
                     </div>
 
-                    <div className="pas-side-img-frame problem">
+                    <div className="pas-card-media-wrapper">
                       <img
                         src={pillar.problemImage}
                         alt={pillar.problemImageAlt}
-                        className="pas-side-img"
+                        className="pas-card-img"
                         loading="lazy"
                       />
                     </div>
                   </div>
 
-                  {/* RECHTE SPALTE: DIE SCHLEMERMEYER-LÖSUNG (TEXT OBEN + BILD UNTEN) */}
-                  <div className="pas-side-col solution-side">
-                    <div className="pas-solution-box">
-                      <div className="pas-box-header solution">
-                        <CheckCircle2 size={15} color="#16A34A" />
-                        <span>Die Schlemermeyer-Lösung:</span>
+                  {/* RECHTE SPALTE: DIE SCHLEMERMEYER-LÖSUNG */}
+                  <div className="pas-editorial-card solution-card">
+                    <div className="pas-card-content">
+                      <div className="pas-card-eyebrow solution">
+                        <Sparkles size={13} />
+                        <span>{pillar.solutionLabel}</span>
                       </div>
-                      <p className="pas-box-text">
+                      <h4 className="pas-card-headline solution">
+                        {pillar.solutionHeadline}
+                      </h4>
+                      <p className="pas-card-desc">
                         {pillar.solutionText}
                       </p>
+                      <div className="pas-takeaway-badge solution">
+                        <span>{pillar.solutionTakeaway}</span>
+                      </div>
                     </div>
 
-                    <div className="pas-side-img-frame solution">
+                    <div className="pas-card-media-wrapper">
                       <img
                         src={pillar.solutionImage}
                         alt={pillar.solutionImageAlt}
-                        className="pas-side-img"
+                        className="pas-card-img"
                         loading="lazy"
                       />
                     </div>

@@ -1158,15 +1158,112 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   PROBLEM-AGITATE-SOLVE STORIES (CLEAN ALTERNATING SPLIT LAYOUT PRO MAX)
+   PROBLEM-AGITATE-SOLVE STORIES (SIDE-BY-SIDE WITH FIXED ATELIER BACKGROUND & BESPOKE TRANSITIONS)
    ========================================================================== */
-/* ==========================================================================
-   PROBLEM-AGITATE-SOLVE (SIDE-BY-SIDE PROBLEM VS LÖSUNG COMPARISON PRO MAX)
-   ========================================================================== */
+.pas-section-fixed-bg {
+  position: relative;
+  overflow: hidden;
+  background-color: #FAF8F5;
+  padding: 130px 0 140px;
+}
+
+/* 1. FIXED PARALLAX BACKDROP */
+.pas-fixed-backdrop {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/meister_wood_bg.webp');
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  opacity: 0.40;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .pas-fixed-backdrop {
+    background-attachment: fixed;
+  }
+}
+
+/* 2. REFINED WARM ATMOSPHERIC WASH */
+.pas-backdrop-wash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 95% 75% at 50% 30%, rgba(250, 248, 245, 0.76) 0%, rgba(250, 248, 245, 0.88) 60%, rgba(245, 242, 235, 0.98) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 3. TRANSITIONS TO ADJACENT SECTIONS */
+.pas-transition-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, #FFFFFF 0%, rgba(250, 248, 245, 0.92) 40%, rgba(250, 248, 245, 0) 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.pas-transition-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(to top, #FAF8F5 0%, rgba(250, 248, 245, 0.94) 40%, rgba(250, 248, 245, 0) 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.pas-transition-hairline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.pas-transition-hairline.top {
+  top: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(201, 106, 0, 0.12) 15%, rgba(201, 106, 0, 0.38) 50%, rgba(201, 106, 0, 0.12) 85%, transparent 100%);
+  box-shadow: 0 1px 6px rgba(201, 106, 0, 0.12);
+}
+
+.pas-transition-hairline.bottom {
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(201, 106, 0, 0.12) 15%, rgba(201, 106, 0, 0.38) 50%, rgba(201, 106, 0, 0.12) 85%, transparent 100%);
+  box-shadow: 0 -1px 6px rgba(201, 106, 0, 0.12);
+}
+
+.pas-content-relative {
+  position: relative;
+  z-index: 10;
+}
+
+.pas-section-fixed-bg .section-header {
+  margin-bottom: 72px;
+}
+
+.pas-section-fixed-bg .section-header h2 {
+  font-size: 2.85rem;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+}
+
+.pas-section-fixed-bg .section-header p {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
 .pas-compare-stories-list {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 48px;
   max-width: 1240px;
   margin: 0 auto;
 }
@@ -1174,105 +1271,199 @@ h1, h2, h3, h4, h5, h6 {
 .pas-compare-story-block {
   display: flex;
   flex-direction: column;
-  padding-bottom: 70px;
-  border-bottom: 1.5px solid #E8E2D5;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(226, 217, 200, 0.85);
+  border-radius: 20px;
+  padding: 44px;
+  box-shadow: 0 12px 36px -10px rgba(26, 32, 44, 0.05), 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.pas-compare-story-block:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.pas-compare-story-block:hover {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(201, 106, 0, 0.35);
+  box-shadow: 0 20px 48px -12px rgba(26, 32, 44, 0.08), 0 4px 14px rgba(201, 106, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.pas-story-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(226, 217, 200, 0.75);
+}
+
+.pas-story-header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.pas-story-number {
+  font-family: inherit;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #C96A00;
+  letter-spacing: 0.05em;
 }
 
 .pas-compare-main-title {
-  font-size: 2.15rem;
-  font-weight: 900;
+  font-size: 1.85rem;
+  font-weight: 800;
   color: #0F172A;
   line-height: 1.25;
-  margin-bottom: 24px;
+  margin: 0;
   letter-spacing: -0.02em;
+}
+
+.pas-story-category-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748B;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  padding: 4px 12px;
+  border-radius: 9999px;
 }
 
 .pas-compare-columns-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  gap: 28px;
 }
 
-.pas-side-col {
+/* EDITORIAL COMPARISON CARDS */
+.pas-editorial-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.pas-problem-box {
-  background: #FEF2F2;
-  border-left: 4px solid #DC2626;
-  border-radius: 0 10px 10px 0;
-  padding: 18px 22px;
-  margin-bottom: 18px;
-  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.04);
-  min-height: 105px;
+.pas-editorial-card.problem-card {
+  background: #FAF9F6;
+  border: 1px solid #E5E0D6;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+}
+
+.pas-editorial-card.problem-card:hover {
+  border-color: #D6D0C4;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.pas-editorial-card.solution-card {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(201, 106, 0, 0.35);
+  border-top: 3px solid #C96A00;
+  box-shadow: 0 8px 24px -4px rgba(201, 106, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.pas-editorial-card.solution-card:hover {
+  border-color: #C96A00;
+  box-shadow: 0 14px 32px -4px rgba(201, 106, 0, 0.14), 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.pas-card-content {
+  padding: 28px 28px 22px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  flex-grow: 1;
 }
 
-.pas-solution-box {
-  background: #F0FDF4;
-  border-left: 4px solid #16A34A;
-  border-radius: 0 10px 10px 0;
-  padding: 18px 22px;
-  margin-bottom: 18px;
-  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.04);
-  min-height: 105px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.pas-box-header {
-  display: flex;
+.pas-card-eyebrow {
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.84rem;
+  gap: 7px;
+  font-size: 0.76rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 6px;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
 }
 
-.pas-box-header.problem {
-  color: #991B1B;
+.pas-card-eyebrow.problem {
+  color: #64748B;
 }
 
-.pas-box-header.solution {
-  color: #166534;
+.pas-indicator-dot.problem {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #EF4444;
+  display: inline-block;
 }
 
-.pas-box-text {
-  font-size: 0.98rem;
+.pas-card-eyebrow.solution {
+  color: #B45309;
+}
+
+.pas-card-headline {
+  font-size: 1.22rem;
+  font-weight: 800;
+  line-height: 1.35;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.pas-card-headline.problem {
   color: #1E293B;
-  line-height: 1.6;
-  font-weight: 500;
 }
 
-.pas-side-img-frame {
+.pas-card-headline.solution {
+  color: #0F172A;
+}
+
+.pas-card-desc {
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: #475569;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.pas-takeaway-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  width: fit-content;
+}
+
+.pas-takeaway-badge.problem {
+  background: #FEF2F2;
+  color: #991B1B;
+  border: 1px solid rgba(254, 202, 202, 0.85);
+}
+
+.pas-takeaway-badge.solution {
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid rgba(251, 191, 36, 0.8);
+}
+
+/* MEDIA WRAPPER */
+.pas-card-media-wrapper {
   position: relative;
-  height: 350px;
-  border-radius: 12px;
+  height: 270px;
   overflow: hidden;
-  border: 1.5px solid #E2D9C8;
-  box-shadow: 0 10px 30px rgba(17, 21, 28, 0.07);
+  margin: 0 16px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(226, 217, 200, 0.8);
   background: #0B1017;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.pas-side-img-frame:hover {
-  border-color: rgba(201, 106, 0, 0.5);
-  box-shadow: 0 16px 40px rgba(201, 106, 0, 0.12);
-}
-
-.pas-side-img {
+.pas-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1280,67 +1471,84 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.pas-side-img-frame:hover .pas-side-img {
+.pas-editorial-card:hover .pas-card-img {
   transform: scale(1.04);
 }
 
-.pas-compare-tag {
+.pas-media-caption {
   position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 4;
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  background: rgba(15, 23, 42, 0.82);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-
-.pas-compare-tag.problem {
-  background: rgba(185, 28, 28, 0.94);
-  color: #FFFFFF;
-  border: 1px solid rgba(254, 202, 202, 0.4);
-}
-
-.pas-compare-tag.solution {
-  background: rgba(15, 23, 42, 0.94);
-  color: #FEF08A;
-  border: 1px solid rgba(201, 106, 0, 0.6);
-}
-
-.pas-compare-action-row {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
   display: flex;
-  justify-content: flex-start;
-  padding-top: 4px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.pas-media-caption.problem {
+  color: #FECACA;
+}
+
+.pas-media-caption.solution {
+  color: #FEF08A;
 }
 
 @media (max-width: 900px) {
   .pas-compare-columns-grid {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 24px;
   }
-  .pas-problem-box, .pas-solution-box {
-    min-height: auto;
+  .pas-story-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
-  .pas-side-img-frame {
-    height: 260px;
+  .pas-card-media-wrapper {
+    height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pas-section-fixed-bg {
+    padding: 80px 0 90px;
+  }
+  .pas-compare-story-block {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+  .pas-compare-stories-list {
+    gap: 32px;
+  }
+  .pas-section-fixed-bg .section-header {
+    margin-bottom: 44px;
+  }
+  .pas-section-fixed-bg .section-header h2 {
+    font-size: 2.15rem;
+  }
+  .pas-bottom-luxury-card {
+    padding: 28px 22px;
+    margin-top: 40px;
   }
 }
 
 /* BOTTOM LUXURY CALLOUT */
 .pas-bottom-luxury-card {
-  margin-top: 56px;
-  background: #FFFFFF;
-  border: 1.5px solid var(--border-light);
+  margin-top: 64px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(201, 106, 0, 0.28);
   border-radius: var(--radius-2xl);
-  padding: 36px 44px;
-  box-shadow: 0 10px 30px rgba(17, 21, 28, 0.05);
+  padding: 40px 48px;
+  box-shadow: 0 16px 44px -10px rgba(26, 32, 44, 0.07);
 }
 
 .pas-luxury-card-inner {
@@ -1394,8 +1602,109 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   DIE 3 HAUPTLEISTUNGEN (IMMERSIVE ATMOSPHERIC CARDS)
+   BESPOKE ARTISAN TIMBER & PARQUET PATTERN SECTIONS
    ========================================================================== */
+.services-section-pattern,
+.section-artisan-pattern {
+  position: relative;
+  overflow: hidden;
+  background-color: #FAF8F5;
+}
+
+.services-section-pattern {
+  padding: 110px 0 120px;
+}
+
+.section-artisan-pattern {
+  padding: 85px 0 95px;
+}
+
+/* 1. BESPOKE SCHLEMERMEYER TIMBER & PARQUET LATTICE PATTERN */
+.services-pattern-backdrop {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2272%22%20height%3D%2272%22%20viewBox%3D%220%200%2072%2072%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M0%2036L36%200L72%2036L36%2072L0%2036Z%22%20stroke%3D%22%23C96A00%22%20stroke-width%3D%220.8%22%20stroke-opacity%3D%220.07%22/%3E%3Cpath%20d%3D%22M36%2036L72%200M0%2072L36%2036%22%20stroke%3D%22%23C96A00%22%20stroke-width%3D%220.6%22%20stroke-opacity%3D%220.045%22/%3E%3Cline%20x1%3D%2218%22%20y1%3D%2218%22%20x2%3D%2254%22%20y2%3D%2254%22%20stroke%3D%22%23C96A00%22%20stroke-width%3D%220.5%22%20stroke-opacity%3D%220.035%22/%3E%3Cline%20x1%3D%2218%22%20y1%3D%2254%22%20x2%3D%2254%22%20y2%3D%2218%22%20stroke%3D%22%23C96A00%22%20stroke-width%3D%220.5%22%20stroke-opacity%3D%220.035%22/%3E%3Ccircle%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%221.5%22%20fill%3D%22%23C96A00%22%20fill-opacity%3D%220.09%22/%3E%3Ccircle%20cx%3D%220%22%20cy%3D%2236%22%20r%3D%221.2%22%20fill%3D%22%23C96A00%22%20fill-opacity%3D%220.07%22/%3E%3Ccircle%20cx%3D%2272%22%20cy%3D%2236%22%20r%3D%221.2%22%20fill%3D%22%23C96A00%22%20fill-opacity%3D%220.07%22/%3E%3Ccircle%20cx%3D%2236%22%20cy%3D%220%22%20r%3D%221.2%22%20fill%3D%22%23C96A00%22%20fill-opacity%3D%220.07%22/%3E%3Ccircle%20cx%3D%2236%22%20cy%3D%2272%22%20r%3D%221.2%22%20fill%3D%22%23C96A00%22%20fill-opacity%3D%220.07%22/%3E%3C/svg%3E");
+  background-size: 72px 72px;
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 25%, rgba(0, 0, 0, 0.6) 70%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 25%, rgba(0, 0, 0, 0.6) 70%, transparent 100%);
+}
+
+/* 2. SUBTLE WARM LIGHT VIGNETTE */
+.services-pattern-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(201, 106, 0, 0.035) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 3. SUBTLE HAIRLINE AT TOP & BOTTOM (TRANSITIONS TO ADJACENT SECTIONS) */
+.services-section-pattern::before,
+.section-artisan-pattern::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201, 106, 0, 0.18) 50%, transparent 100%);
+  z-index: 3;
+}
+
+.services-section-pattern::after,
+.section-artisan-pattern::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201, 106, 0, 0.18) 50%, transparent 100%);
+  z-index: 3;
+}
+
+/* 4. SOFT FADE OVERLAYS TO ADJACENT SECTIONS */
+.artisan-transition-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, #FAF8F5 0%, rgba(250, 248, 245, 0.8) 45%, transparent 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.services-section-pattern .section-header {
+  margin-bottom: 60px;
+}
+
+.services-section-pattern .section-header h2 {
+  font-size: 2.75rem;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin-bottom: 18px;
+}
+
+.services-section-pattern .section-header p {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .services-section-pattern {
+    padding: 70px 0 80px;
+  }
+  .services-section-pattern .section-header h2 {
+    font-size: 2.15rem;
+  }
+}
+
 .immersive-pillars-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1639,7 +1948,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .subpage-hero-stage {
   position: relative;
-  padding: 85px 0 95px 0;
+  padding: 100px 0 110px 0;
   overflow: hidden;
   border-bottom: 1px solid var(--border-light);
   background-color: #FAF8F5;
@@ -1649,11 +1958,11 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   inset: 0;
   background-attachment: fixed;
-  background-position: center center;
+  background-position: right 25% center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.38;
-  filter: saturate(125%) contrast(105%);
+  opacity: 0.88;
+  filter: saturate(135%) contrast(106%) brightness(100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -1670,19 +1979,41 @@ h1, h2, h3, h4, h5, h6 {
   background-image: url('https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/schlemermeyer-Dachdecker_ergebnis.webp');
 }
 
+/* ASYMMETRISCHER VERLAUF:
+   Links (Textbereich) hohe Deckkraft für perfekte Lesbarkeit;
+   Rechts maximale Transparenz für leuchtendes, sichtbares Handwerksmotiv */
 .subpage-hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    180deg, 
-    rgba(250, 248, 245, 0.76) 0%, 
-    rgba(250, 248, 245, 0.58) 50%, 
-    rgba(250, 248, 245, 0.88) 100%
+    90deg, 
+    rgba(250, 248, 245, 0.98) 0%, 
+    rgba(250, 248, 245, 0.94) 40%, 
+    rgba(250, 248, 245, 0.65) 60%, 
+    rgba(250, 248, 245, 0.20) 80%,
+    rgba(250, 248, 245, 0.05) 100%
   );
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .subpage-hero-stage {
+    padding: 70px 0 80px 0;
+  }
+  .subpage-hero-fixed-bg {
+    background-attachment: scroll;
+    opacity: 0.65;
+    background-position: center center;
+  }
+  .subpage-hero-overlay {
+    background: linear-gradient(
+      180deg, 
+      rgba(250, 248, 245, 0.96) 0%, 
+      rgba(250, 248, 245, 0.85) 65%, 
+      rgba(250, 248, 245, 0.40) 100%
+    );
+  }
 }
 
 .subpage-back-link {
@@ -1715,13 +2046,14 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
   margin-top: 16px;
   margin-bottom: 18px;
+  max-width: 760px;
 }
 
 .subpage-hero-desc {
-  font-size: 1.2rem;
+  font-size: 1.18rem;
   color: #334155;
   line-height: 1.7;
-  max-width: 820px;
+  max-width: 680px;
   margin-bottom: 32px;
 }
 
@@ -2225,6 +2557,33 @@ h1, h2, h3, h4, h5, h6 {
   .funnel-3pillars-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.funnel-pillar-card {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 22px 20px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: space-between !important;
+  min-height: 200px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.funnel-pillar-card:hover {
+  border-color: #CBD5E1;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.funnel-pillar-card.active {
+  background: #FFFDF8;
 }
 
 .funnel-option-box {

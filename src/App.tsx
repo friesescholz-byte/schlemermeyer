@@ -117,14 +117,14 @@ export default function App() {
           {/* 2.5 UNTERNEHMENSVORSTELLUNG / ÜBER UNS TEASER */}
           <AboutTeaser onNavigateToAbout={() => handleNavigate('about')} />
 
-          {/* 3. PROBLEM - AGITATE - SOLVE */}
-          <ProblemAgitateSolve onOpenLeadFunnel={() => handleOpenLeadFunnel()} />
-
-          {/* 3.5 UNSERE 3 HAUPT-LEISTUNGEN */}
+          {/* 3. UNSERE 3 HAUPT-LEISTUNGEN */}
           <ServicesSection 
             onNavigateToService={(servicePage) => handleNavigate(servicePage)}
             onOpenLeadFunnel={(service) => handleOpenLeadFunnel(service)} 
           />
+
+          {/* 3.5 PROBLEM - AGITATE - SOLVE */}
+          <ProblemAgitateSolve onOpenLeadFunnel={() => handleOpenLeadFunnel()} />
 
           {/* 4. GALLERY & REFERENCES */}
           <GallerySection onOpenLeadFunnel={(proj) => handleOpenLeadFunnel(proj)} />

@@ -1,5 +1,19 @@
-﻿import React, { useState, useEffect } from 'react';
-import { Sparkles, CheckCircle2, ArrowRight, ArrowLeft, Phone, Send, Upload, ShieldCheck, X } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Sparkles, 
+  CheckCircle2, 
+  Check, 
+  ArrowRight, 
+  ArrowLeft, 
+  Phone, 
+  Send, 
+  Upload, 
+  ShieldCheck, 
+  X, 
+  Paperclip, 
+  FileText, 
+  AlertCircle 
+} from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 
 interface LeadFunnelProps {
@@ -8,27 +22,70 @@ interface LeadFunnelProps {
   onClose?: () => void;
 }
 
+// BESPOKE ARCHITECTURAL CRAFT ICONS WITH VIBRANT ARTISAN COLORS
+const InnenausbauIcon: React.FC<{ size?: number; color?: string; className?: string }> = ({ size = 24, color = '#C96A00', className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M3 20h18" />
+    <path d="M4 16h4v-4h4V8h4V4h4" />
+    <path d="M4 20v-4" />
+  </svg>
+);
+
+const ZimmereiIcon: React.FC<{ size?: number; color?: string; className?: string }> = ({ size = 24, color = '#15803D', className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M2 20h20" />
+    <path d="M12 3L2 20" />
+    <path d="M12 3l10 20" />
+    <path d="M6 14h12" />
+    <path d="M12 3v17" />
+  </svg>
+);
+
+const DachdeckereiIcon: React.FC<{ size?: number; color?: string; className?: string }> = ({ size = 24, color = '#C2410C', className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M2 10L12 2l10 8" />
+    <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7" />
+    <path d="M7 10h10" />
+    <path d="M6 14h12" />
+    <path d="M7 18h10" />
+  </svg>
+);
+
 export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal = false, onClose }) => {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [validationError, setValidationError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const services = [
     { 
       id: 'innenausbau', 
       label: 'Innenausbau & Tischlerei', 
-      icon: '🪵', 
+      tag: 'Treppen & Raumkultur',
+      icon: InnenausbauIcon, 
+      color: '#C96A00',
+      badgeBg: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)',
+      borderColor: '#FCD34D',
       desc: 'Treppen, Böden, Türen, Fenster & Sonnenschutz' 
     },
     { 
       id: 'zimmerei', 
       label: 'Zimmerei & Holzbau', 
-      icon: '🏗️', 
+      tag: 'Konstruktion & Dachstuhl',
+      icon: ZimmereiIcon, 
+      color: '#15803D',
+      badgeBg: 'linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 100%)',
+      borderColor: '#86EFAC',
       desc: 'Dachstühle, Holzrahmenbau, Carports & Gauben' 
     },
     { 
       id: 'dachdeckerei', 
       label: 'Dachdeckerei & Dachsanierung', 
-      icon: '🏠', 
+      tag: 'Dach & Wetterschutz',
+      icon: DachdeckereiIcon, 
+      color: '#C2410C',
+      badgeBg: 'linear-gradient(135deg, #FFE4E6 0%, #FECDD3 100%)',
+      borderColor: '#FDA4AF',
       desc: 'Steildach, Flachdach, Dämmung & Dachfenster' 
     }
   ];
@@ -60,8 +117,6 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
   };
 
   const [formData, setFormData] = useState({
-    objektTyp: 'Neubau (Planung / Rohbau)',
-    zeitrahmen: 'In 1-3 Monaten',
     name: '',
     telefon: '',
     email: '',
@@ -69,19 +124,36 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
     nachricht: ''
   });
 
-  const objektTypes = [
-    'Neubau (Planung / Rohbau)',
-    'Altbau / Sanierung im Bestand',
-    'Denkmalgeschütztes Gebäude',
-    'Gewerbeobjekt / Architektenplanung'
-  ];
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
-  const timeframes = [
-    'Schnellstmöglich',
-    'In 1-3 Monaten',
-    'In 3-6 Monaten',
-    'Nur Vorab-Kalkulation'
-  ];
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newFiles = Array.from(e.target.files);
+      setUploadedFiles(prev => [...prev, ...newFiles].slice(0, 5));
+    }
+  };
+
+  const removeFile = (index: number) => {
+    setUploadedFiles(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleGoToStep3 = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (!formData.name.trim()) {
+      setValidationError('Bitte geben Sie Ihren Namen an.');
+      return;
+    }
+    if (!formData.telefon.trim()) {
+      setValidationError('Bitte geben Sie eine Telefonnummer für Rückfragen an.');
+      return;
+    }
+    if (!formData.email.trim()) {
+      setValidationError('Bitte geben Sie Ihre E-Mail-Adresse an.');
+      return;
+    }
+    setValidationError(null);
+    setStep(3);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -100,7 +172,7 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
             </div>
             <h2>Starten Sie jetzt Ihre kostenfreie Projektanfrage.</h2>
             <p>
-              Beantworten Sie uns 3 kurze Fragen zu Ihrem Vorhaben. Wir melden uns innerhalb von 24 Stunden mit einer fundierten Ersteinschätzung und Termin für ein Vor-Ort-Aufmaß.
+              In nur wenigen Klicks zu Ihrer fundierten Ersteinschätzung direkt durch Tischlermeister Dirk Schlemermeyer oder unser Meisterteam.
             </p>
           </div>
         )}
@@ -120,8 +192,8 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                     : step === 1 
                       ? 'Welche Gewerke interessieren Sie? (optional)' 
                       : step === 2 
-                        ? 'Details zu Ihrem Gebäude & Zeitplan' 
-                        : 'Ihre Kontaktdaten für die Ersteinschätzung'
+                        ? 'Ihre Kontaktdaten für den Rückruf' 
+                        : 'Details & Fotos zu Ihrem Vorhaben (optional)'
                   }
                 </h3>
               </div>
@@ -232,9 +304,11 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                   fontSize: '0.88rem'
                 }}>
                   <p><strong>Gewerke:</strong> {selectedGewerke.length > 0 ? selectedGewerke.join(' • ') : 'Allgemeine Beratung / Noch offen'}</p>
-                  <p style={{ marginTop: '6px' }}><strong>Gebäudetyp:</strong> {formData.objektTyp}</p>
-                  <p style={{ marginTop: '6px' }}><strong>Zeitrahmen:</strong> {formData.zeitrahmen}</p>
-                  <p style={{ marginTop: '6px' }}><strong>Telefon:</strong> {formData.telefon || 'Wird geprüft'}</p>
+                  <p style={{ marginTop: '6px' }}><strong>Name:</strong> {formData.name}</p>
+                  <p style={{ marginTop: '6px' }}><strong>Telefon:</strong> {formData.telefon}</p>
+                  <p style={{ marginTop: '6px' }}><strong>E-Mail:</strong> {formData.email}</p>
+                  {formData.ort && <p style={{ marginTop: '6px' }}><strong>Projektstandort:</strong> {formData.ort}</p>}
+                  {uploadedFiles.length > 0 && <p style={{ marginTop: '6px' }}><strong>Angehängte Dateien:</strong> {uploadedFiles.length} Datei(en)</p>}
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
@@ -260,16 +334,13 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
             ) : (
               <form onSubmit={handleSubmit}>
                 
-                {/* STEP 1: EXAKT 3 CARDS IN EINER REIHE NEBENEINANDER (OPTIONAL & MEHRFACHAUSWAHL) */}
+                {/* STEP 1: EXAKT 3 CARDS IN EINER REIHE NEBENEINANDER (OPTIONAL) */}
                 {step === 1 && (
                   <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
+                    <div style={{ marginBottom: '16px' }}>
                       <p style={{ fontSize: '0.84rem', fontWeight: 800, textTransform: 'uppercase', color: '#64748B', margin: 0 }}>
                         Wählen Sie Ihre gewünschten Bereiche (optional):
                       </p>
-                      <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#C96A00', background: 'rgba(201, 106, 0, 0.08)', padding: '3px 10px', borderRadius: '9999px' }}>
-                        Mehrfachauswahl möglich
-                      </span>
                     </div>
 
                     <div className="funnel-3pillars-grid">
@@ -279,45 +350,90 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                           <div
                             key={srv.id}
                             onClick={() => toggleGewerk(srv.label)}
-                            className={`funnel-option-box ${isSelected ? 'active' : ''}`}
+                            className={`funnel-pillar-card ${isSelected ? 'active' : ''}`}
                             style={{ 
-                              cursor: 'pointer', 
-                              position: 'relative',
-                              padding: '20px 18px',
-                              borderColor: isSelected ? '#C96A00' : '#E8E2D5',
-                              background: isSelected ? '#FFF9F0' : '#FFFFFF',
-                              transition: 'all 0.2s ease',
-                              display: 'flex',
-                              flexDirection: 'column',
-                              justifyContent: 'space-between',
-                              minHeight: '140px',
-                              borderRadius: '14px'
+                              borderColor: isSelected ? srv.color : '#E2E8F0',
+                              background: isSelected ? '#FFFDF9' : '#FFFFFF',
+                              boxShadow: isSelected 
+                                ? `0 10px 28px -6px ${srv.color}33, 0 0 0 2px ${srv.color}` 
+                                : '0 2px 8px rgba(0, 0, 0, 0.03)'
                             }}
                           >
-                            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '12px' }}>
-                              <span style={{ fontSize: '1.9rem', lineHeight: 1 }}>{srv.icon}</span>
+                            {/* TOP ROW: VIBRANT ICON ON THE LEFT, CHECK TOGGLE ON THE FAR RIGHT */}
+                            <div style={{ 
+                              width: '100%', 
+                              display: 'flex', 
+                              alignItems: 'center', 
+                              justifyContent: 'space-between', 
+                              marginBottom: '16px' 
+                            }}>
+                              {/* VIBRANT CRAFT BADGE CONTAINER */}
                               <div style={{
-                                width: '22px',
-                                height: '22px',
-                                borderRadius: '6px',
-                                border: isSelected ? '2px solid #C96A00' : '2px solid #CBD5E1',
-                                background: isSelected ? '#C96A00' : '#FFFFFF',
+                                width: '48px',
+                                height: '48px',
+                                borderRadius: '12px',
+                                background: srv.badgeBg,
+                                border: `1.5px solid ${srv.borderColor}`,
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                transition: 'all 0.2s ease'
+                                boxShadow: `0 4px 14px ${srv.color}25`,
+                                flexShrink: 0
                               }}>
-                                {isSelected && (
-                                  <CheckCircle2 size={15} color="#FFFFFF" />
+                                <srv.icon size={25} color={srv.color} />
+                              </div>
+
+                              {/* ELEGANT CIRCULAR SELECTION TOGGLE */}
+                              <div style={{
+                                width: '26px',
+                                height: '26px',
+                                borderRadius: '50%',
+                                border: isSelected ? `2px solid ${srv.color}` : '2px solid #CBD5E1',
+                                background: isSelected ? srv.color : '#FFFFFF',
+                                color: '#FFFFFF',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                transition: 'all 0.2s cubic-bezier(0.22, 1, 0.36, 1)',
+                                boxShadow: isSelected ? `0 3px 10px ${srv.color}45` : 'none',
+                                flexShrink: 0
+                              }}>
+                                {isSelected ? (
+                                  <Check size={14} strokeWidth={3} />
+                                ) : (
+                                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#CBD5E1' }} />
                                 )}
                               </div>
                             </div>
 
-                            <div>
-                              <p style={{ fontWeight: 800, fontSize: '0.96rem', color: isSelected ? '#9A4800' : '#0F172A', marginBottom: '4px', lineHeight: 1.25 }}>
+                            {/* CARD CONTENT */}
+                            <div style={{ width: '100%', textAlign: 'left' }}>
+                              <span style={{ 
+                                fontSize: '0.7rem', 
+                                fontWeight: 800, 
+                                textTransform: 'uppercase', 
+                                letterSpacing: '0.06em', 
+                                color: srv.color, 
+                                display: 'block', 
+                                marginBottom: '4px' 
+                              }}>
+                                {srv.tag}
+                              </span>
+                              <h4 style={{ 
+                                fontWeight: 850, 
+                                fontSize: '1.02rem', 
+                                color: '#0F172A', 
+                                margin: '0 0 6px 0', 
+                                lineHeight: 1.3 
+                              }}>
                                 {srv.label}
-                              </p>
-                              <p style={{ fontSize: '0.78rem', color: '#64748B', lineHeight: 1.4 }}>
+                              </h4>
+                              <p style={{ 
+                                fontSize: '0.82rem', 
+                                color: '#64748B', 
+                                lineHeight: 1.45, 
+                                margin: 0 
+                              }}>
                                 {srv.desc}
                               </p>
                             </div>
@@ -326,93 +442,48 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                       })}
                     </div>
 
-                    <div style={{ paddingTop: '20px', marginTop: '18px', borderTop: '1px solid #E8E2D5', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-                      <span style={{ fontSize: '0.84rem', color: '#475569', fontWeight: 600 }}>
-                        {selectedGewerke.length === 0 
-                          ? 'Keine Auswahl getroffen (auch ohne Auswahl fortfahrbar)' 
-                          : <>Ausgewählt: <strong style={{ color: '#C96A00' }}>{selectedGewerke.length} Bereich{selectedGewerke.length > 1 ? 'e' : ''}</strong></>
-                        }
-                      </span>
-
+                    <div style={{ paddingTop: '20px', marginTop: '18px', borderTop: '1px solid #E8E2D5', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                       <button
                         type="button"
                         onClick={() => setStep(2)}
                         className="btn-primary"
                       >
-                        <span>Weiter zu Schritt 2</span>
+                        <span>Weiter zu Schritt 2: Kontaktdaten</span>
                         <ArrowRight size={16} />
                       </button>
                     </div>
                   </div>
                 )}
 
-                {/* STEP 2 */}
+                {/* STEP 2: DIREKT DIE KONTAKTDATEN */}
                 {step === 2 && (
                   <div>
-                    <div style={{ marginBottom: '24px' }}>
-                      <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', color: '#64748B', marginBottom: '10px' }}>
-                        Art des Gebäudes:
-                      </label>
-                      <div className="funnel-options-grid" style={{ margin: 0, gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
-                        {objektTypes.map((typ) => (
-                          <div
-                            key={typ}
-                            onClick={() => setFormData({ ...formData, objektTyp: typ })}
-                            className={`funnel-option-box ${formData.objektTyp === typ ? 'active' : ''}`}
-                            style={{ padding: '16px' }}
-                          >
-                            <p style={{ fontWeight: 700, fontSize: '0.9rem' }}>{typ}</p>
-                          </div>
-                        ))}
+                    <div style={{ marginBottom: '18px' }}>
+                      <p style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: '#0F172A', margin: 0 }}>
+                        Ihre Kontaktdaten für den Rückruf:
+                      </p>
+                      <p style={{ fontSize: '0.84rem', color: '#64748B', marginTop: '4px', margin: '4px 0 0' }}>
+                        Tischlermeister Dirk Schlemermeyer oder unser Meisterteam meldet sich persönlich bei Ihnen.
+                      </p>
+                    </div>
+
+                    {validationError && (
+                      <div style={{
+                        background: '#FEF2F2',
+                        border: '1px solid #FECACA',
+                        borderRadius: '8px',
+                        padding: '10px 14px',
+                        color: '#B91C1C',
+                        fontSize: '0.85rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        marginBottom: '16px'
+                      }}>
+                        <AlertCircle size={16} style={{ flexShrink: 0 }} />
+                        <span>{validationError}</span>
                       </div>
-                    </div>
-
-                    <div style={{ marginBottom: '28px' }}>
-                      <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', color: '#64748B', marginBottom: '10px' }}>
-                        Gewünschter Ausführungszeitraum:
-                      </label>
-                      <div className="funnel-options-grid" style={{ margin: 0, gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))' }}>
-                        {timeframes.map((tf) => (
-                          <div
-                            key={tf}
-                            onClick={() => setFormData({ ...formData, zeitrahmen: tf })}
-                            className={`funnel-option-box ${formData.zeitrahmen === tf ? 'active' : ''}`}
-                            style={{ padding: '16px' }}
-                          >
-                            <p style={{ fontWeight: 700, fontSize: '0.9rem' }}>{tf}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div style={{ paddingTop: '20px', borderTop: '1px solid #E8E2D5', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <button
-                        type="button"
-                        onClick={() => setStep(1)}
-                        className="btn-secondary"
-                      >
-                        <ArrowLeft size={16} />
-                        <span>Zurück</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setStep(3)}
-                        className="btn-primary"
-                      >
-                        <span>Weiter zu Kontaktdaten</span>
-                        <ArrowRight size={16} />
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {/* STEP 3 */}
-                {step === 3 && (
-                  <div>
-                    <p style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: '#0F172A', marginBottom: '16px' }}>
-                      Wohin dürfen wir die Auswertung &amp; Terminvorschlag senden?
-                    </p>
+                    )}
 
                     <div className="form-group-grid">
                       <div>
@@ -424,7 +495,10 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                           required
                           placeholder="z. B. Markus Schmidt"
                           value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          onChange={(e) => {
+                            setFormData({ ...formData, name: e.target.value });
+                            if (validationError) setValidationError(null);
+                          }}
                           className="form-input-control"
                         />
                       </div>
@@ -438,7 +512,10 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                           required
                           placeholder="z. B. 0170 1234567"
                           value={formData.telefon}
-                          onChange={(e) => setFormData({ ...formData, telefon: e.target.value })}
+                          onChange={(e) => {
+                            setFormData({ ...formData, telefon: e.target.value });
+                            if (validationError) setValidationError(null);
+                          }}
                           className="form-input-control"
                         />
                       </div>
@@ -452,14 +529,17 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                           required
                           placeholder="z. B. m.schmidt@email.de"
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          onChange={(e) => {
+                            setFormData({ ...formData, email: e.target.value });
+                            if (validationError) setValidationError(null);
+                          }}
                           className="form-input-control"
                         />
                       </div>
 
                       <div>
                         <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 800, color: '#0F172A', marginBottom: '6px' }}>
-                          Projekt-Standort / PLZ Ort
+                          Projekt-Standort / PLZ Ort (optional)
                         </label>
                         <input
                           type="text"
@@ -471,39 +551,153 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                       </div>
                     </div>
 
+                    <div style={{ paddingTop: '20px', borderTop: '1px solid #E8E2D5', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setValidationError(null);
+                          setStep(1);
+                        }}
+                        className="btn-secondary"
+                      >
+                        <ArrowLeft size={16} />
+                        <span>Zurück zu Gewerke</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={handleGoToStep3}
+                        className="btn-primary"
+                      >
+                        <span>Weiter zu Details &amp; Fotos (optional)</span>
+                        <ArrowRight size={16} />
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* STEP 3: EIGENE NACHRICHT & BILDER/PLÄNE HOCHLADEN & ABSENDEN */}
+                {step === 3 && (
+                  <div>
+                    <div style={{ marginBottom: '18px' }}>
+                      <p style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: '#0F172A', margin: 0 }}>
+                        Möchten Sie uns noch Details mitteilen? (optional)
+                      </p>
+                      <p style={{ fontSize: '0.84rem', color: '#64748B', marginTop: '4px', margin: '4px 0 0' }}>
+                        Beschreiben Sie kurz Ihre Vorstellungen oder hängen Sie Skizzen, Grundrisse und Fotos an.
+                      </p>
+                    </div>
+
                     <div style={{ marginBottom: '16px' }}>
                       <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 800, color: '#0F172A', marginBottom: '6px' }}>
-                        Kurzbeschreibung oder Besonderheiten (optional)
+                        Ihre Nachricht oder Besonderheiten (optional)
                       </label>
                       <textarea
                         rows={3}
-                        placeholder="z. B. Wunschholz Eiche, Dachsanierung oder Treppen-Aufmaß..."
+                        placeholder="z. B. Wunschholz Eiche, Maße, Treppen-Sanierung oder besondere Einbausituation..."
                         value={formData.nachricht}
                         onChange={(e) => setFormData({ ...formData, nachricht: e.target.value })}
                         className="form-input-control"
                       />
                     </div>
 
-                    <div style={{
-                      background: '#FFFFFF',
-                      border: '1.5px dashed #CBD5E1',
-                      borderRadius: '10px',
-                      padding: '14px',
-                      textAlign: 'center',
-                      fontSize: '0.8rem',
-                      color: '#64748B',
-                      marginBottom: '16px',
-                      cursor: 'pointer'
-                    }}>
-                      <Upload size={16} color="#94A3B8" style={{ margin: '0 auto 4px auto' }} />
-                      <span>Optional: Grundriss, Skizze oder Fotos der aktuellen Raumsituation anhängen</span>
+                    {/* FILE UPLOAD DROPZONE */}
+                    <div 
+                      onClick={() => fileInputRef.current?.click()}
+                      style={{
+                        background: '#FFFFFF',
+                        border: '1.5px dashed #CBD5E1',
+                        borderRadius: '12px',
+                        padding: '20px',
+                        textAlign: 'center',
+                        fontSize: '0.86rem',
+                        color: '#475569',
+                        marginBottom: uploadedFiles.length > 0 ? '12px' : '18px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = '#C96A00';
+                        e.currentTarget.style.backgroundColor = '#FFFDF8';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = '#CBD5E1';
+                        e.currentTarget.style.backgroundColor = '#FFFFFF';
+                      }}
+                    >
+                      <input 
+                        type="file" 
+                        ref={fileInputRef} 
+                        onChange={handleFileChange} 
+                        multiple 
+                        accept="image/*,.pdf" 
+                        style={{ display: 'none' }} 
+                      />
+                      <Upload size={22} color="#C96A00" style={{ margin: '0 auto 6px auto' }} />
+                      <strong style={{ display: 'block', color: '#0F172A', marginBottom: '2px', fontSize: '0.92rem' }}>
+                        Fotos, Pläne oder Skizzen hier ablegen oder anklicken
+                      </strong>
+                      <span style={{ fontSize: '0.78rem', color: '#94A3B8' }}>
+                        JPG, PNG oder PDF bis max. 15 MB pro Datei (optional)
+                      </span>
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.78rem', color: '#64748B', marginBottom: '20px' }}>
-                      <ShieldCheck size={16} color="#059669" style={{ flexShrink: 0 }} />
-                      <span>100% datenschutzkonform. Ihre Angaben werden vertraulich behandelt.</span>
+                    {/* UPLOADED FILES LIST */}
+                    {uploadedFiles.length > 0 && (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '18px' }}>
+                        {uploadedFiles.map((file, idx) => (
+                          <div 
+                            key={idx} 
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              padding: '8px 12px',
+                              background: '#F8FAFC',
+                              borderRadius: '8px',
+                              border: '1px solid #E2E8F0',
+                              fontSize: '0.85rem'
+                            }}
+                          >
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
+                              <FileText size={16} color="#C96A00" style={{ flexShrink: 0 }} />
+                              <span style={{ fontWeight: 600, color: '#0F172A', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>{file.name}</span>
+                              <span style={{ color: '#64748B', fontSize: '0.78rem' }}>({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                removeFile(idx);
+                              }}
+                              style={{
+                                background: 'none',
+                                border: 'none',
+                                color: '#94A3B8',
+                                cursor: 'pointer',
+                                padding: '4px',
+                                borderRadius: '4px',
+                                display: 'flex',
+                                alignItems: 'center'
+                              }}
+                              onMouseEnter={(e) => (e.currentTarget.style.color = '#EF4444')}
+                              onMouseLeave={(e) => (e.currentTarget.style.color = '#94A3B8')}
+                              aria-label="Datei entfernen"
+                            >
+                              <X size={15} />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* PRIVACY NOTE */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', color: '#64748B', marginBottom: '20px' }}>
+                      <ShieldCheck size={16} color="#16A34A" style={{ flexShrink: 0 }} />
+                      <span>100% datenschutzkonform. Ihre Angaben werden vertraulich behandelt und nicht an Dritte weitergegeben.</span>
                     </div>
 
+                    {/* NAVIGATION BUTTONS */}
                     <div style={{ paddingTop: '20px', borderTop: '1px solid #E8E2D5', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <button
                         type="button"
@@ -511,7 +705,7 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
                         className="btn-secondary"
                       >
                         <ArrowLeft size={16} />
-                        <span>Zurück</span>
+                        <span>Zurück zu Kontaktdaten</span>
                       </button>
 
                       <button

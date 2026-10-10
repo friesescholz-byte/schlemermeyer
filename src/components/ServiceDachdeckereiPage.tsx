@@ -1,7 +1,6 @@
-﻿import React from 'react';
+import React from 'react';
 import { 
   ArrowRight, 
-  Sparkles, 
   Phone, 
   CheckCircle2 
 } from 'lucide-react';
@@ -95,7 +94,6 @@ export const ServiceDachdeckereiPage: React.FC<SubpageProps> = ({ onNavigate, on
       {/* 1.5 REFERENZEN & INSPIRATION SLIDER */}
       <SubpageGallerySlider 
         category="dachdeckerei"
-        badgeTitle="Dachdecker-Referenzen"
         heading="Ausgewählte Steildach- &amp; Flachdachprojekte."
         description="Eindrücke unserer meisterhaften Dacheindeckungen, energetischen Dachsanierungen, Gauben und Flachdachabdichtungen."
         onOpenLeadFunnel={onOpenLeadFunnel}
@@ -106,10 +104,6 @@ export const ServiceDachdeckereiPage: React.FC<SubpageProps> = ({ onNavigate, on
         <div className="container-custom">
           
           <div className="section-header">
-            <div className="badge-pill amber">
-              <Sparkles size={14} />
-              <span>Leistungen im Überblick</span>
-            </div>
             <h2>Dachdeckerei &amp; Dachsanierung auf einen Blick.</h2>
             <p>
               Fachgerechte Ausführung nach den aktuellen Fachregeln des Deutschen Dachdeckerhandwerks (ZVDH).

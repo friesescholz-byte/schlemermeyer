@@ -1,7 +1,6 @@
-﻿import React from 'react';
+import React from 'react';
 import { 
   ArrowRight, 
-  Sparkles, 
   Phone, 
   CheckCircle2 
 } from 'lucide-react';
@@ -95,7 +94,6 @@ export const ServiceZimmereiPage: React.FC<SubpageProps> = ({ onNavigate, onOpen
       {/* 1.5 REFERENZEN & INSPIRATION SLIDER */}
       <SubpageGallerySlider 
         category="zimmerei"
-        badgeTitle="Zimmerei-Referenzen"
         heading="Ausgewählte Holzbau- &amp; Zimmereiprojekte."
         description="Eindrücke traditioneller Dachstühle, ökologischer Holzrahmenbauten, Aufstockungen und meisterhafter Holzkonstruktionen."
         onOpenLeadFunnel={onOpenLeadFunnel}
@@ -106,10 +104,6 @@ export const ServiceZimmereiPage: React.FC<SubpageProps> = ({ onNavigate, onOpen
         <div className="container-custom">
           
           <div className="section-header">
-            <div className="badge-pill amber">
-              <Sparkles size={14} />
-              <span>Leistungen im Überblick</span>
-            </div>
             <h2>Zimmerei &amp; Holzbau auf einen Blick.</h2>
             <p>
               Präzise berechnet, handwerklich perfekt abgebunden und mit jahrzehntelanger Erfahrung montiert.
