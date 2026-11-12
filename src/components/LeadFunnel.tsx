@@ -41,13 +41,14 @@ const ZimmereiIcon: React.FC<{ size?: number; color?: string; className?: string
   </svg>
 );
 
-const DachdeckereiIcon: React.FC<{ size?: number; color?: string; className?: string }> = ({ size = 24, color = '#C2410C', className }) => (
+const SpezialtechnikIcon: React.FC<{ size?: number; color?: string; className?: string }> = ({ size = 24, color = '#0284C7', className }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M2 10L12 2l10 8" />
-    <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7" />
-    <path d="M7 10h10" />
-    <path d="M6 14h12" />
-    <path d="M7 18h10" />
+    <path d="M2 14h20" />
+    <path d="M6 14v4" />
+    <path d="M18 14v4" />
+    <circle cx="8" cy="8" r="3" />
+    <circle cx="16" cy="8" r="3" />
+    <path d="M11 8h2" />
   </svg>
 );
 
@@ -79,14 +80,14 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
       desc: 'Dachstühle, Holzrahmenbau, Carports & Gauben' 
     },
     { 
-      id: 'dachdeckerei', 
-      label: 'Dachdeckerei & Dachsanierung', 
-      tag: 'Dach & Wetterschutz',
-      icon: DachdeckereiIcon, 
-      color: '#C2410C',
-      badgeBg: 'linear-gradient(135deg, #FFE4E6 0%, #FECDD3 100%)',
-      borderColor: '#FDA4AF',
-      desc: 'Steildach, Flachdach, Dämmung & Dachfenster' 
+      id: 'spezialtechnik', 
+      label: 'Spezialtechnik & Maschinenservice', 
+      tag: 'Streichautomat & Estrichfräse',
+      icon: SpezialtechnikIcon, 
+      color: '#0284C7',
+      badgeBg: 'linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 100%)',
+      borderColor: '#7DD3FC',
+      desc: 'C-TEC Streichautomat & Ecotherm Fußbodenfräse' 
     }
   ];
 
@@ -94,7 +95,7 @@ export const LeadFunnel: React.FC<LeadFunnelProps> = ({ initialService, isModal 
   const getInitialGewerke = (): string[] => {
     if (!initialService) return [];
     if (initialService === 'Komplett-Projekt' || initialService === 'Gesamtprojekt') {
-      return ['Innenausbau & Tischlerei', 'Zimmerei & Holzbau', 'Dachdeckerei & Dachsanierung'];
+      return ['Innenausbau & Tischlerei', 'Zimmerei & Holzbau', 'Spezialtechnik & Maschinenservice'];
     }
     const matched = services.find(s => s.label.toLowerCase().includes(initialService.toLowerCase()) || s.id === initialService);
     return matched ? [matched.label] : [];

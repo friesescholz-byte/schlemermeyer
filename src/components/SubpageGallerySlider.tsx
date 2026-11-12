@@ -3,7 +3,7 @@ import { GalleryItem, getStoredGalleryItems } from '../data/galleryStore';
 import { ChevronLeft, ChevronRight, ArrowRight, X } from 'lucide-react';
 
 interface SubpageGallerySliderProps {
-  category: 'innenausbau' | 'zimmerei' | 'dachdeckerei';
+  category: 'innenausbau' | 'zimmerei' | 'spezialtechnik';
   heading: string;
   description: string;
   onOpenLeadFunnel: (projectTitle?: string) => void;
@@ -224,7 +224,7 @@ export const SubpageGallerySlider: React.FC<SubpageGallerySliderProps> = ({
                 <span className="gallery-modal-badge">
                   {selectedModalItem.categoryLabel || (
                     selectedModalItem.category === 'innenausbau' ? 'Innenausbau & Tischlerei' :
-                    selectedModalItem.category === 'zimmerei' ? 'Zimmerei & Holzbau' : 'Dachdeckerei & Dachsanierung'
+                    selectedModalItem.category === 'zimmerei' ? 'Zimmerei & Holzbau' : 'Spezialtechnik & Maschinenservice'
                   )}
                 </span>
                 <h3 className="gallery-modal-title">{selectedModalItem.title}</h3>

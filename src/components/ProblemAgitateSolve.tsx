@@ -55,22 +55,22 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
       solutionImageAlt: 'Perfekt aufeinander abgestimmte Holztöne und Parkett'
     },
     {
-      id: 'zimmerei-dach',
+      id: 'zimmerei-holzbau',
       number: '02',
-      category: 'Zimmerei & Dachdeckerei',
-      title: 'Undichte Dächer & minderwertige Zimmerei',
-      problemLabel: 'Risiko bei Schnittstellen-Problemen',
-      problemHeadline: 'Mangelhafte Anschlüsse & feuchte Dämmschichten',
-      problemText: 'Wenn Zimmerei und Dachdeckerei nicht Hand in Hand arbeiten, drohen unsauber verklebte Dampfbremsen, fehlerhafte Anschlüsse und billiges Bauholz. Feuchtigkeitsschäden und hohe Wärmeverluste sind die Folge.',
-      problemTakeaway: '✕ Versteckte Bauschäden & steigende Heizkosten',
-      problemImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/schlechte-Dachdecker_ergebnis.webp',
-      problemImageAlt: 'Minderwertige Dacharbeiten und undichte Dächer',
+      category: 'Zimmerei & Holzbau',
+      title: 'Maßungenauigkeiten & minderwertiges Bauholz',
+      problemLabel: 'Risiko bei Billiganbietern',
+      problemHeadline: 'Verzogene Balken & unsaubere Holzverbindungen',
+      problemText: 'Minderwertiges, feuchtes Bauholz und unpräziser Handabbund führen zu Verzug, Rissbildung und knarrenden Decken. Statische Schwachstellen und Kältebrücken mindern den Wert der Immobilie nachhaltig.',
+      problemTakeaway: '✕ Verzug, Knarren & statische Risiken',
+      problemImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/IMG_0643_ergebnis.webp',
+      problemImageAlt: 'Schäden durch ungenauen Abbund und minderwertiges Bauholz',
       solutionLabel: 'Der Schlemermeyer-Standard',
-      solutionHeadline: 'Zimmerei & Dacheindeckung aus einer Meisterhand',
-      solutionText: 'Vom zimmermannsmäßigen Dachabbund bis zur sturmsicheren Dacheindeckung und lückenlosen GEG-Wärmedämmung: Alle Schritte greifen nahtlos ineinander – ohne Schnittstellenverlust, mit voller Meistergarantie.',
-      solutionTakeaway: '✓ Geprüfte Statik & lückenlose Luftdichtheit',
-      solutionImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/schlemermeyer-Dachdecker_ergebnis.webp',
-      solutionImageAlt: 'Meisterhafte Schlemermeyer Dachdecker- und Dachsanierungsarbeiten'
+      solutionHeadline: 'CAD-Präzisionsabbund & güteüberwachtes KVH',
+      solutionText: 'Vom zimmermannsmäßigen Dachstuhl bis zum massiven Holzrahmenbau: Mit millimetergenauem CAD-Abbund, zertifiziertem Konstruktionsvollholz (KVH) und meisterhaften Holzverbindungen garantieren wir höchste Tragfähigkeit und Formstabilität.',
+      solutionTakeaway: '✓ Güteüberwachtes KVH & CAD-Passgenauigkeit',
+      solutionImage: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/HRB%20IV_ergebnis.webp',
+      solutionImageAlt: 'Präziser Schlemermeyer Holzbau und stabiler Dachstuhl'
     },
     {
       id: 'neubau',
@@ -119,7 +119,7 @@ export const ProblemAgitateSolve: React.FC<PasProps> = ({ onOpenLeadFunnel }) =>
             </span>
           </h2>
           <p>
-            Ob Neubau, Dachstuhl &amp; Dacheindeckung oder nahtloser Innenausbau: 
+            Ob Neubau, Holzrahmenbau, Anbau oder nahtloser Innenausbau: 
             Erfahren Sie auf einen Blick, warum anspruchsvolle Bauherren auf unsere Meisterwerkstatt vertrauen.
           </p>
         </div>

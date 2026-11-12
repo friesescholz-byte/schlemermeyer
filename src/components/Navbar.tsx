@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Phone, 
   Menu, 
@@ -37,14 +37,15 @@ const ZimmereiTrussIcon: React.FC<{ size?: number; className?: string }> = ({ si
   </svg>
 );
 
-// 3. Dachdeckerei: Schützendes Dach mit Ziegelschichten
-const DachdeckereiIcon: React.FC<{ size?: number; className?: string }> = ({ size = 20, className }) => (
+// 3. Spezialtechnik & Maschinenservice: Streichautomat & Frästechnik
+const SpezialtechnikIcon: React.FC<{ size?: number; className?: string }> = ({ size = 20, className }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M2 10L12 2l10 8" />
-    <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7" />
-    <path d="M7 10h10" />
-    <path d="M6 14h12" />
-    <path d="M7 18h10" />
+    <path d="M2 14h20" />
+    <path d="M6 14v4" />
+    <path d="M18 14v4" />
+    <circle cx="8" cy="8" r="3" />
+    <circle cx="16" cy="8" r="3" />
+    <path d="M11 8h2" />
   </svg>
 );
 
@@ -170,15 +171,15 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                     <a
                       href="#"
-                      onClick={(e) => handleNavClick(e, 'service-dachdeckerei')}
-                      className={`dropdown-item-row ${currentPage === 'service-dachdeckerei' ? 'active' : ''}`}
+                      onClick={(e) => handleNavClick(e, 'service-spezialtechnik')}
+                      className={`dropdown-item-row ${currentPage === 'service-spezialtechnik' ? 'active' : ''}`}
                     >
                       <div className="dropdown-item-icon">
-                        <DachdeckereiIcon size={20} />
+                        <SpezialtechnikIcon size={20} />
                       </div>
                       <div className="dropdown-item-text">
-                        <strong className="dropdown-item-title">Dachdeckerei &amp; Dachsanierung</strong>
-                        <span className="dropdown-item-sub">Steildach, Flachdach, Dämmung &amp; Dachfenster</span>
+                        <strong className="dropdown-item-title">Spezialtechnik &amp; Maschinenservice</strong>
+                        <span className="dropdown-item-sub">Streichautomat (C-TEC) &amp; Fußbodenfräse (Ecotherm)</span>
                       </div>
                       <ChevronRight size={15} className="dropdown-item-arrow" />
                     </a>
@@ -326,11 +327,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </a>
                   <a
                     href="#"
-                    onClick={(e) => handleNavClick(e, 'service-dachdeckerei')}
+                    onClick={(e) => handleNavClick(e, 'service-spezialtechnik')}
                     className="mobile-subservice-link"
                   >
-                    <DachdeckereiIcon size={18} />
-                    <span>Dachdeckerei &amp; Dachsanierung</span>
+                    <SpezialtechnikIcon size={18} />
+                    <span>Spezialtechnik &amp; Maschinenservice</span>
                   </a>
                 </div>
               )}

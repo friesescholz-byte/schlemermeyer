@@ -425,7 +425,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
                   <div style={{ padding: '12px 16px', background: '#F8FAFC', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
                     <strong style={{ color: '#0F172A' }}>a) Interaktiver Projekt-Funnel (Lead-Konfigurator) &amp; Allgemeines Kontaktformular:</strong>
                     <p style={{ margin: '4px 0 0', color: '#475569' }}>
-                      Zur gezielten Angebotserstellung für Innenausbau, Treppenbau, Parkett, Zimmerei oder Dacharbeiten erheben wir: Vor- und Nachname, Telefonnummer, E-Mail-Adresse, PLZ/Ort des Bauvorhabens sowie Details zum Gewerk, Zeitrahmen und Budget. Die Verarbeitung dient der Erfüllung vorvertraglicher Maßnahmen und Beantwortung Ihrer Anfrage (Art. 6 Abs. 1 lit. b &amp; lit. f DSGVO). Die Daten werden gelöscht, sobald der Sachverhalt abschließend geklärt ist und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.
+                      Zur gezielten Angebotserstellung für Innenausbau, Treppenbau, Parkett, Zimmerei, Holzbau oder Spezialtechnik erheben wir: Vor- und Nachname, Telefonnummer, E-Mail-Adresse, PLZ/Ort des Bauvorhabens sowie Details zum Gewerk, Zeitrahmen und Budget. Die Verarbeitung dient der Erfüllung vorvertraglicher Maßnahmen und Beantwortung Ihrer Anfrage (Art. 6 Abs. 1 lit. b &amp; lit. f DSGVO). Die Daten werden gelöscht, sobald der Sachverhalt abschließend geklärt ist und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.
                     </p>
                   </div>
                   <div style={{ padding: '12px 16px', background: '#F8FAFC', borderRadius: '8px', border: '1px solid #E2E8F0' }}>

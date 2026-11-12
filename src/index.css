@@ -1939,7 +1939,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   SUBPAGES (INNENAUSBAU, ZIMMEREI, DACHDECKEREI)
+   SUBPAGES (INNENAUSBAU, ZIMMEREI, SPEZIALTECHNIK)
    ========================================================================== */
 .subpage-wrapper {
   background-color: #FAF8F5;
@@ -1975,8 +1975,8 @@ h1, h2, h3, h4, h5, h6 {
   background-image: url('https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/HRB%20IV_ergebnis.webp');
 }
 
-.subpage-hero-fixed-bg.dachdeckerei {
-  background-image: url('https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/schlemermeyer-Dachdecker_ergebnis.webp');
+.subpage-hero-fixed-bg.spezialtechnik {
+  background-image: url('https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0108_ergebnis.webp');
 }
 
 /* ASYMMETRISCHER VERLAUF:
@@ -2176,6 +2176,234 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.9rem;
   font-weight: 600;
   color: #1E293B;
+}
+
+/* ==========================================================================
+   SPEZIALTECHNIK BESPOKE DUO-CARD SHOWCASE (CLEAN & DIRECT)
+   ========================================================================== */
+.specialtech-duo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.specialtech-card {
+  position: relative;
+  background-color: #0B1017;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  min-height: 590px;
+}
+
+.specialtech-card:hover {
+  transform: translate3d(0, -6px, 0);
+  border-color: rgba(201, 106, 0, 0.6);
+  box-shadow: 0 24px 50px rgba(15, 23, 42, 0.28);
+}
+
+.specialtech-card.tech-blue:hover {
+  border-color: rgba(2, 132, 199, 0.6);
+}
+
+.specialtech-card .immersive-card-img {
+  opacity: 0.32;
+  filter: brightness(0.82);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.4s ease;
+}
+
+.specialtech-card:hover .immersive-card-img {
+  transform: scale(1.06);
+  opacity: 0.44;
+  filter: brightness(0.92);
+}
+
+.specialtech-card-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg, 
+    rgba(11, 16, 23, 0.62) 0%, 
+    rgba(11, 16, 23, 0.82) 28%, 
+    rgba(11, 16, 23, 0.94) 58%, 
+    rgba(11, 16, 23, 0.99) 100%
+  );
+  pointer-events: none;
+}
+
+.specialtech-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 34px 30px;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.specialtech-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.immersive-icon-box.tech-blue-icon {
+  color: #0284C7;
+}
+
+.specialtech-card:hover .immersive-icon-box.tech-blue-icon {
+  background: #0284C7;
+  color: #FFFFFF;
+}
+
+.specialtech-card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.specialtech-title {
+  font-size: 1.65rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.specialtech-tool-name {
+  font-weight: 600;
+  color: #E2E8F0;
+  font-size: 1.12rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.specialtech-lead-text {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #FEF08A;
+  margin-bottom: 12px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.specialtech-card.tech-blue .specialtech-lead-text {
+  color: #7DD3FC;
+}
+
+.specialtech-core-benefit {
+  font-size: 0.96rem;
+  color: #E2E8F0;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.specialtech-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.specialtech-point-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #E2E8F0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.specialtech-point-row strong {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.specialtech-note-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.86rem;
+  color: #E2E8F0;
+  line-height: 1.45;
+  margin-bottom: 26px;
+}
+
+.specialtech-note-box strong {
+  color: #FFFFFF;
+}
+
+.specialtech-card-action {
+  margin-top: auto;
+}
+
+.specialtech-card-action button {
+  width: 100%;
+  justify-content: center;
+  padding: 15px 22px;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+/* HORIZONTAL 3-PILLAR TRUST BAR */
+.specialtech-trust-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  background: #FAF8F5;
+  border: 1px solid #EFECE6;
+  border-radius: 16px;
+  padding: 24px 28px;
+}
+
+.specialtech-trust-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.specialtech-trust-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.specialtech-trust-desc {
+  font-size: 0.86rem;
+  color: #64748B;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .specialtech-duo-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .specialtech-trust-bar {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 18px 20px;
+  }
 }
 
 .subpage-cta-banner {
@@ -4834,9 +5062,9 @@ h1, h2, h3, h4, h5, h6 {
   color: #0284C7;
 }
 
-.admin-stat-icon-wrap.dachdeckerei {
-  background: rgba(22, 163, 74, 0.1);
-  color: #16A34A;
+.admin-stat-icon-wrap.spezialtechnik {
+  background: rgba(2, 132, 199, 0.1);
+  color: #0284C7;
 }
 
 .admin-stat-number {
@@ -5086,9 +5314,9 @@ h1, h2, h3, h4, h5, h6 {
   color: #0369A1;
 }
 
-.admin-category-tag.dachdeckerei {
-  background: rgba(22, 163, 74, 0.1);
-  color: #15803D;
+.admin-category-tag.spezialtechnik {
+  background: rgba(2, 132, 199, 0.1);
+  color: #0369A1;
 }
 
 .admin-material-tag {

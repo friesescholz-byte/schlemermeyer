@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, 
   Sparkles, 
@@ -18,7 +18,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel, onNavigateToJobs }
     'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Hero_Schlemermeyer_ergebnis.webp',
     'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/Abgestimmte-Holz-T%C3%B6ne_ergebnis.webp',
     'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/HRB%20IV_ergebnis.webp',
-    'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/schlemermeyer-Dachdecker_ergebnis.webp'
+    'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0163-1-scaled_ergebnis.webp'
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -111,12 +111,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel, onNavigateToJobs }
             {/* EYEBROW BADGE */}
             <div className="hero-eyebrow-pill">
               <Sparkles size={14} color="#C96A00" />
-              <span>Tischlerei • Zimmerei • Dachdeckerei seit 1883</span>
+              <span>Tischlerei • Zimmerei • Spezialtechnik seit 1883</span>
             </div>
 
             {/* HEADLINE */}
             <h1 className="hero-split-headline">
-              Holzbau, Dach &amp; Innenausbau{' '}
+              Holzbau, Innenausbau &amp; Spezialtechnik{' '}
               <span className="wood-highlight-text">
                 mit meisterhafter Präzision.
               </span>
@@ -124,7 +124,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenLeadFunnel, onNavigateToJobs }
 
             {/* SUBLINE - PUNCHY & SCHNELL ERFASSBAR */}
             <p className="hero-split-subline">
-              Vom Dachstuhl, Dacheindeckung und Holzbau bis zu maßgefertigten Treppen, edlen Böden und dem kompletten Innenausbau – 
+              Vom zimmermannsmäßigen Holzbau und maßgefertigten Treppen bis zu modernster Spezialtechnik mit Streichautomat und Fußbodenfräse – 
               alles verlässlich aus einer Meisterhand mit <strong>100% Festpreis- &amp; Termingarantie</strong>.
             </p>
 

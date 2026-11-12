@@ -7,7 +7,7 @@ import {
 import { COMPANY_INFO } from '../data/content';
 
 interface ServicesSectionProps {
-  onNavigateToService: (servicePage: 'service-innenausbau' | 'service-zimmerei' | 'service-dachdeckerei') => void;
+  onNavigateToService: (servicePage: 'service-innenausbau' | 'service-zimmerei' | 'service-spezialtechnik') => void;
   onOpenLeadFunnel: (serviceTitle?: string) => void;
 }
 
@@ -31,19 +31,20 @@ const ZimmereiTrussIcon: React.FC<{ size?: number; className?: string }> = ({ si
   </svg>
 );
 
-// 3. Dachdeckerei: Schützendes Dach mit Ziegelschichten
-const DachdeckereiIcon: React.FC<{ size?: number; className?: string }> = ({ size = 22, className }) => (
+// 3. Spezialtechnik & Maschinenservice: Streichautomat & Frästechnik
+const SpezialtechnikIcon: React.FC<{ size?: number; className?: string }> = ({ size = 22, className }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M2 10L12 2l10 8" />
-    <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7" />
-    <path d="M7 10h10" />
-    <path d="M6 14h12" />
-    <path d="M7 18h10" />
+    <path d="M2 14h20" />
+    <path d="M6 14v4" />
+    <path d="M18 14v4" />
+    <circle cx="8" cy="8" r="3" />
+    <circle cx="16" cy="8" r="3" />
+    <path d="M11 8h2" />
   </svg>
 );
 
 interface MainServicePillar {
-  id: 'service-innenausbau' | 'service-zimmerei' | 'service-dachdeckerei';
+  id: 'service-innenausbau' | 'service-zimmerei' | 'service-spezialtechnik';
   title: string;
   tagline: string;
   description: string;
@@ -76,13 +77,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
       icon: ZimmereiTrussIcon
     },
     {
-      id: 'service-dachdeckerei',
-      title: 'Dachdeckerei & Dachsanierung',
-      tagline: 'Dauerhafter Schutz von oben',
-      description: 'Fachgerechte Eindeckungen mit Tondachziegeln, Flachdachabdichtungen, energetische Dachsanierung nach GEG sowie Dachfenster und Klempnerarbeiten.',
-      image: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/schlemermeyer-Dachdecker_ergebnis.webp',
-      imageAlt: 'Dachdeckerei und energetische Dachsanierung von Schlemermeyer',
-      icon: DachdeckereiIcon
+      id: 'service-spezialtechnik',
+      title: 'Spezialtechnik & Maschinenservice',
+      tagline: 'Streichautomat & Fußbodenfräse',
+      description: 'Modernste Maschinentechnik für makellose Oberflächen und schnelle Sanierung: Unser C-TEC Streichautomat beschichtet Bretter und Leisten 4-seitig in Rekordzeit. Mit der Ecotherm Fräse integrieren wir Fußbodenheizungen staubarm direkt in Ihren Bestandsestrich.',
+      image: 'https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0108_ergebnis.webp',
+      imageAlt: 'Spezialtechnik und Maschinenservice mit Streichautomat und Fußbodenfräse von Schlemermeyer',
+      icon: SpezialtechnikIcon
     }
   ];
 
@@ -103,7 +104,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             </span>
           </h2>
           <p>
-            Vom Dachstuhl über die Dacheindeckung bis zum kompletten schlüsselfertigen Innenausbau: 
+            Vom meisterhaften Holzbau über individuellen Innenausbau bis zu moderner Spezialtechnik: 
             Wählen Sie Ihren Bereich und entdecken Sie alle Leistungen im Detail.
           </p>
         </div>
@@ -179,7 +180,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 Ganzheitliche Bauprojekte ohne Schnittstellen-Chaos
               </h3>
               <p className="service-custom-desc">
-                Zimmerei, Dachdeckerei und Innenausbau greifen bei uns perfekt ineinander. 
+                Tischlerei, Zimmerei und moderne Maschinentechnik greifen bei uns perfekt ineinander. 
                 1 Ansprechpartner für Ihr gesamtes Bauvorhaben – mit Festpreis- und Termingarantie.
               </p>
             </div>

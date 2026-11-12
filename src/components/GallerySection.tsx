@@ -32,7 +32,7 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
     { id: 'all', label: 'Alle Projekte' },
     { id: 'innenausbau', label: 'Innenausbau & Tischlerei' },
     { id: 'zimmerei', label: 'Zimmerei & Holzbau' },
-    { id: 'dachdeckerei', label: 'Dachdeckerei & Dachsanierung' }
+    { id: 'spezialtechnik', label: 'Spezialtechnik & Maschinenservice' }
   ];
 
   const handleFilterChange = (filterId: string) => {
@@ -60,7 +60,7 @@ export const GallerySection: React.FC<GalleryProps> = ({ onOpenLeadFunnel }) => 
           </div>
           <h2>Eindrücke unserer Handwerkskunst.</h2>
           <p>
-            Entdecken Sie eine Auswahl unserer gefertigten Maßtreppen, Dachstühle, Holzrahmenbauten, Parkettböden und Dacheindeckungen. Jedes Projekt ein echtes Meister-Unikat.
+            Entdecken Sie eine Auswahl unserer gefertigten Maßtreppen, Dachstühle, Holzrahmenbauten, Parkettböden und Spezialtechnik-Projekte. Jedes Projekt ein echtes Meister-Unikat.
           </p>
         </div>
 

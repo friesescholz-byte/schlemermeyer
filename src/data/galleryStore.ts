@@ -1,7 +1,7 @@
-﻿export interface GalleryItem {
+export interface GalleryItem {
   id: string;
   title: string;
-  category: 'innenausbau' | 'zimmerei' | 'dachdeckerei';
+  category: 'innenausbau' | 'zimmerei' | 'spezialtechnik';
   categoryLabel: string;
   image: string;
   description: string;
@@ -29,13 +29,13 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     woodType: "Fichten- & Tannen-Bauholz"
   },
   {
-    id: "g-dach-steildach",
-    title: "Steildacheindeckung & Dachsanierung",
-    category: "dachdeckerei",
-    categoryLabel: "Dachdeckerei & Dachsanierung",
-    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/Probleme/schlemermeyer-Dachdecker_ergebnis.webp",
-    description: "Fachgerechte Neueindeckung mit hochwertigen Tondachziegeln, sturmsicherer Verklammerung und Firstentlüftung.",
-    woodType: "Tondachziegel & GEG-Dämmung"
+    id: "g-streichautomat-ctec",
+    title: "Streichautomat C-TEC (Bruns) – 4-seitige Rundumbeschichtung",
+    category: "spezialtechnik",
+    categoryLabel: "Spezialtechnik & Maschinenservice",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0108_ergebnis.webp",
+    description: "Vollautomatische, gleichmäßige 4-Seiten-Beschichtung für Bretter, Fassadenhölzer und Leisten in Rekordzeit ohne Pinselspuren.",
+    woodType: "C-TEC Maschinenservice (Bruns)"
   },
   {
     id: "g-massivholzdielen",
@@ -56,13 +56,13 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     woodType: "Konstruktionsvollholz (KVH)"
   },
   {
-    id: "g-dach-flachdach",
-    title: "Flachdachabdichtung & Gaubenverkleidung",
-    category: "dachdeckerei",
-    categoryLabel: "Dachdeckerei & Dachsanierung",
-    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/drive/image007_ergebnis.webp",
-    description: "Langlebige Flachdach- und Gaubenabdichtung mit mehrlagigen Bitumenbahnen und Gefälledämmung gegen stehendes Wasser.",
-    woodType: "Bitumen- & Folienabdichtung"
+    id: "g-fussbodenfraese-ecotherm",
+    title: "Ecotherm Fußbodenfräse – Fußbodenheizung im Bestandsestrich",
+    category: "spezialtechnik",
+    categoryLabel: "Spezialtechnik & Maschinenservice",
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/IMG_0096-1_ergebnis.webp",
+    description: "Nachträgliches Einfräsen von millimetergenauen Rohrkanälen für Fußbodenheizungen direkt in den vorhandenen Estrich – nahezu staubfrei und ohne Aufbauhöhe.",
+    woodType: "Ecotherm Frästechnik"
   },
   {
     id: "g-raeuchereiche-wange",
@@ -120,7 +120,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
   }
 ];
 
-const STORAGE_KEY = 'schlemermeyer_gallery_items_v2';
+const STORAGE_KEY = 'schlemermeyer_gallery_items_v3';
 
 export const getStoredGalleryItems = (): GalleryItem[] => {
   try {

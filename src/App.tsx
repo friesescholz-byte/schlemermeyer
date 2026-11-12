@@ -14,7 +14,7 @@ import { AboutPage } from './components/AboutPage';
 import { JobsPage } from './components/JobsPage';
 import { ServiceInnenausbauPage } from './components/ServiceInnenausbauPage';
 import { ServiceZimmereiPage } from './components/ServiceZimmereiPage';
-import { ServiceDachdeckereiPage } from './components/ServiceDachdeckereiPage';
+import { ServiceSpezialtechnikPage } from './components/ServiceSpezialtechnikPage';
 import { AdminDashboard } from './components/AdminDashboard';
 import { JobModal } from './components/JobModal';
 import { LegalModal } from './components/LegalModal';
@@ -27,7 +27,7 @@ export type AppCurrentPage =
   | 'jobs' 
   | 'service-innenausbau' 
   | 'service-zimmerei' 
-  | 'service-dachdeckerei'
+  | 'service-spezialtechnik'
   | 'admin';
 
 export default function App() {
@@ -172,8 +172,8 @@ export default function App() {
         />
       )}
 
-      {currentPage === 'service-dachdeckerei' && (
-        <ServiceDachdeckereiPage 
+      {currentPage === 'service-spezialtechnik' && (
+        <ServiceSpezialtechnikPage 
           onNavigate={handleNavigate}
           onOpenLeadFunnel={(srv) => handleOpenLeadFunnel(srv)}
         />

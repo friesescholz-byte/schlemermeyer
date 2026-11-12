@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   GalleryItem, 
   getStoredGalleryItems, 
@@ -35,7 +35,7 @@ interface AdminDashboardProps {
 export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }) => {
   const [items, setItems] = useState<GalleryItem[]>(getStoredGalleryItems);
   const [searchQuery, setSearchQuery] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState<'all' | 'innenausbau' | 'zimmerei' | 'dachdeckerei'>('all');
+  const [categoryFilter, setCategoryFilter] = useState<'all' | 'innenausbau' | 'zimmerei' | 'spezialtechnik'>('all');
   
   // Modal State for Add / Edit
   const [modalOpen, setModalOpen] = useState(false);
@@ -43,7 +43,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
 
   // Form State
   const [formTitle, setFormTitle] = useState('');
-  const [formCategory, setFormCategory] = useState<'innenausbau' | 'zimmerei' | 'dachdeckerei'>('innenausbau');
+  const [formCategory, setFormCategory] = useState<'innenausbau' | 'zimmerei' | 'spezialtechnik'>('innenausbau');
   const [formCategoryLabel, setFormCategoryLabel] = useState('');
   const [formDescription, setFormDescription] = useState('');
   const [formWoodType, setFormWoodType] = useState('');
@@ -117,7 +117,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
             category: formCategory,
             categoryLabel: formCategoryLabel.trim() || (
               formCategory === 'innenausbau' ? 'Innenausbau & Tischlerei' :
-              formCategory === 'zimmerei' ? 'Zimmerei & Holzbau' : 'Dachdeckerei & Dachsanierung'
+              formCategory === 'zimmerei' ? 'Zimmerei & Holzbau' : 'Spezialtechnik & Maschinenservice'
             ),
             description: formDescription.trim(),
             woodType: formWoodType.trim(),
@@ -137,7 +137,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
         category: formCategory,
         categoryLabel: formCategoryLabel.trim() || (
           formCategory === 'innenausbau' ? 'Innenausbau & Tischlerei' :
-          formCategory === 'zimmerei' ? 'Zimmerei & Holzbau' : 'Dachdeckerei & Dachsanierung'
+          formCategory === 'zimmerei' ? 'Zimmerei & Holzbau' : 'Spezialtechnik & Maschinenservice'
         ),
         description: formDescription.trim(),
         woodType: formWoodType.trim(),
@@ -195,7 +195,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
 
   const countInnenausbau = items.filter(i => i.category === 'innenausbau').length;
   const countZimmerei = items.filter(i => i.category === 'zimmerei').length;
-  const countDach = items.filter(i => i.category === 'dachdeckerei').length;
+  const countSpezial = items.filter(i => i.category === 'spezialtechnik').length;
 
   return (
     <div className="admin-page-wrapper">
@@ -285,14 +285,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
           </div>
 
           <div 
-            className={`admin-stat-card ${categoryFilter === 'dachdeckerei' ? 'active' : ''}`}
-            onClick={() => setCategoryFilter('dachdeckerei')}
+            className={`admin-stat-card ${categoryFilter === 'spezialtechnik' ? 'active' : ''}`}
+            onClick={() => setCategoryFilter('spezialtechnik')}
           >
-            <div className="admin-stat-icon-wrap dachdeckerei">
+            <div className="admin-stat-icon-wrap spezialtechnik">
               <ShieldCheck size={18} />
             </div>
-            <span className="admin-stat-number">{countDach}</span>
-            <span className="admin-stat-label">Dachdeckerei &amp; Dachsanierung</span>
+            <span className="admin-stat-number">{countSpezial}</span>
+            <span className="admin-stat-label">Spezialtechnik &amp; Maschinenservice</span>
           </div>
         </div>
 
@@ -302,7 +302,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
             <Search size={18} className="admin-search-icon" />
             <input
               type="text"
-              placeholder="Projekte durchsuchen (z. B. Faltwerktreppe, Eiche, Dachstuhl)..."
+              placeholder="Projekte durchsuchen (z. B. Faltwerktreppe, Eiche, Streichautomat)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="admin-search-input"
@@ -334,10 +334,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
               Zimmerei ({countZimmerei})
             </button>
             <button
-              onClick={() => setCategoryFilter('dachdeckerei')}
-              className={`admin-filter-pill ${categoryFilter === 'dachdeckerei' ? 'active' : ''}`}
+              onClick={() => setCategoryFilter('spezialtechnik')}
+              className={`admin-filter-pill ${categoryFilter === 'spezialtechnik' ? 'active' : ''}`}
             >
-              Dachdeckerei ({countDach})
+              Spezialtechnik ({countSpezial})
             </button>
           </div>
         </div>
@@ -404,7 +404,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
                         <span className={`admin-category-tag ${item.category}`}>
                           {item.categoryLabel || (
                             item.category === 'innenausbau' ? 'Innenausbau & Tischlerei' :
-                            item.category === 'zimmerei' ? 'Zimmerei & Holzbau' : 'Dachdeckerei & Dachsanierung'
+                            item.category === 'zimmerei' ? 'Zimmerei & Holzbau' : 'Spezialtechnik & Maschinenservice'
                           )}
                         </span>
                         {item.woodType && (
@@ -490,17 +490,17 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
                   <select
                     value={formCategory}
                     onChange={(e) => {
-                      const cat = e.target.value as 'innenausbau' | 'zimmerei' | 'dachdeckerei';
+                      const cat = e.target.value as 'innenausbau' | 'zimmerei' | 'spezialtechnik';
                       setFormCategory(cat);
                       if (cat === 'innenausbau') setFormCategoryLabel('Innenausbau & Tischlerei');
                       if (cat === 'zimmerei') setFormCategoryLabel('Zimmerei & Holzbau');
-                      if (cat === 'dachdeckerei') setFormCategoryLabel('Dachdeckerei & Dachsanierung');
+                      if (cat === 'spezialtechnik') setFormCategoryLabel('Spezialtechnik & Maschinenservice');
                     }}
                     className="admin-form-select"
                   >
                     <option value="innenausbau">Innenausbau &amp; Tischlerei (Treppen, Böden, Türen, Möbel)</option>
                     <option value="zimmerei">Zimmerei &amp; Holzbau (Dachstühle, Holzrahmenbau, Carports)</option>
-                    <option value="dachdeckerei">Dachdeckerei &amp; Dachsanierung (Steildach, Flachdach, Dämmung)</option>
+                    <option value="spezialtechnik">Spezialtechnik &amp; Maschinenservice (Streichautomat, Fußbodenfräse)</option>
                   </select>
                 </div>
 

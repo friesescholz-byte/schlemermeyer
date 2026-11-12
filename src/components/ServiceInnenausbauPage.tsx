@@ -8,7 +8,7 @@ import { COMPANY_INFO } from '../data/content';
 import { SubpageGallerySlider } from './SubpageGallerySlider';
 
 interface SubpageProps {
-  onNavigate: (page: 'home' | 'about' | 'jobs' | 'service-innenausbau' | 'service-zimmerei' | 'service-dachdeckerei', sectionId?: string) => void;
+  onNavigate: (page: 'home' | 'about' | 'jobs' | 'service-innenausbau' | 'service-zimmerei' | 'service-spezialtechnik', sectionId?: string) => void;
   onOpenLeadFunnel: (serviceTitle?: string) => void;
 }
 
