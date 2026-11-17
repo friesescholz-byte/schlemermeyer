@@ -112,10 +112,20 @@ export const ServiceSpezialtechnikPage: React.FC<SubpageProps> = ({ onNavigate, 
                     Bretter &amp; Leisten 4-seitig maschinell streichen
                   </div>
 
-                  <p className="specialtech-core-benefit">
-                    Schluss mit tagelangem Streichen von Hand: Das Holz wird einmal durch die Maschine geschoben 
-                    und kommt auf allen vier Seiten gleichmäßig und sauber gestrichen heraus.
-                  </p>
+                  <div className="specialtech-device-row">
+                    <div className="specialtech-device-thumb-box">
+                      <img 
+                        src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/geraet-ceetec-p40.webp" 
+                        alt="Ceetec P40 Streichautomat" 
+                        className="specialtech-device-thumb-img"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p className="specialtech-core-benefit">
+                      Schluss mit tagelangem Streichen von Hand: Wir schieben Ihr Holz einmal durch die Maschine 
+                      und es kommt auf allen vier Seiten gleichmäßig gestrichen heraus.
+                    </p>
+                  </div>
 
                   <div className="specialtech-points-list">
                     <div className="specialtech-point-row">
@@ -128,7 +138,7 @@ export const ServiceSpezialtechnikPage: React.FC<SubpageProps> = ({ onNavigate, 
                     </div>
                     <div className="specialtech-point-row">
                       <CheckCircle2 size={16} color="#FBBF24" style={{ flexShrink: 0, marginTop: '3px' }} />
-                      <span><strong>Enorme Zeitersparnis:</strong> Für Fassadenhölzer, Schalungsbretter &amp; Leisten</span>
+                      <span><strong>Enorme Zeitersparnis:</strong> Für Fassadenhölzer, Schalungsbretter, Rauspund &amp; Leisten</span>
                     </div>
                   </div>
 
@@ -139,10 +149,10 @@ export const ServiceSpezialtechnikPage: React.FC<SubpageProps> = ({ onNavigate, 
 
                   <div className="specialtech-card-action">
                     <button 
-                      onClick={() => onOpenLeadFunnel('Streichautomat C-TEC')}
+                      onClick={() => onOpenLeadFunnel('spezialtechnik')}
                       className="btn-primary"
                     >
-                      <span>Streichautomat anfragen</span>
+                      <span>Holzbeschichtung anfragen</span>
                       <ArrowRight size={17} />
                     </button>
                   </div>
@@ -180,10 +190,20 @@ export const ServiceSpezialtechnikPage: React.FC<SubpageProps> = ({ onNavigate, 
                     Fußbodenheizung nachträglich in Estrich fräsen
                   </div>
 
-                  <p className="specialtech-core-benefit">
-                    Fußbodenheizung nachrüsten, ohne den alten Estrich herauszureißen: Passgenaue Rohrkanäle 
-                    werden direkt in Ihren Bestandsboden gefräst – sauber und nahezu staubfrei.
-                  </p>
+                  <div className="specialtech-device-row">
+                    <div className="specialtech-device-thumb-box">
+                      <img 
+                        src="https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/schlemermeyer/geraet-hemming-fraese.webp" 
+                        alt="Estrich-Fußbodenfräse" 
+                        className="specialtech-device-thumb-img"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p className="specialtech-core-benefit">
+                      Fußbodenheizung nachrüsten, ohne den alten Estrich herauszureißen: Wir fräsen passgenaue 
+                      Rohrkanäle direkt in Ihren Bestandsboden – sauber und nahezu staubfrei.
+                    </p>
+                  </div>
 
                   <div className="specialtech-points-list">
                     <div className="specialtech-point-row">
@@ -207,10 +227,10 @@ export const ServiceSpezialtechnikPage: React.FC<SubpageProps> = ({ onNavigate, 
 
                   <div className="specialtech-card-action">
                     <button 
-                      onClick={() => onOpenLeadFunnel('Ecotherm Fußbodenfräse')}
+                      onClick={() => onOpenLeadFunnel('spezialtechnik')}
                       className="btn-primary"
                     >
-                      <span>Fußbodenfräse anfragen</span>
+                      <span>Fußbodenfräsung anfragen</span>
                       <ArrowRight size={17} />
                     </button>
                   </div>

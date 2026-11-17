@@ -2297,11 +2297,42 @@ h1, h2, h3, h4, h5, h6 {
   color: #7DD3FC;
 }
 
+.specialtech-device-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.specialtech-device-thumb-box {
+  width: 118px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.specialtech-card:hover .specialtech-device-thumb-box {
+  transform: translateY(-2px) scale(1.04);
+}
+
+.specialtech-device-thumb-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.38)) drop-shadow(0 2px 12px rgba(255, 255, 255, 0.22));
+}
+
 .specialtech-core-benefit {
-  font-size: 0.96rem;
+  font-size: 0.95rem;
   color: #E2E8F0;
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
@@ -2403,6 +2434,16 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr;
     gap: 16px;
     padding: 18px 20px;
+  }
+}
+
+@media (max-width: 540px) {
+  .specialtech-device-row {
+    gap: 14px;
+  }
+  .specialtech-device-thumb-box {
+    width: 92px;
+    height: 86px;
   }
 }
 
